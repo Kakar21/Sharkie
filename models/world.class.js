@@ -5,7 +5,16 @@ class World {
     new Fish(),
     new Fish()
     ];
-    canvas
+    lights = [
+        new Light()
+    ];
+    backgroundObjects = [
+        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png'),
+        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png'),
+        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png'),
+        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png')
+    ];
+    canvas;
     ctx;
 
     constructor(canvas) {
@@ -17,15 +26,27 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(enemy => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)
-        });
+        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.lights);
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.enemies);
+        
+
 
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    addObjectsToMap(objects) {
+        objects.forEach(o => {
+            this.addToMap(o);
+        })
+    }
+
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     }
 }
