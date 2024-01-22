@@ -10,7 +10,6 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/3.Swim/5.png',
         '../img/1. Sharkie/3.Swim/6.png'
     ];
-    currentImage = 0;
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
@@ -20,7 +19,6 @@ class Character extends MoveableObject {
     };
 
     animate() {
-
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_WALKING.length;
             let path = this.IMAGES_WALKING[i];

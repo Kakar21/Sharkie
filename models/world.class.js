@@ -1,9 +1,9 @@
 class World {
     character = new Character();
     enemies = [
-    new Fish(),
-    new Fish(),
-    new Fish()
+    new pufferFish(),
+    new pufferFish(),
+    new pufferFish()
     ];
     lights = [
         new Light()
