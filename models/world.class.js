@@ -28,9 +28,8 @@ class World {
 
         this.addObjectsToMap(this.backgroundObjects);
         this.addObjectsToMap(this.lights);
-        this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
-        
+        this.addToMap(this.character);
 
 
         // Draw() wird immer wieder aufgerufen
