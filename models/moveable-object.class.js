@@ -6,6 +6,7 @@ class MoveableObject {
     width = 100;
     imageCache = {};
     currentImage = 0;
+    speed = 0.1;
 
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('image') <img id="image">
@@ -25,6 +26,8 @@ class MoveableObject {
     }
 
     moveLeft() {
-        
+        setInterval( () => {
+            this.x -= this.speed;
+        }, 1000 / 60);
     }
 }
