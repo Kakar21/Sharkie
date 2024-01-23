@@ -13,3 +13,5 @@ class Light extends MoveableObject {
         this.moveLeft();
     }
 }
+
+//TODO: Add more lights naturally

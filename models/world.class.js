@@ -1,27 +1,6 @@
 class World {
     character = new Character();
-    enemies = [
-    new pufferFish(),
-    new pufferFish(),
-    new pufferFish()
-    ];
-    lights = [
-        new Light()
-    ];
-    backgroundObjects = [
-        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 0),
-        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 0),
-        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 0),
-        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 0),
-        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 1706),
-        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 1706),
-        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 1706),
-        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 1706),
-        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 3412),
-        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 3412),
-        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 3412),
-        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 3412),
-    ];
+    level = level1;
     canvas;
     ctx;
     keyboard;
@@ -46,11 +25,11 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.ctx.globalAlpha = 0.25;
-        this.addObjectsToMap(this.lights);
+        this.addObjectsToMap(this.level.lights);
         this.ctx.globalAlpha = 1;
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
