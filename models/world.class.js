@@ -9,14 +9,23 @@ class World {
         new Light()
     ];
     backgroundObjects = [
-        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png'),
-        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png'),
-        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png'),
-        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png')
+        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 0),
+        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 0),
+        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 0),
+        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 0),
+        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 1706),
+        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 1706),
+        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 1706),
+        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 1706),
+        new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 3412),
+        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 3412),
+        new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 3412),
+        new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 3412),
     ];
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
 
 
     constructor(canvas, keyboard) {
@@ -34,12 +43,17 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+
+        this.ctx.translate(this.camera_x, 0);
+
         this.addObjectsToMap(this.backgroundObjects);
         this.ctx.globalAlpha = 0.25;
         this.addObjectsToMap(this.lights);
         this.ctx.globalAlpha = 1;
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
+
+        this.ctx.translate(-this.camera_x, 0);
 
 
         // Draw() wird immer wieder aufgerufen
@@ -57,17 +71,25 @@ class World {
 
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
 
         if (mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
+    }
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 }

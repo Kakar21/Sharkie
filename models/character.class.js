@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = 0;
-    speed = 3;
+    speed = 30;
     IMAGES_WALKING = ['../img/1. Sharkie/3.Swim/1.png',
         '../img/1. Sharkie/3.Swim/2.png',
         '../img/1. Sharkie/3.Swim/3.png',
@@ -33,12 +33,22 @@ class Character extends MoveableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
+
+            if (this.world.keyboard.UP) {
+                this.y -= this.speed;
+            }
+
+            if (this.world.keyboard.DOWN) {
+                this.y += this.speed;
+            }
+
+            this.world.camera_x = -this.x;
         }, 1000 / 60)
 
         
         // Walk Animation
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
 
             let i = this.currentImage % this.IMAGES_WALKING.length;
             let path = this.IMAGES_WALKING[i];
