@@ -1,6 +1,7 @@
 class MoveableObject {
     x = 120;
     y = 250;
+    offsetY = 0;
     img;
     height = 150;
     width = 100;
@@ -28,13 +29,19 @@ class MoveableObject {
 
     drawFrame(ctx) {
 
-        if (this instanceof Character ||this instanceof pufferFish) {
+        if (this instanceof Character || this instanceof pufferFish ||this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+    }
+
+    isColliding(obj) {
+        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
+            (this.y + this.offsetY + this.height) >= obj.y &&
+            (this.y + this.offsetY) <= (obj.y + obj.height);
     }
 
     playAnimation(images) {
@@ -49,7 +56,7 @@ class MoveableObject {
     }
 
     moveLeft() {
-        setInterval( () => {
+        setInterval(() => {
             this.x -= this.speed;
         }, 1000 / 60);
     }
