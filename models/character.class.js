@@ -4,20 +4,38 @@ class Character extends MoveableObject {
     height = 200;
     y = 0;
     speed = 5;
-    IMAGES_WALKING = ['../img/1. Sharkie/3.Swim/1.png',
+    IMAGES_WALKING = [
+        '../img/1. Sharkie/3.Swim/1.png',
         '../img/1. Sharkie/3.Swim/2.png',
         '../img/1. Sharkie/3.Swim/3.png',
         '../img/1. Sharkie/3.Swim/4.png',
         '../img/1. Sharkie/3.Swim/5.png',
         '../img/1. Sharkie/3.Swim/6.png'
     ];
+    IMAGES_DEAD = [
+        '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/2.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/3.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/4.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/5.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/6.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/7.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/8.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/12.png',
+    ];
+    //TODO: Add electro dead and poison dead
+
     world;
-    WALKING_SOUND = new Audio('../audio/swimming.mp3');
+    SOUND_WALKING = new Audio('../audio/swimming.mp3');
     //TODO: Fix playing after a fast click
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
 
         this.animate();
     };
@@ -26,27 +44,27 @@ class Character extends MoveableObject {
 
         // Movement
         setInterval( () => {
-            this.WALKING_SOUND.pause();
+            this.SOUND_WALKING.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
-                this.WALKING_SOUND.play();
+                this.SOUND_WALKING.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-                this.WALKING_SOUND.play();
+                this.SOUND_WALKING.play();
             }
 
             if (this.world.keyboard.UP && this.y > -50) {
                 this.y -= this.speed;
-                this.WALKING_SOUND.play();
+                this.SOUND_WALKING.play();
             }
 
             if (this.world.keyboard.DOWN && this.y < this.world.level.level_end_y - this.height) {
                 this.y += this.speed;
-                this.WALKING_SOUND.play();
+                this.SOUND_WALKING.play();
             }
 
             this.world.camera_x = -this.x;
@@ -55,9 +73,13 @@ class Character extends MoveableObject {
         
         // Walk Animation
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_WALKING);
-            }
+            };
         }, 100);
     }
 

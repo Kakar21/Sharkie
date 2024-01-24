@@ -9,6 +9,7 @@ class MoveableObject {
     currentImage = 0;
     speed = 0.1;
     otherDirection = false;
+    energy = 100;
 
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('image') <img id="image">
@@ -44,12 +45,25 @@ class MoveableObject {
             (this.y + this.offsetY) <= (obj.y + obj.height);
     }
 
+    hit() {
+        this.energy -= 5;
+
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
     playAnimation(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+    // TODO: Fix currentImage bug (back to 0 to play dead animations from start)
 
     moveRight() {
         console.log('Moving right');
