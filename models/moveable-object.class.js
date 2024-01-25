@@ -10,6 +10,7 @@ class MoveableObject {
     speed = 0.1;
     otherDirection = false;
     energy = 100;
+    lastHit = 0;
 
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('image') <img id="image">
@@ -50,7 +51,15 @@ class MoveableObject {
 
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
+        timePassed = timePassed / 1000 // Difference in s
+        return timePassed < 1;
     }
 
     isDead() {

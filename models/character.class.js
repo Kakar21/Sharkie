@@ -24,18 +24,27 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
         '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
         '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/12.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
     ];
     //TODO: Add electro dead and poison dead
+    IMAGES_HURT = [
+        '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
+        '../img/1. Sharkie/5.Hurt/1.Poisoned/2.png',
+        '../img/1. Sharkie/5.Hurt/1.Poisoned/3.png',
+        '../img/1. Sharkie/5.Hurt/1.Poisoned/4.png',
+        '../img/1. Sharkie/5.Hurt/1.Poisoned/5.png'
+    ];
+    //TODO: Add electro hurt and poison hurt
 
     world;
     SOUND_WALKING = new Audio('../audio/swimming.mp3');
-    //TODO: Fix playing after a fast click
+    //TODO: Fix playing after a fast keypress
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
 
         this.animate();
     };
@@ -76,6 +85,9 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_WALKING);
