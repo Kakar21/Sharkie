@@ -1,4 +1,4 @@
-class pufferFish extends MoveableObject {
+class PufferFish extends MoveableObject {
 
     width = 50;
     height = 50;

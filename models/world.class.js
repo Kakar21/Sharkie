@@ -5,6 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
     //TODO: Add underwater ambience and music
 
@@ -26,6 +27,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy)
                     console.log('Collision with Character, energy', this.character.energy);
                 };
             });
@@ -39,11 +41,19 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
+
         this.ctx.globalAlpha = 0.25;
         this.addObjectsToMap(this.level.lights);
         this.ctx.globalAlpha = 1;
+
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
+
+        // Space for fixed objects
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+        
 
         this.ctx.translate(-this.camera_x, 0);
 
