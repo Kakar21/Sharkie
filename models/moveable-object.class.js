@@ -37,7 +37,6 @@ class MoveableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-    // TODO: Fix currentImage bug (back to 0 to play dead animations from start)
 
     moveRight() {
         console.log('Moving right');
