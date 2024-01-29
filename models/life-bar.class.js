@@ -8,6 +8,7 @@ class LifeBar extends DrawableObject {
         '../img/4. Score/orange/100_life.png'
     ]
     percentage = 100;
+    //TODO: Position all bars perfectly
 
     constructor() {
         super();

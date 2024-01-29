@@ -6,8 +6,12 @@ class DrawableObject {
     y = 250;
     height = 150;
     width = 100;
-    offsetY = 0;
-
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    };
     
     loadImages(array) {
         array.forEach((path) => {
@@ -50,6 +54,16 @@ class DrawableObject {
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
+        }
+    }
+
+    drawFrameRedFrame(ctx){
+        if (this instanceof Character || this instanceof PufferFish ||this instanceof Endboss) {
+            ctx.beginPath(); 
+            ctx.lineWidth = '1';
+            ctx.strokeStyle = 'red';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, (this.x + this.width - this.offset.right) - (this.x + this.offset.left), (this.y + this.height - this.offset.bottom) - (this.y + this.offset.top));
+            ctx.stroke();   
         }
     }
 }

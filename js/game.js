@@ -11,6 +11,8 @@ function init() {
     console.log('My Character is', world.character);
 }
 
+// TODO: 1 class for all IMAGES and 1 class for all audios
+
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 37) {
         keyboard.LEFT = true;

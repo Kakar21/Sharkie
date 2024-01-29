@@ -3,11 +3,12 @@ class MoveableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     lastHit = 0;
+    offsetY = 0;
 
     isColliding(obj) {
-        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-            (this.y + this.offsetY + this.height) >= obj.y &&
-            (this.y + this.offsetY) <= (obj.y + obj.height);
+        return (this.x + this.width - this.offset.right) >= obj.x + obj.offset.left && this.x + this.offset.left <= (obj.x + obj.width - obj.offset.right) &&
+            (this.y - this.offset.bottom + this.height) >= (obj.y + obj.offset.top) &&
+            (this.y + this.offset.top) <= (obj.y - obj.offset.bottom + obj.height);
     }
 
     hit() {
