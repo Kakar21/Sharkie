@@ -4,6 +4,7 @@ class MoveableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     offsetY = 0;
+    direction = 'up';
 
     isColliding(obj) {
         return (this.x + this.width - this.offset.right) >= obj.x + obj.offset.left && this.x + this.offset.left <= (obj.x + obj.width - obj.offset.right) &&
@@ -47,4 +48,22 @@ class MoveableObject extends DrawableObject {
             this.x -= this.speed;
         }, 1000 / 60);
     }
+
+    moveUpAndDown() {
+        setInterval(() => {
+            if (this.y < 1 && this. y > -20) {
+                this.direction = 'down';
+            } else if ((this.y + this.height) > 480 && (this.y + this.height) < 500) {
+                this.direction = 'up';
+            }
+
+            if (this.direction == 'down') {
+                this.y += this.speed;
+            } else if (this.direction == 'up') {
+                this.y -= this.speed;
+            }
+        }, 1000 / 60);
+    }
+
+
 }
