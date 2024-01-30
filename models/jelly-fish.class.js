@@ -23,6 +23,7 @@ class JellyFish extends MoveableObject {
             '../img/2. Enemy/2 Jelly fish/Regular damage/Yellow 4.png'
         ]
     }
+    //TODO: add super jelly fishes
 
     constructor() {
         super();

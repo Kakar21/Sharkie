@@ -9,8 +9,12 @@ const level1 = new Level(
         new Endboss()
     ],
     [
+        new Coin(),
+        new Poison()
+    ],
+    [
         new Light()
-    ], 
+    ],
     [
         new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 0),
         new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D.png', 0),

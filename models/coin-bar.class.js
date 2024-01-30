@@ -7,7 +7,7 @@ class CoinBar extends DrawableObject {
         '../img/4. Score/orange/80_coin.png',
         '../img/4. Score/orange/100_coin.png'
     ]
-    percentage = 100;
+    percentage = 0;
 
 //TODO: Implement logic after collectables placed
 
@@ -18,7 +18,7 @@ class CoinBar extends DrawableObject {
         this.y = 50;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100);
+        this.setPercentage(0);
     }
 
     setPercentage(percentage) {
