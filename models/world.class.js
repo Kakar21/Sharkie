@@ -8,6 +8,7 @@ class World {
     lifeBar = new LifeBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
+    shootableObjects = [];
 
     //TODO: Add underwater ambience and music
 
@@ -17,23 +18,35 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.lifeBar.setPercentage(this.character.energy)
-                    console.log('Collision with Character, energy', this.character.energy);
-                };
-            });
+            this.checkCollisions(); 
+            this.checkShootObjects();
         }, 200);
+    }
+
+    checkShootObjects() {
+        if (this.keyboard.H) {
+            let bubble = new ShootableObject(this.character.x, this.character.y);
+            this.shootableObjects.push(bubble);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.lifeBar.setPercentage(this.character.energy)
+                console.log('Collision with Character, energy', this.character.energy);
+            };
+        });
     }
 
     draw() {
@@ -49,6 +62,7 @@ class World {
         this.ctx.globalAlpha = 1;
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.shootableObjects);
         this.addToMap(this.character);
 
         // Space for fixed objects

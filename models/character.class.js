@@ -54,6 +54,8 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
         '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
     ];
+    //TODO: Fix dead animation playing from currentImage ?
+
     //TODO: Add electro dead and poison dead
     IMAGES_HURT = [
         '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
