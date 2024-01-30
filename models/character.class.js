@@ -10,6 +10,7 @@ class Character extends MoveableObject {
         bottom: 50,
         left: 40
     };
+    lastMovement = 0;
     IMAGES_IDLE = [
         '../img/1. Sharkie/1.IDLE/1.png',
         '../img/1. Sharkie/1.IDLE/2.png',
@@ -30,7 +31,47 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/1.IDLE/17.png',
         '../img/1. Sharkie/1.IDLE/18.png'
     ];
-    //TODO: Add long idle
+
+    IMAGES_LONG_IDLE = [
+        '../img/1. Sharkie/2.Long_IDLE/1.png',
+        '../img/1. Sharkie/2.Long_IDLE/2.png',
+        '../img/1. Sharkie/2.Long_IDLE/3.png',
+        '../img/1. Sharkie/2.Long_IDLE/4.png',
+        '../img/1. Sharkie/2.Long_IDLE/5.png',
+        '../img/1. Sharkie/2.Long_IDLE/6.png',
+        '../img/1. Sharkie/2.Long_IDLE/7.png',
+        '../img/1. Sharkie/2.Long_IDLE/8.png',
+        '../img/1. Sharkie/2.Long_IDLE/9.png',
+        '../img/1. Sharkie/2.Long_IDLE/10.png',
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png'
+    ]
+
+    // IMAGES_SLEEP = [
+    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
+    //     '../img/1. Sharkie/2.Long_IDLE/14.png'
+    // ]
+    //TODO: Add sleep
     
     IMAGES_WALKING = [
         '../img/1. Sharkie/3.Swim/1.png',
@@ -73,6 +114,8 @@ class Character extends MoveableObject {
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_LONG_IDLE);
+        // this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
@@ -81,7 +124,7 @@ class Character extends MoveableObject {
         this.animate();
     };
 
-    animate() {
+    async animate() {
 
         // Movement
         setInterval( () => {
@@ -112,19 +155,26 @@ class Character extends MoveableObject {
         }, 1000 / 60)
 
         
-        // Walk Animation
+        // Animation
         setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.lastMovement = 0;
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.lastMovement = 0;
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_WALKING);
+                this.lastMovement = 0;
+            } else if (this.lastMovement > 50) {
+                this.playAnimation(this.IMAGES_LONG_IDLE);
+                // this.playAnimation(this.IMAGES_SLEEP);
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
+                this.lastMovement += 1;
             };
         }, 100);
     }
