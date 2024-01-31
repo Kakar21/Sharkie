@@ -82,23 +82,36 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/3.Swim/5.png',
         '../img/1. Sharkie/3.Swim/6.png'
     ];
-    IMAGES_DEAD = [
-        '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/2.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/3.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/4.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/5.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/6.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/7.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/8.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
-    ];
+    IMAGES_DEAD = {
+        POISON: [
+            '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/2.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/3.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/4.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/5.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/6.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/7.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/8.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
+            '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
+        ],
+        SHOCK: [
+            '../img/1. Sharkie/6.dead/2.Electro_shock/1.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/2.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/3.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/4.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/5.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/6.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/7.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/8.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/9.png',
+            '../img/1. Sharkie/6.dead/2.Electro_shock/10.png'
+        ]
+    };
     //TODO: Fix dead animation playing from currentImage ?
 
-    //TODO: Add electro dead and poison dead
     IMAGES_HURT = {
         POISON: [
             '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
@@ -112,7 +125,6 @@ class Character extends MoveableObject {
             '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png',
         ]
     } 
-    //TODO: Add electro hurt and poison hurt
 
     world;
     SOUND_WALKING = new Audio('../audio/swimming.mp3');
@@ -124,7 +136,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_LONG_IDLE);
         // this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DEAD['POISON']);
+        this.loadImages(this.IMAGES_DEAD['SHOCK']);
         this.loadImages(this.IMAGES_HURT['POISON']);
         this.loadImages(this.IMAGES_HURT['SHOCK']);
 
@@ -167,15 +180,21 @@ class Character extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
+                if (this.hitBy == 'JellyFish') {
+                    this.playAnimation(this.IMAGES_DEAD['SHOCK']);
+                } else {
+                    this.playAnimation(this.IMAGES_DEAD['POISON']);
+                }
                 this.lastMovement = 0;
 
             } else if (this.isHurt()) {
+
                 if (this.hitBy == 'JellyFish') {
                     this.playAnimation(this.IMAGES_HURT['SHOCK']);
                 } else {
                     this.playAnimation(this.IMAGES_HURT['POISON']);
                 }
+                // TODO: Add individual hurt sounds
                 this.lastMovement = 0;
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
