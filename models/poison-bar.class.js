@@ -20,8 +20,10 @@ class PoisonBar extends DrawableObject {
     }
 
     setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES_POISON[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
+        if (this.percentage <= 100) {
+            this.percentage = percentage;
+            let path = this.IMAGES_POISON[this.resolveImageIndex()];
+            this.img = this.imageCache[path];
+        }
     }
 }

@@ -77,8 +77,4 @@ class JellyFish extends MoveableObject {
             }
         }, 100);
     }
-
-    kill(fish) {
-        this.level.JellyFish.pop();
-    }
 }

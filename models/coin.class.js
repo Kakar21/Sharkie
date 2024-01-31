@@ -7,10 +7,10 @@ class Coin extends CollectableObject {
         '../img/4. Score/1. Coins/4.png'
     ];
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage(this.IMAGES_COIN[0]);
-        this.x = 500;
-        this.y = 100;
+        this.x = x;
+        this.y = y;
         this.width = 50;
         this.height = 50;
 

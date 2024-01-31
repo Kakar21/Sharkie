@@ -11,10 +11,10 @@ class Poison extends CollectableObject {
         '../img/4. Score/Posión/Animada/8.png'
     ];
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage(this.IMAGES_POISON[0]);
-        this.x = 400;
-        this.y = 100;
+        this.x = x;
+        this.y = y;
         this.width = 50;
         this.height = 50;
 

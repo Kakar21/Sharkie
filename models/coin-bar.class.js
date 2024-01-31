@@ -9,7 +9,7 @@ class CoinBar extends DrawableObject {
     ]
     percentage = 0;
 
-//TODO: Implement logic after collectables placed
+    //TODO: Implement logic after collectables placed
 
     constructor() {
         super();
@@ -22,8 +22,10 @@ class CoinBar extends DrawableObject {
     }
 
     setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES_COIN[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
+        if (this.percentage <= 100) {
+            this.percentage = percentage;
+            let path = this.IMAGES_COIN[this.resolveImageIndex()];
+            this.img = this.imageCache[path];
+        }
     }
 }

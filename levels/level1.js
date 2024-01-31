@@ -9,8 +9,14 @@ const level1 = new Level(
         new Endboss()
     ],
     [
-        new Coin(),
-        new Poison()
+        new Coin(500, 100),
+        new Coin(600, 100),
+        new Poison(400, 100),
+        new Poison(400, 200),
+        new Coin(500, 200),
+        new Coin(600, 200),
+        new Poison(300, 100),
+        new Poison(300, 200)
     ],
     [
         new Light()

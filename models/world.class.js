@@ -27,7 +27,7 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions(); 
+            this.checkCollisions();
             this.checkShootObjects();
         }, 100);
     }
@@ -39,11 +39,11 @@ class World {
             this.shootableObjects.push(bubble);
         }
 
-        
+
     }
 
     checkCollisions() {
-        // Charcter with Enemies
+        // Character with Enemies
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
@@ -61,14 +61,30 @@ class World {
                         if (enemy instanceof JellyFish) {
                             enemy.energy = 0;
                         }
-                        
+                        //TODO: let bubbles go trought if they are dead
                         let i = this.shootableObjects.indexOf(bubble);
                         this.shootableObjects.splice(i, 1);
                         // TODO: Add popping sound
                     };
                 });
-                } )
+            })
         }
+
+        // Character with collectables
+        this.level.collectables.forEach((collectable) => {
+            if (this.character.isColliding(collectable)) {
+
+                if (collectable instanceof Coin) {
+                    this.coinBar.setPercentage(this.coinBar.percentage += 10);
+                } else if (collectable instanceof Poison) {
+                    this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
+                }
+
+                let i = this.level.collectables.indexOf(collectable);
+                this.level.collectables.splice(i, 1);
+                // TODO: Add collecting sound
+            };
+        });
     }
 
     draw() {
@@ -94,7 +110,7 @@ class World {
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
         this.ctx.translate(this.camera_x, 0);
-        
+
 
         this.ctx.translate(-this.camera_x, 0);
 
