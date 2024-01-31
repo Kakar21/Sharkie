@@ -46,6 +46,7 @@ class World {
         // Character with Enemies
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
+                this.character.hitBy = enemy.constructor.name;
                 this.character.hit();
                 this.lifeBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);

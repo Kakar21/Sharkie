@@ -9,8 +9,6 @@ class CoinBar extends DrawableObject {
     ]
     percentage = 0;
 
-    //TODO: Implement logic after collectables placed
-
     constructor() {
         super();
         this.loadImages(this.IMAGES_COIN);

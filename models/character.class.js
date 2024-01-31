@@ -10,6 +10,7 @@ class Character extends MoveableObject {
         bottom: 50,
         left: 40
     };
+    hitBy;
     lastMovement = 0;
     IMAGES_IDLE = [
         '../img/1. Sharkie/1.IDLE/1.png',
@@ -98,13 +99,19 @@ class Character extends MoveableObject {
     //TODO: Fix dead animation playing from currentImage ?
 
     //TODO: Add electro dead and poison dead
-    IMAGES_HURT = [
-        '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
-        '../img/1. Sharkie/5.Hurt/1.Poisoned/2.png',
-        '../img/1. Sharkie/5.Hurt/1.Poisoned/3.png',
-        '../img/1. Sharkie/5.Hurt/1.Poisoned/4.png',
-        '../img/1. Sharkie/5.Hurt/1.Poisoned/5.png'
-    ];
+    IMAGES_HURT = {
+        POISON: [
+            '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
+            '../img/1. Sharkie/5.Hurt/1.Poisoned/2.png',
+            '../img/1. Sharkie/5.Hurt/1.Poisoned/3.png',
+            '../img/1. Sharkie/5.Hurt/1.Poisoned/4.png'
+        ],
+        SHOCK: [
+            '../img/1. Sharkie/5.Hurt/2.Electric shock/1.png',
+            '../img/1. Sharkie/5.Hurt/2.Electric shock/2.png',
+            '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png',
+        ]
+    } 
     //TODO: Add electro hurt and poison hurt
 
     world;
@@ -118,7 +125,8 @@ class Character extends MoveableObject {
         // this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_HURT['POISON']);
+        this.loadImages(this.IMAGES_HURT['SHOCK']);
 
 
         this.animate();
@@ -163,7 +171,11 @@ class Character extends MoveableObject {
                 this.lastMovement = 0;
 
             } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
+                if (this.hitBy == 'JellyFish') {
+                    this.playAnimation(this.IMAGES_HURT['SHOCK']);
+                } else {
+                    this.playAnimation(this.IMAGES_HURT['POISON']);
+                }
                 this.lastMovement = 0;
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {

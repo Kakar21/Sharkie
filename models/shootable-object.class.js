@@ -15,6 +15,4 @@ class ShootableObject extends MoveableObject {
             this.y -= 1;
         }, 1000 / 60);
     }
-
-    // TODO: Add bubbles logic
 }
