@@ -33,13 +33,17 @@ class World {
     }
 
     checkShootObjects() {
+        // Shooting bubbles
         if (this.keyboard.H) {
             let bubble = new ShootableObject(this.character.x, this.character.y);
             this.shootableObjects.push(bubble);
         }
+
+        
     }
 
     checkCollisions() {
+        // Charcter with Enemies
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
@@ -47,6 +51,24 @@ class World {
                 console.log('Collision with Character, energy', this.character.energy);
             };
         });
+
+        // All bubbles with Enemies
+        if (this.shootableObjects.length >= 1) {
+            this.level.enemies.forEach((enemy) => {
+                this.shootableObjects.forEach((bubble) => {
+                    if (bubble.isColliding(enemy)) {
+
+                        if (enemy instanceof JellyFish) {
+                            enemy.energy = 0;
+                        }
+                        
+                        let i = this.shootableObjects.indexOf(bubble);
+                        this.shootableObjects.splice(i, 1);
+                        // TODO: Add popping sound
+                    };
+                });
+                } )
+        }
     }
 
     draw() {

@@ -23,6 +23,21 @@ class JellyFish extends MoveableObject {
             '../img/2. Enemy/2 Jelly fish/Regular damage/Yellow 4.png'
         ]
     }
+
+    IMAGES_DEAD = {
+        PURPLE: [
+            '../img/2. Enemy/2 Jelly fish/Dead/Lila/L1.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Lila/L2.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Lila/L3.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Lila/L4.png'
+        ],
+        YELLOW: [
+            '../img/2. Enemy/2 Jelly fish/Dead/Yellow/y1.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Yellow/y2.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Yellow/y3.png',
+            '../img/2. Enemy/2 Jelly fish/Dead/Yellow/y4.png'
+        ]
+    }
     //TODO: add super jelly fishes
 
     constructor() {
@@ -34,6 +49,7 @@ class JellyFish extends MoveableObject {
 
 
         this.loadImages(this.IMAGES_WALKING[this.color]);
+        this.loadImages(this.IMAGES_DEAD[this.color]);
         this.animate();
     }
 
@@ -50,8 +66,19 @@ class JellyFish extends MoveableObject {
     animate() {
         this.moveUpAndDown();
 
+        // Animation
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING[this.color]);
+
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD[this.color]);
+                this.y -= 10;
+            } else {
+                this.playAnimation(this.IMAGES_WALKING[this.color]);
+            }
         }, 100);
+    }
+
+    kill(fish) {
+        this.level.JellyFish.pop();
     }
 }

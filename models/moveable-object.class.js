@@ -51,6 +51,10 @@ class MoveableObject extends DrawableObject {
 
     moveUpAndDown() {
         setInterval(() => {
+            if (this.isDead()) {
+                return;
+            }
+
             if (this.y < 1 && this. y > -20) {
                 this.direction = 'down';
             } else if ((this.y + this.height) > 480 && (this.y + this.height) < 500) {

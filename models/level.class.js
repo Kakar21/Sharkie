@@ -1,5 +1,6 @@
 class Level {
     enemies;
+    collectables;
     lights;
     backgroundObjects;
     level_end_x = 4380;
