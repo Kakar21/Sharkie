@@ -47,7 +47,13 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hitBy = enemy.constructor.name;
-                this.character.hit();
+
+                if (enemy.color == 'GREEN' || enemy.color == 'PINK') {
+                    this.character.hit(10);
+                } else {
+                    this.character.hit(1);
+                }
+
                 this.lifeBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);
             };
