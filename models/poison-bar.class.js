@@ -1,4 +1,7 @@
 class PoisonBar extends DrawableObject {
+
+    percentage = 0;
+
     IMAGES_POISON = [
         '../img/4. Score/orange/0_poison.png',
         '../img/4. Score/orange/20_poison.png',
@@ -7,7 +10,7 @@ class PoisonBar extends DrawableObject {
         '../img/4. Score/orange/80_poison.png',
         '../img/4. Score/orange/100_poison.png'
     ]
-    percentage = 0;
+
 
     constructor() {
         super();
@@ -19,6 +22,11 @@ class PoisonBar extends DrawableObject {
         this.setPercentage(0);
     }
 
+
+    /**
+     * Sets the poisonbar to the given number in percent
+     * @param {number} percentage 
+     */
     setPercentage(percentage) {
         if (this.percentage <= 100) {
             this.percentage = percentage;

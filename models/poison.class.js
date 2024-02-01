@@ -11,6 +11,7 @@ class Poison extends CollectableObject {
         '../img/4. Score/Posión/Animada/8.png'
     ];
 
+    
     constructor(x, y) {
         super().loadImage(this.IMAGES_POISON[0]);
         this.x = x;
@@ -22,6 +23,10 @@ class Poison extends CollectableObject {
         this.animate();
     }
 
+
+    /**
+     * Plays the coin animation in a loop
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_POISON);

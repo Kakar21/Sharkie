@@ -9,6 +9,7 @@ class JellyFish extends MoveableObject {
         left: 0
     };
     color;
+
     IMAGES_WALKING = {
         PURPLE: [
             '../img/2. Enemy/2 Jelly fish/Regular damage/Lila 1.png',
@@ -63,6 +64,7 @@ class JellyFish extends MoveableObject {
         ]
     }
 
+
     constructor(charged) {
         super();
         this.color = this.getColor(charged);
@@ -76,6 +78,12 @@ class JellyFish extends MoveableObject {
         this.animate();
     }
 
+
+    /**
+     * Gets a random color based on the type of jelly fish
+     * @param {string} charged - any
+     * @returns - string
+     */
     getColor(charged) {
         let random;
         
@@ -96,6 +104,10 @@ class JellyFish extends MoveableObject {
         }
     }
 
+    
+    /**
+     * Checks jelly fish state to play animations in a loop
+     */
     animate() {
         this.moveUpAndDown();
 

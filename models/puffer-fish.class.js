@@ -91,6 +91,7 @@ class PufferFish extends MoveableObject {
         ]
     };
 
+
     constructor() {
         super();
         this.color = this.getColor();
@@ -105,6 +106,11 @@ class PufferFish extends MoveableObject {
         this.animate();
     }
 
+
+    /**
+     * Gets a random color
+     * @returns - string
+     */
     getColor() {
         let random = Math.floor(Math.random() * 3);
 
@@ -117,6 +123,10 @@ class PufferFish extends MoveableObject {
         }
     }
 
+
+    /**
+     * Checks puffer fish state to play animations in a loop
+     */
     animate() {
         this.moveLeft();
 

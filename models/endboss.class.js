@@ -26,6 +26,7 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/2.floating/13.png',
     ];
 
+
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -33,6 +34,10 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+
+    /**
+     * Checks endboss state to play animations in a loop
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);

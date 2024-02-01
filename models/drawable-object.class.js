@@ -13,6 +13,11 @@ class DrawableObject {
         left: 0
     };
     
+
+    /**
+     * Loads all the images of the array
+     * @param {array} array 
+     */
     loadImages(array) {
         array.forEach((path) => {
             let img = new Image();
@@ -21,11 +26,21 @@ class DrawableObject {
         });
     }
 
+
+    /**
+     * Loads the image
+     * @param {string} path 
+     */
     loadImage(path) {
-        this.img = new Image(); // this.img = document.getElementById('image') <img id="image">
+        this.img = new Image();
         this.img.src = path;
     }
 
+
+    /**
+     * Checks the percentage and returns the right number for the right image
+     * @returns - Number of the image with the current percentage
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
@@ -42,10 +57,20 @@ class DrawableObject {
         }
     }
 
+
+    /**
+     * Draws an image on the canvas
+     * @param {context} ctx 
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+
+    /**
+     * Draws a frame around the image border in blue
+     * @param {context} ctx 
+     */
     drawFrame(ctx) {
 
         if (this instanceof Character || this instanceof PufferFish || this instanceof JellyFish || this instanceof Endboss || this instanceof CollectableObject || this instanceof ShootableObject) {
@@ -57,6 +82,11 @@ class DrawableObject {
         }
     }
 
+
+    /**
+     * Draws a frame around the object hitbox in red
+     * @param {context} ctx 
+     */
     drawFrameRedFrame(ctx){
         if (this instanceof Character || this instanceof PufferFish || this instanceof JellyFish || this instanceof Endboss || this instanceof CollectableObject || this instanceof ShootableObject) {
             ctx.beginPath(); 
@@ -67,6 +97,11 @@ class DrawableObject {
         }
     }
 
+
+    /**
+     * Draws a frame around the object reaction box in yellow
+     * @param {context} ctx 
+     */
     drawFrameYellowFrame(ctx){
         if (this instanceof PufferFish) {
             ctx.beginPath(); 

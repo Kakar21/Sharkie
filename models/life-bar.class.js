@@ -1,4 +1,7 @@
 class LifeBar extends DrawableObject {
+
+    percentage = 100;
+
     IMAGES_LIFE = [
         '../img/4. Score/orange/0_life.png',
         '../img/4. Score/orange/20_life.png',
@@ -7,8 +10,8 @@ class LifeBar extends DrawableObject {
         '../img/4. Score/orange/80_life.png',
         '../img/4. Score/orange/100_life.png'
     ]
-    percentage = 100;
     //TODO: Position all bars perfectly
+
 
     constructor() {
         super();
@@ -20,6 +23,11 @@ class LifeBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+
+    /**
+     * Sets the lifebar to the given number in percent
+     * @param {number} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_LIFE[this.resolveImageIndex()];

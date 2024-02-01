@@ -3,6 +3,9 @@ let world;
 let keyboard = new Keyboard();
 
 
+/**
+ * Initializes the game
+ */
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -11,8 +14,10 @@ function init() {
     console.log('My Character is', world.character);
 }
 
-// TODO: 1 class for all IMAGES and 1 class for all audios
+// TODO: One class for all IMAGES and One class for all audios
 
+
+// Keyboard Events
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 37) {
         keyboard.LEFT = true;

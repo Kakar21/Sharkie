@@ -12,6 +12,7 @@ class World {
 
     //TODO: Add underwater ambience and music
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -21,10 +22,18 @@ class World {
         this.run();
     }
 
+
+    /**
+     * Sets the world of the character to this object
+     */
     setWorld() {
         this.character.world = this;
     }
 
+
+    /**
+     * Runs different function in a loop
+     */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -32,6 +41,10 @@ class World {
         }, 100);
     }
 
+
+    /**
+     * Checks if the player pressed the key to shoot a bubble and creates a new object
+     */
     checkShootObjects() {
         // Shooting bubbles
         if (this.keyboard.H) {
@@ -42,6 +55,10 @@ class World {
 
     }
 
+
+    /**
+     * Check collisions for all kind of different objects
+     */
     checkCollisions() {
         // Character with all Enemies
         this.level.enemies.forEach((enemy) => {
@@ -108,6 +125,10 @@ class World {
         });
     }
 
+
+    /**
+     * Calls every addToMap() object to draw them on the canvas everytime
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -143,12 +164,22 @@ class World {
         });
     }
 
+
+    /**
+     * Calls addToMap() on every object
+     * @param {array} objects 
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         })
     }
 
+
+    /**
+     * Draws the object on the canvas with all frames
+     * @param {object} mo 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -164,6 +195,11 @@ class World {
         }
     }
 
+
+    /**
+     * Mirrors the image of the object
+     * @param {object} mo 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -171,6 +207,11 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
+    /**
+     * Mirrors the image of the object back to normal
+     * @param {object} mo 
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

@@ -9,6 +9,10 @@ class ShootableObject extends MoveableObject {
         this.shoot();
     }
 
+
+    /**
+     * Shoots the object to the right up
+     */
     shoot() {
         setInterval(() => {
             this.x += 2;

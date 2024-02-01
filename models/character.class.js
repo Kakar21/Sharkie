@@ -12,6 +12,8 @@ class Character extends MoveableObject {
     };
     hitBy;
     lastMovement = 0;
+    world;
+
     IMAGES_IDLE = [
         '../img/1. Sharkie/1.IDLE/1.png',
         '../img/1. Sharkie/1.IDLE/2.png',
@@ -82,6 +84,7 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/3.Swim/5.png',
         '../img/1. Sharkie/3.Swim/6.png'
     ];
+
     IMAGES_DEAD = {
         POISON: [
             '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
@@ -127,9 +130,9 @@ class Character extends MoveableObject {
         ]
     }
 
-    world;
     SOUND_WALKING = new Audio('../audio/swimming.mp3');
     //TODO: Fix playing after a fast keypress
+
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
@@ -142,11 +145,15 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_HURT['POISON']);
         this.loadImages(this.IMAGES_HURT['SHOCK']);
 
-
         this.animate();
     };
 
-    async animate() {
+
+    /**
+     * Checks pressed keys for character movement and sound in a loop
+     * Checks characters state to play animations in a loop
+     */
+    animate() {
 
         // Movement
         setInterval(() => {
@@ -175,7 +182,6 @@ class Character extends MoveableObject {
 
             this.world.camera_x = -this.x;
         }, 1000 / 60)
-
 
         // Animation
         setInterval(() => {
@@ -209,9 +215,5 @@ class Character extends MoveableObject {
                 this.lastMovement += 1;
             };
         }, 100);
-    }
-
-    moveUp() {
-
     }
 }

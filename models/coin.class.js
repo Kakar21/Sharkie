@@ -7,6 +7,7 @@ class Coin extends CollectableObject {
         '../img/4. Score/1. Coins/4.png'
     ];
 
+
     constructor(x, y) {
         super().loadImage(this.IMAGES_COIN[0]);
         this.x = x;
@@ -18,6 +19,10 @@ class Coin extends CollectableObject {
         this.animate();
     }
 
+    
+    /**
+     * Plays the coin animation in a loop
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);
