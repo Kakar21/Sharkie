@@ -54,6 +54,8 @@ class World {
                     this.character.hit(1);
                 }
 
+                enemy.puffedUp = true;
+
                 this.lifeBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);
             };

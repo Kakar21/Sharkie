@@ -72,8 +72,8 @@ class Character extends MoveableObject {
     //     '../img/1. Sharkie/2.Long_IDLE/14.png',
     //     '../img/1. Sharkie/2.Long_IDLE/14.png'
     // ]
-    //TODO: Add sleep
-    
+    //TODO: Add sleep (after one time animation)
+
     IMAGES_WALKING = [
         '../img/1. Sharkie/3.Swim/1.png',
         '../img/1. Sharkie/3.Swim/2.png',
@@ -111,6 +111,7 @@ class Character extends MoveableObject {
         ]
     };
     //TODO: Fix dead animation playing from currentImage ?
+    // TODO: Play dead animation only once (one time animation)
 
     IMAGES_HURT = {
         POISON: [
@@ -124,7 +125,7 @@ class Character extends MoveableObject {
             '../img/1. Sharkie/5.Hurt/2.Electric shock/2.png',
             '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png',
         ]
-    } 
+    }
 
     world;
     SOUND_WALKING = new Audio('../audio/swimming.mp3');
@@ -148,7 +149,7 @@ class Character extends MoveableObject {
     async animate() {
 
         // Movement
-        setInterval( () => {
+        setInterval(() => {
             this.SOUND_WALKING.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
@@ -175,7 +176,7 @@ class Character extends MoveableObject {
             this.world.camera_x = -this.x;
         }, 1000 / 60)
 
-        
+
         // Animation
         setInterval(() => {
 
