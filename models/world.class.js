@@ -43,18 +43,17 @@ class World {
     }
 
     checkCollisions() {
-        // Character with Enemies
+        // Character with all Enemies
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hitBy = enemy.constructor.name;
 
-                if (enemy.color == 'GREEN' || enemy.color == 'PINK') {
+                // Character with diffrent types of Jelly Fishes
+                if (enemy instanceof JellyFish && enemy.color == 'GREEN' || enemy.color == 'PINK') {
                     this.character.hit(10);
                 } else {
                     this.character.hit(1);
                 }
-
-                enemy.puffedUp = true;
 
                 this.lifeBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);
@@ -92,6 +91,19 @@ class World {
                 let i = this.level.collectables.indexOf(collectable);
                 this.level.collectables.splice(i, 1);
                 // TODO: Add collecting sound
+            };
+        });
+
+        // Character with Puffer Fishes 
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof PufferFish) {
+                if (this.character.isNearBy(enemy)) {
+
+                    if (enemy.puffedUp == false) {
+                        enemy.currentImage = 0;
+                        enemy.puffingUp = true;
+                    }
+                }
             };
         });
     }
@@ -145,6 +157,7 @@ class World {
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
         mo.drawFrameRedFrame(this.ctx);
+        mo.drawFrameYellowFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

@@ -182,9 +182,9 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 if (this.hitBy == 'JellyFish') {
-                    this.playAnimation(this.IMAGES_DEAD['SHOCK']);
+                    this.playAnimationOnce(this.IMAGES_DEAD['SHOCK']);
                 } else {
-                    this.playAnimation(this.IMAGES_DEAD['POISON']);
+                    this.playAnimationOnce(this.IMAGES_DEAD['POISON']);
                 }
                 this.lastMovement = 0;
 

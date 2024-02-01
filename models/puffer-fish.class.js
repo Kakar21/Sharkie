@@ -8,8 +8,16 @@ class PufferFish extends MoveableObject {
         bottom: 14,
         left: 3
     };
+    offsetNear = {
+        top: 100,
+        right: 100,
+        bottom: 100,
+        left: 100
+    }
     color;
     puffedUp = false;
+    puffingUp = false;
+    i = 0
 
     IMAGES_WALKING = {
         GREEN: [
@@ -35,30 +43,29 @@ class PufferFish extends MoveableObject {
         ]
     };
 
-    // IMAGES_PUFFING_UP = {
-    //     GREEN: [
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png'
-    //     ],
-    //     ORANGE: [
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition1.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition2.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition3.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition4.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png'
-    //     ],
-    //     RED: [
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition1.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition2.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition3.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition4.png',
-    //         '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png'
-    //     ]
-    // };
-    // TODO: Add Puffing up (one time animation)
+    IMAGES_PUFFING_UP = {
+        GREEN: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png'
+        ],
+        ORANGE: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition1.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition2.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition3.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition4.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png'
+        ],
+        RED: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition1.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition2.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition3.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition4.png',
+            '../img/2. Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png'
+        ]
+    };
 
     IMAGES_PUFFED_WALKING = {
         GREEN: [
@@ -93,7 +100,7 @@ class PufferFish extends MoveableObject {
 
 
         this.loadImages(this.IMAGES_WALKING[this.color]);
-        // this.loadImages(this.IMAGES_PUFFING_UP[this.color]);
+        this.loadImages(this.IMAGES_PUFFING_UP[this.color]);
         this.loadImages(this.IMAGES_PUFFED_WALKING[this.color]);
         this.animate();
     }
@@ -117,8 +124,11 @@ class PufferFish extends MoveableObject {
 
             if (this.isDead()) {
 
+            } else if (this.puffingUp && this.i <= 4) {
+                this.playAnimation(this.IMAGES_PUFFING_UP[this.color]);
+                this.i++;
+                this.puffedUp = true;
             } else if (this.puffedUp) {
-                // this.playAnimation(this.IMAGES_PUFFING_UP[this.color]);
                 this.playAnimation(this.IMAGES_PUFFED_WALKING[this.color]);
             } else {
                 this.playAnimation(this.IMAGES_WALKING[this.color]);

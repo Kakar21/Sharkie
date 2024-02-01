@@ -66,4 +66,14 @@ class DrawableObject {
             ctx.stroke();   
         }
     }
+
+    drawFrameYellowFrame(ctx){
+        if (this instanceof PufferFish) {
+            ctx.beginPath(); 
+            ctx.lineWidth = '0.5';
+            ctx.strokeStyle = 'Yellow';
+            ctx.rect(this.x + this.offset.left - this.offsetNear.left, this.y + this.offset.top - this.offsetNear.top, (this.x + this.width - this.offset.right + this.offsetNear.right) - (this.x + this.offset.left - this.offsetNear.left), (this.y + this.height - this.offset.bottom + this.offsetNear.bottom) - (this.y + this.offset.top - this.offsetNear.top));
+            ctx.stroke();   
+        }
+    }
 }

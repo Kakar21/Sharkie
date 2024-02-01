@@ -12,6 +12,12 @@ class MoveableObject extends DrawableObject {
             (this.y + this.offset.top) <= (obj.y - obj.offset.bottom + obj.height);
     }
 
+    isNearBy(obj) {
+        return (this.x + this.width - this.offset.right) >= obj.x + obj.offset.left - obj.offsetNear.left && this.x + this.offset.left <= (obj.x + obj.width - obj.offset.right + obj.offsetNear.right) &&
+            (this.y - this.offset.bottom + this.height) >= (obj.y + obj.offset.top - obj.offsetNear.top) &&
+            (this.y + this.offset.top) <= (obj.y - obj.offset.bottom + obj.offsetNear.bottom + obj.height);
+    }
+
     hit(damage) {
         this.energy -= damage;
 
@@ -37,6 +43,15 @@ class MoveableObject extends DrawableObject {
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+    }
+
+    playAnimationOnce(images) {
+        let i = this.currentImage % images.length;
+        if (i < images.length - 1) {
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }
     }
 
     moveRight() {
