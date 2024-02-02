@@ -1,5 +1,14 @@
 class Poison extends CollectableObject {
 
+    width = 50;
+    height = 67.5;
+    offset = {
+        top: 32,
+        right: 9.5,
+        bottom: 1.5,
+        left: 9.5
+    };
+
     IMAGES_POISON = [
         '../img/4. Score/Posión/Animada/1.png',
         '../img/4. Score/Posión/Animada/2.png',
@@ -11,13 +20,11 @@ class Poison extends CollectableObject {
         '../img/4. Score/Posión/Animada/8.png'
     ];
 
-    
+
     constructor(x, y) {
         super().loadImage(this.IMAGES_POISON[0]);
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
 
         this.loadImages(this.IMAGES_POISON);
         this.animate();

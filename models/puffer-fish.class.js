@@ -1,12 +1,12 @@
 class PufferFish extends MoveableObject {
 
     width = 50;
-    height = 50;
+    height = 40;
     offset = {
         top: 4,
-        right: 5,
-        bottom: 14,
-        left: 3
+        right: 4,
+        bottom: 11,
+        left: 2
     };
     offsetNear = {
         top: 100,
@@ -124,6 +124,7 @@ class PufferFish extends MoveableObject {
         }
     }
 
+    //TODO: Change hit box when puffed up
 
     /**
      * Checks puffer fish state to play animations in a loop

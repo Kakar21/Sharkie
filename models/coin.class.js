@@ -1,5 +1,8 @@
 class Coin extends CollectableObject {
 
+    width = 45;
+    height = 45;
+
     IMAGES_COIN = [
         '../img/4. Score/1. Coins/1.png',
         '../img/4. Score/1. Coins/2.png',
@@ -12,14 +15,12 @@ class Coin extends CollectableObject {
         super().loadImage(this.IMAGES_COIN[0]);
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 50;
 
         this.loadImages(this.IMAGES_COIN);
         this.animate();
     }
 
-    
+
     /**
      * Plays the coin animation in a loop
      */

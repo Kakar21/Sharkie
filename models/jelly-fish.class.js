@@ -1,11 +1,11 @@
 class JellyFish extends MoveableObject {
 
-    width = 75;
+    width = 66.66;
     height = 100;
     offset = {
-        top: 0,
-        right: 0,
-        bottom: 0,
+        top: 5,
+        right: 2,
+        bottom: 15,
         left: 0
     };
     color;

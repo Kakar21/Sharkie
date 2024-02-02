@@ -1,6 +1,10 @@
 class LifeBar extends DrawableObject {
 
     percentage = 100;
+    width = 180;
+    height = 50;
+    x = 15;
+    y = 0;
 
     IMAGES_LIFE = [
         '../img/4. Score/orange/0_life.png',
@@ -13,13 +17,10 @@ class LifeBar extends DrawableObject {
     //TODO: Position all bars perfectly
 
 
+
     constructor() {
         super();
         this.loadImages(this.IMAGES_LIFE);
-        this.x = 30;
-        this.y = 0;
-        this.width = 200;
-        this.height = 60;
         this.setPercentage(100);
     }
 
