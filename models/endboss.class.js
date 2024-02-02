@@ -30,7 +30,7 @@ class Endboss extends MoveableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 700;
+        this.x = 4380 - 100 // (Endboss Width - Character Width); 
         this.animate();
     }
 
@@ -44,3 +44,7 @@ class Endboss extends MoveableObject {
         }, 100);
     }
 }
+
+// TODO: Add come in animation
+// TODO: Add endboss lifebar
+// TODO: Add endboss following logic

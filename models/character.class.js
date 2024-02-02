@@ -3,7 +3,8 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = 100;
-    speed = 5;
+    x = 0;
+    speed = 10;
     offset = {
         top: 95,
         right: 40,
@@ -114,7 +115,6 @@ class Character extends MoveableObject {
         ]
     };
     //TODO: Fix dead animation playing from currentImage ?
-    // TODO: Play dead animation only once (one time animation)
 
     IMAGES_HURT = {
         POISON: [
@@ -133,6 +133,8 @@ class Character extends MoveableObject {
     SOUND_WALKING = new Audio('../audio/swimming.mp3');
     //TODO: Fix playing after a fast keypress
 
+
+    //TODO: Add fin slap
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');

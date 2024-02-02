@@ -20,3 +20,6 @@ class ShootableObject extends MoveableObject {
         }, 1000 / 60);
     }
 }
+
+// TODO: Add bubble animation
+// TODO: add poison bubble

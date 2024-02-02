@@ -69,7 +69,8 @@ class JellyFish extends MoveableObject {
         super();
         this.color = this.getColor(charged);
         this.loadImage(this.IMAGES_WALKING[this.color][0]);
-        this.x = 200 + Math.random() * 500;
+        this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
+        this.y = Math.random() * (480 - this.height);
         this.speed = 0.1 + Math.random() * 0.5;
 
 
@@ -86,7 +87,7 @@ class JellyFish extends MoveableObject {
      */
     getColor(charged) {
         let random;
-        
+
         if (charged) {
             random = 2 + Math.floor(Math.random() * 2);
         } else {
@@ -104,7 +105,7 @@ class JellyFish extends MoveableObject {
         }
     }
 
-    
+
     /**
      * Checks jelly fish state to play animations in a loop
      */

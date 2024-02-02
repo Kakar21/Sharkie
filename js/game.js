@@ -14,7 +14,7 @@ function init() {
     console.log('My Character is', world.character);
 }
 
-// TODO: One class for all IMAGES and One class for all audios
+// TODO: One class for all IMAGES and One class for all AUDIOS
 
 
 // Keyboard Events

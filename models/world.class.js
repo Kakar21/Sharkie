@@ -23,6 +23,8 @@ class World {
     }
 
 
+    //TODO: Correct all object sizes perfectly
+
     /**
      * Sets the world of the character to this object
      */
