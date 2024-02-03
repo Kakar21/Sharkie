@@ -7,14 +7,13 @@ class LifeBar extends DrawableObject {
     y = 0;
 
     IMAGES_LIFE = [
-        '../img/4. Score/orange/0_life.png',
-        '../img/4. Score/orange/20_life.png',
-        '../img/4. Score/orange/40_life.png',
-        '../img/4. Score/orange/60_life.png',
-        '../img/4. Score/orange/80_life.png',
-        '../img/4. Score/orange/100_life.png'
+        '../img/4. Score/orange/status-bar_1.png',
+        '../img/4. Score/orange/status-bar_2.png',
+        '../img/4. Score/orange/status-bar_3.png',
+        '../img/4. Score/orange/status-bar_4.png',
+        '../img/4. Score/orange/status-bar_5.png',
+        '../img/4. Score/orange/status-bar_6.png',
     ]
-    //TODO: Position all bars perfectly
 
 
 

@@ -7,12 +7,12 @@ class CoinBar extends DrawableObject {
     y = 40;
 
     IMAGES_COIN = [
-        '../img/4. Score/orange/0_coin.png',
-        '../img/4. Score/orange/20_coin.png',
-        '../img/4. Score/orange/40_coin.png',
-        '../img/4. Score/orange/60_coin.png',
-        '../img/4. Score/orange/80_coin.png',
-        '../img/4. Score/orange/100_coin.png'
+        '../img/4. Score/orange/coin-bar_1.png',
+        '../img/4. Score/orange/coin-bar_2.png',
+        '../img/4. Score/orange/coin-bar_3.png',
+        '../img/4. Score/orange/coin-bar_4.png',
+        '../img/4. Score/orange/coin-bar_5.png',
+        '../img/4. Score/orange/coin-bar_6.png'
     ]
 
 

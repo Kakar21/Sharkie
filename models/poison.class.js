@@ -20,7 +20,7 @@ class Poison extends CollectableObject {
         '../img/4. Score/Posión/Animada/8.png'
     ];
 
-
+    // TODO: Add posion in the sand after animated in Adobe Illustrator
     constructor(x, y) {
         super().loadImage(this.IMAGES_POISON[0]);
         this.x = x;

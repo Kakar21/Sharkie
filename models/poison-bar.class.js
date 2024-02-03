@@ -7,14 +7,14 @@ class PoisonBar extends DrawableObject {
     y = 80;
 
     IMAGES_POISON = [
-        '../img/4. Score/orange/0_poison.png',
-        '../img/4. Score/orange/20_poison.png',
-        '../img/4. Score/orange/40_poison.png',
-        '../img/4. Score/orange/60_poison.png',
-        '../img/4. Score/orange/80_poison.png',
-        '../img/4. Score/orange/100_poison.png'
+        '../img/4. Score/orange/poison-bar_1.png',
+        '../img/4. Score/orange/poison-bar_2.png',
+        '../img/4. Score/orange/poison-bar_3.png',
+        '../img/4. Score/orange/poison-bar_4.png',
+        '../img/4. Score/orange/poison-bar_5.png',
+        '../img/4. Score/orange/poison-bar_6.png',
     ]
-
+    
 
     constructor() {
         super();
