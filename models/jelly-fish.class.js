@@ -10,7 +10,7 @@ class JellyFish extends MoveableObject {
     };
     color;
 
-    IMAGES_WALKING = {
+    IMAGES_SWIM = {
         PURPLE: [
             '../img/2. Enemy/2 Jelly fish/Regular damage/Lila 1.png',
             '../img/2. Enemy/2 Jelly fish/Regular damage/Lila 2.png',
@@ -68,13 +68,13 @@ class JellyFish extends MoveableObject {
     constructor(charged) {
         super();
         this.color = this.getColor(charged);
-        this.loadImage(this.IMAGES_WALKING[this.color][0]);
+        this.loadImage(this.IMAGES_SWIM[this.color][0]);
         this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
         this.y = Math.random() * (480 - this.height);
         this.speed = 0.1 + Math.random() * 0.5;
 
 
-        this.loadImages(this.IMAGES_WALKING[this.color]);
+        this.loadImages(this.IMAGES_SWIM[this.color]);
         this.loadImages(this.IMAGES_DEAD[this.color]);
         this.animate();
     }
@@ -119,7 +119,7 @@ class JellyFish extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD[this.color]);
                 this.y -= 10;
             } else {
-                this.playAnimation(this.IMAGES_WALKING[this.color]);
+                this.playAnimation(this.IMAGES_SWIM[this.color]);
             }
         }, 100);
     }

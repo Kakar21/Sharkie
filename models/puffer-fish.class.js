@@ -19,7 +19,7 @@ class PufferFish extends MoveableObject {
     puffingUp = false;
     i = 0
 
-    IMAGES_WALKING = {
+    IMAGES_SWIM = {
         GREEN: [
             '../img/2. Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png',
             '../img/2. Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png',
@@ -67,7 +67,7 @@ class PufferFish extends MoveableObject {
         ]
     };
 
-    IMAGES_PUFFED_WALKING = {
+    IMAGES_PUFFED_SWIM = {
         GREEN: [
             '../img/2. Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png',
             '../img/2. Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png',
@@ -95,15 +95,15 @@ class PufferFish extends MoveableObject {
     constructor() {
         super();
         this.color = this.getColor();
-        this.loadImage(this.IMAGES_WALKING[this.color][0]);
+        this.loadImage(this.IMAGES_SWIM[this.color][0]);
         this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
         this.y = Math.random() * (480 - this.height);
         this.speed = 0.1 + Math.random() * 0.5;
 
 
-        this.loadImages(this.IMAGES_WALKING[this.color]);
+        this.loadImages(this.IMAGES_SWIM[this.color]);
         this.loadImages(this.IMAGES_PUFFING_UP[this.color]);
-        this.loadImages(this.IMAGES_PUFFED_WALKING[this.color]);
+        this.loadImages(this.IMAGES_PUFFED_SWIM[this.color]);
         this.animate();
     }
 
@@ -141,9 +141,9 @@ class PufferFish extends MoveableObject {
                 this.i++;
                 this.puffedUp = true;
             } else if (this.puffedUp) {
-                this.playAnimation(this.IMAGES_PUFFED_WALKING[this.color]);
+                this.playAnimation(this.IMAGES_PUFFED_SWIM[this.color]);
             } else {
-                this.playAnimation(this.IMAGES_WALKING[this.color]);
+                this.playAnimation(this.IMAGES_SWIM[this.color]);
             }
         }, 100);
     }

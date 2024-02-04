@@ -22,9 +22,6 @@ class World {
         this.run();
     }
 
-
-    //TODO: Correct all object sizes perfectly
-
     /**
      * Sets the world of the character to this object
      */

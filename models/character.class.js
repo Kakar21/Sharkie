@@ -13,6 +13,7 @@ class Character extends MoveableObject {
     };
     hitBy;
     lastMovement = 0;
+    isSlapping;
     world;
 
     IMAGES_IDLE = [
@@ -77,7 +78,7 @@ class Character extends MoveableObject {
     // ]
     //TODO: Add sleep (after one time animation)
 
-    IMAGES_WALKING = [
+    IMAGES_SWIM = [
         '../img/1. Sharkie/3.Swim/1.png',
         '../img/1. Sharkie/3.Swim/2.png',
         '../img/1. Sharkie/3.Swim/3.png',
@@ -85,6 +86,15 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/3.Swim/5.png',
         '../img/1. Sharkie/3.Swim/6.png'
     ];
+
+    IMAGES_FINSLAP = [
+        '../img/1. Sharkie/4.Attack/Fin slap/1.png',
+        '../img/1. Sharkie/4.Attack/Fin slap/4.png',
+        '../img/1. Sharkie/4.Attack/Fin slap/5.png',
+        '../img/1. Sharkie/4.Attack/Fin slap/6.png',
+        '../img/1. Sharkie/4.Attack/Fin slap/7.png',
+        '../img/1. Sharkie/4.Attack/Fin slap/8.png'
+    ]
 
     IMAGES_DEAD = {
         POISON: [
@@ -130,7 +140,8 @@ class Character extends MoveableObject {
         ]
     }
 
-    SOUND_WALKING = new Audio('../audio/swimming.mp3');
+    SOUND_SWIM = new Audio('../audio/swimming.mp3');
+    // TODO: damp swim sound for underwater feeling?
     //TODO: Fix playing after a fast keypress
 
 
@@ -141,7 +152,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
         // this.loadImages(this.IMAGES_SLEEP);
-        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_FINSLAP);
         this.loadImages(this.IMAGES_DEAD['POISON']);
         this.loadImages(this.IMAGES_DEAD['SHOCK']);
         this.loadImages(this.IMAGES_HURT['POISON']);
@@ -159,27 +171,31 @@ class Character extends MoveableObject {
 
         // Movement
         setInterval(() => {
-            this.SOUND_WALKING.pause();
+            this.SOUND_SWIM.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
-                this.SOUND_WALKING.play();
+                this.SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-                this.SOUND_WALKING.play();
+                this.SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.UP && this.y > -50) {
                 this.y -= this.speed;
-                this.SOUND_WALKING.play();
+                this.SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.DOWN && this.y < this.world.level.level_end_y - this.height) {
                 this.y += this.speed;
-                this.SOUND_WALKING.play();
+                this.SOUND_SWIM.play();
+            }
+
+            if (this.world.keyboard.SPACE) {
+                this.startSlap();
             }
 
             this.world.camera_x = -this.x;
@@ -189,33 +205,77 @@ class Character extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-                if (this.hitBy == 'JellyFish') {
-                    this.playAnimationOnce(this.IMAGES_DEAD['SHOCK']);
-                } else {
-                    this.playAnimationOnce(this.IMAGES_DEAD['POISON']);
-                }
-                this.lastMovement = 0;
+                this.playDead();
 
             } else if (this.isHurt()) {
+                this.playHurt();
 
-                if (this.hitBy == 'JellyFish') {
-                    this.playAnimation(this.IMAGES_HURT['SHOCK']);
-                } else {
-                    this.playAnimation(this.IMAGES_HURT['POISON']);
-                }
-                // TODO: Add individual hurt sounds
-                this.lastMovement = 0;
+            } else if (this.isSlapping) {
+                this.playFinSlap();
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                this.playAnimation(this.IMAGES_WALKING);
-                this.lastMovement = 0;
+                this.playSwim();
+
             } else if (this.lastMovement > 50) {
-                this.playAnimation(this.IMAGES_LONG_IDLE);
-                // this.playAnimation(this.IMAGES_SLEEP);
+                this.playLongIDLE();
             } else {
-                this.playAnimation(this.IMAGES_IDLE);
-                this.lastMovement += 1;
+                this.playIDLE();
             };
         }, 100);
     }
+
+    startSlap() {
+        if (!this.isSlapping) {
+            this.isSlapping = true;
+            this.currentImage = 0;
+        }
+    }
+
+    playDead() {
+        if (this.hitBy == 'JellyFish') {
+            this.playAnimationOnce(this.IMAGES_DEAD['SHOCK']);
+        } else {
+            this.playAnimationOnce(this.IMAGES_DEAD['POISON']);
+        }
+        this.lastMovement = 0;
+
+        // TODO: Add floating up after dying
+    }
+
+    playFinSlap() {
+        this.playAnimation(this.IMAGES_FINSLAP);
+
+        if (this.currentImage >= this.IMAGES_FINSLAP.length) {
+            this.isSlapping = false;
+        }
+
+        // TODO: Add logic
+    }
+
+    playHurt() {
+        if (this.hitBy == 'JellyFish') {
+            this.playAnimation(this.IMAGES_HURT['SHOCK']);
+        } else {
+            this.playAnimation(this.IMAGES_HURT['POISON']);
+        }
+        // TODO: Add individual hurt sounds
+
+        this.lastMovement = 0;
+    }
+
+    playSwim() {
+        this.playAnimation(this.IMAGES_SWIM);
+        this.lastMovement = 0;
+    }
+
+    playIDLE() {
+        this.playAnimation(this.IMAGES_IDLE);
+        this.lastMovement += 1;
+    }
+
+    playLongIDLE() {
+        this.playAnimation(this.IMAGES_LONG_IDLE);
+        // this.playAnimation(this.IMAGES_SLEEP);
+    }
 }
+
