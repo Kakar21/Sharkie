@@ -36,23 +36,23 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkShootObjects();
+            // this.checkShootObjects();
         }, 100);
     }
 
 
-    /**
-     * Checks if the player pressed the key to shoot a bubble and creates a new object
-     */
-    checkShootObjects() {
-        // Shooting bubbles
-        if (this.keyboard.H) {
-            let bubble = new ShootableObject(this.character.x, this.character.y);
-            this.shootableObjects.push(bubble);
-        }
+    // /**
+    //  * Checks if the player pressed the key to shoot a bubble and creates a new object
+    //  */
+    // checkShootObjects() {
+    //     // Shooting bubbles
+    //     if (this.keyboard.H) {
+    //         let bubble = new ShootableObject(this.character.x, this.character.y);
+    //         this.shootableObjects.push(bubble);
+    //     }
 
 
-    }
+    // }
 
 
     /**

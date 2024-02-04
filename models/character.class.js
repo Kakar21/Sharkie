@@ -14,6 +14,7 @@ class Character extends MoveableObject {
     hitBy;
     lastMovement = 0;
     isSlapping;
+    isShooting;
     world;
 
     IMAGES_IDLE = [
@@ -96,6 +97,17 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/4.Attack/Fin slap/8.png'
     ]
 
+    IMAGES_BUBBLETRAP = [
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+    ]
+
     IMAGES_DEAD = {
         POISON: [
             '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
@@ -154,6 +166,7 @@ class Character extends MoveableObject {
         // this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
+        this.loadImages(this.IMAGES_BUBBLETRAP);
         this.loadImages(this.IMAGES_DEAD['POISON']);
         this.loadImages(this.IMAGES_DEAD['SHOCK']);
         this.loadImages(this.IMAGES_HURT['POISON']);
@@ -195,7 +208,11 @@ class Character extends MoveableObject {
             }
 
             if (this.world.keyboard.SPACE) {
-                this.startSlap();
+                this.startFinSlap();
+            }
+
+            if (this.world.keyboard.H) {
+                this.startBubbleTrap();
             }
 
             this.world.camera_x = -this.x;
@@ -213,6 +230,9 @@ class Character extends MoveableObject {
             } else if (this.isSlapping) {
                 this.playFinSlap();
 
+            } else if (this.isShooting) {
+                this.playBubbleTrap();
+
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playSwim();
 
@@ -224,10 +244,19 @@ class Character extends MoveableObject {
         }, 100);
     }
 
-    startSlap() {
+    startFinSlap() {
         if (!this.isSlapping) {
             this.isSlapping = true;
             this.currentImage = 0;
+        }
+    }
+
+    startBubbleTrap() {
+        if (!this.isShooting && !this.otherDirection) {
+            this.isShooting = true;
+            this.currentImage = 0;
+
+            // TODO: add shooting in otherDirection
         }
     }
 
@@ -237,8 +266,8 @@ class Character extends MoveableObject {
         } else {
             this.playAnimationOnce(this.IMAGES_DEAD['POISON']);
         }
-        this.lastMovement = 0;
 
+        this.lastMovement = 0;
         // TODO: Add floating up after dying
     }
 
@@ -249,7 +278,22 @@ class Character extends MoveableObject {
             this.isSlapping = false;
         }
 
+        this.lastMovement = 0;
         // TODO: Add logic
+    }
+
+    playBubbleTrap() {
+        this.playAnimation(this.IMAGES_BUBBLETRAP);
+
+        if (this.currentImage >= this.IMAGES_BUBBLETRAP.length) {
+            console.log('bubble')
+            let bubble = new ShootableObject(this.x, this.y);
+            this.world.shootableObjects.push(bubble);
+            this.isShooting = false;
+        }
+
+        // TODO: Add poisoned version
+        this.lastMovement = 0;
     }
 
     playHurt() {

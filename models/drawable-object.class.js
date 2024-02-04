@@ -12,7 +12,7 @@ class DrawableObject {
         bottom: 0,
         left: 0
     };
-    
+
 
     /**
      * Loads all the images of the array
@@ -87,13 +87,13 @@ class DrawableObject {
      * Draws a frame around the object hitbox in red
      * @param {context} ctx 
      */
-    drawFrameRedFrame(ctx){
+    drawFrameRedFrame(ctx) {
         if (this instanceof Character || this instanceof PufferFish || this instanceof JellyFish || this instanceof Endboss || this instanceof CollectableObject || this instanceof ShootableObject) {
-            ctx.beginPath(); 
+            ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'red';
             ctx.rect(this.x + this.offset.left, this.y + this.offset.top, (this.x + this.width - this.offset.right) - (this.x + this.offset.left), (this.y + this.height - this.offset.bottom) - (this.y + this.offset.top));
-            ctx.stroke();   
+            ctx.stroke();
         }
     }
 
@@ -102,13 +102,13 @@ class DrawableObject {
      * Draws a frame around the object reaction box in yellow
      * @param {context} ctx 
      */
-    drawFrameYellowFrame(ctx){
+    drawFrameYellowFrame(ctx) {
         if (this instanceof PufferFish) {
-            ctx.beginPath(); 
+            ctx.beginPath();
             ctx.lineWidth = '0.5';
             ctx.strokeStyle = 'Yellow';
             ctx.rect(this.x + this.offset.left - this.offsetNear.left, this.y + this.offset.top - this.offsetNear.top, (this.x + this.width - this.offset.right + this.offsetNear.right) - (this.x + this.offset.left - this.offsetNear.left), (this.y + this.height - this.offset.bottom + this.offsetNear.bottom) - (this.y + this.offset.top - this.offsetNear.top));
-            ctx.stroke();   
+            ctx.stroke();
         }
     }
 }
