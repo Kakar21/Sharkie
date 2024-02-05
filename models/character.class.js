@@ -13,8 +13,9 @@ class Character extends MoveableObject {
     };
     hitBy;
     lastMovement = 0;
-    isSlapping;
-    isShooting;
+    isSlapping = false;
+    isShooting = false;
+    isLongIDLE = false;
     world;
 
     IMAGES_IDLE = [
@@ -48,36 +49,31 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/2.Long_IDLE/7.png',
         '../img/1. Sharkie/2.Long_IDLE/8.png',
         '../img/1. Sharkie/2.Long_IDLE/9.png',
-        '../img/1. Sharkie/2.Long_IDLE/10.png',
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png'
+        '../img/1. Sharkie/2.Long_IDLE/10.png'
     ]
 
-    // IMAGES_SLEEP = [
-    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/11.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/12.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/13.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/14.png',
-    //     '../img/1. Sharkie/2.Long_IDLE/14.png'
-    // ]
-    //TODO: Add sleep (after one time animation)
+    IMAGES_SLEEP = [
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/11.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/12.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/13.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png',
+        '../img/1. Sharkie/2.Long_IDLE/14.png'
+    ]
 
     IMAGES_SWIM = [
         '../img/1. Sharkie/3.Swim/1.png',
@@ -163,7 +159,7 @@ class Character extends MoveableObject {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
-        // this.loadImages(this.IMAGES_SLEEP);
+        this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
         this.loadImages(this.IMAGES_BUBBLETRAP);
@@ -236,7 +232,10 @@ class Character extends MoveableObject {
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playSwim();
 
-            } else if (this.lastMovement > 50) {
+            } else if (this.lastMovement >= 60) {
+                this.playSleep();
+
+            } else if (this.lastMovement >= 50) {
                 this.playLongIDLE();
             } else {
                 this.playIDLE();
@@ -286,11 +285,12 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGES_BUBBLETRAP);
 
         if (this.currentImage >= this.IMAGES_BUBBLETRAP.length) {
-            console.log('bubble')
             let bubble = new ShootableObject(this.x, this.y);
             this.world.shootableObjects.push(bubble);
             this.isShooting = false;
         }
+
+        // TODO: if too easy (too fast shooting), add cooldown
 
         // TODO: Add poisoned version
         this.lastMovement = 0;
@@ -318,8 +318,24 @@ class Character extends MoveableObject {
     }
 
     playLongIDLE() {
+
+        if (!this.isLongIDLE) {
+            this.isLongIDLE = true;
+            this.currentImage = 0;
+        }
+
         this.playAnimation(this.IMAGES_LONG_IDLE);
-        // this.playAnimation(this.IMAGES_SLEEP);
+
+        if (this.currentImage >= this.IMAGES_LONG_IDLE.length) {
+            this.isLongIDLE = false;
+            this.currentImage = 0;
+        }
+
+        this.lastMovement += 1;
+    }
+
+    playSleep() {
+        this.playAnimation(this.IMAGES_SLEEP);
     }
 }
 
