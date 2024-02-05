@@ -11,6 +11,12 @@ class Character extends MoveableObject {
         bottom: 50,
         left: 40
     };
+    offsetNear = {
+        top: 0,
+        right: 50,
+        bottom: 0,
+        left: 0
+    }
     hitBy;
     lastMovement = 0;
     isSlapping = false;
@@ -167,9 +173,6 @@ class Character extends MoveableObject {
     // TODO: damp swim sound for underwater feeling?
     //TODO: Fix playing after a fast keypress
 
-
-    //TODO: Add fin slap
-
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
         this.loadImages(this.IMAGES_IDLE);
@@ -309,11 +312,19 @@ class Character extends MoveableObject {
         this.playAnimation(this.IMAGES_FINSLAP);
 
         if (this.currentImage >= this.IMAGES_FINSLAP.length) {
+
+            // TODO: run after the slap touches:
+            this.world.level.enemies.forEach((enemy) => {
+                if (enemy instanceof PufferFish && enemy.isNearby(this)) {
+                    enemy.energy = 0;
+                }
+            });
+
             this.isSlapping = false;
         }
+        // TODO: Add other direction
 
         this.lastMovement = 0;
-        // TODO: Add logic
     }
 
     playBubbleTrap() {
@@ -326,8 +337,6 @@ class Character extends MoveableObject {
         }
 
         // TODO: if too easy (too fast shooting), add cooldown
-
-        // TODO: Add poisoned version
         this.lastMovement = 0;
     }
 
@@ -341,8 +350,6 @@ class Character extends MoveableObject {
         }
 
         // TODO: if too easy (too fast shooting), add cooldown
-
-        // TODO: Add poisoned version
         this.lastMovement = 0;
     }
 

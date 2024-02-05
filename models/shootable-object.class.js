@@ -39,5 +39,4 @@ class ShootableObject extends MoveableObject {
     }
 }
 
-// TODO: add poison bubble
 // TODO: Bubble shooting to other direction when swimming back

@@ -103,7 +103,7 @@ class DrawableObject {
      * @param {context} ctx 
      */
     drawFrameYellowFrame(ctx) {
-        if (this instanceof PufferFish) {
+        if (this instanceof PufferFish || this instanceof Character) {
             ctx.beginPath();
             ctx.lineWidth = '0.5';
             ctx.strokeStyle = 'Yellow';

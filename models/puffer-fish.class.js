@@ -91,6 +91,18 @@ class PufferFish extends MoveableObject {
         ]
     };
 
+    IMAGES_DEAD = {
+        GREEN: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png'
+        ],
+        ORANGE: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/4.DIE/2.png'
+        ],
+        RED: [
+            '../img/2. Enemy/1.Puffer fish (3 color options)/4.DIE/3.png'
+        ]
+    }
+
 
     constructor() {
         super();
@@ -100,7 +112,7 @@ class PufferFish extends MoveableObject {
         this.y = Math.random() * (480 - this.height);
         this.speed = 0.1 + Math.random() * 0.5;
 
-
+        this.loadImages(this.IMAGES_DEAD[this.color]);
         this.loadImages(this.IMAGES_SWIM[this.color]);
         this.loadImages(this.IMAGES_PUFFING_UP[this.color]);
         this.loadImages(this.IMAGES_PUFFED_SWIM[this.color]);
@@ -135,8 +147,10 @@ class PufferFish extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-
+                // TODO: startDead (add floating up when dead);
+                this.playAnimation(this.IMAGES_DEAD[this.color]);
             } else if (this.puffingUp && this.i <= 4) {
+                // TODO: startPuffingUp;
                 this.playAnimation(this.IMAGES_PUFFING_UP[this.color]);
                 this.i++;
                 this.puffedUp = true;
