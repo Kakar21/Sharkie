@@ -14,7 +14,10 @@ class Character extends MoveableObject {
     hitBy;
     lastMovement = 0;
     isSlapping = false;
-    isShooting = false;
+    isShooting = {
+        NORMAL: false,
+        POISON: false
+    };
     isLongIDLE = false;
     world;
 
@@ -93,16 +96,28 @@ class Character extends MoveableObject {
         '../img/1. Sharkie/4.Attack/Fin slap/8.png'
     ]
 
-    IMAGES_BUBBLETRAP = [
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-        '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
-    ]
+    IMAGES_BUBBLETRAP = {
+        NORMAL: [
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
+        ],
+        POISON: [
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/8.png'
+        ]
+    }
 
     IMAGES_DEAD = {
         POISON: [
@@ -162,7 +177,8 @@ class Character extends MoveableObject {
         this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_FINSLAP);
-        this.loadImages(this.IMAGES_BUBBLETRAP);
+        this.loadImages(this.IMAGES_BUBBLETRAP['NORMAL']);
+        this.loadImages(this.IMAGES_BUBBLETRAP['POISON']);
         this.loadImages(this.IMAGES_DEAD['POISON']);
         this.loadImages(this.IMAGES_DEAD['SHOCK']);
         this.loadImages(this.IMAGES_HURT['POISON']);
@@ -211,6 +227,11 @@ class Character extends MoveableObject {
                 this.startBubbleTrap();
             }
 
+            if (this.world.keyboard.J) {
+                if (this.world.poisonBar.percentage >= 10)
+                    this.startBubbleTrapPoison();
+            }
+
             this.world.camera_x = -this.x;
         }, 1000 / 60)
 
@@ -226,8 +247,11 @@ class Character extends MoveableObject {
             } else if (this.isSlapping) {
                 this.playFinSlap();
 
-            } else if (this.isShooting) {
+            } else if (this.isShooting.NORMAL) {
                 this.playBubbleTrap();
+
+            } else if (this.isShooting.POISON) {
+                this.playBubbleTrapPoison();
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playSwim();
@@ -251,9 +275,20 @@ class Character extends MoveableObject {
     }
 
     startBubbleTrap() {
-        if (!this.isShooting && !this.otherDirection) {
-            this.isShooting = true;
+        if (!this.isShooting.NORMAL && !this.otherDirection) {
+            this.isShooting.NORMAL = true;
             this.currentImage = 0;
+
+            // TODO: add shooting in otherDirection
+        }
+    }
+
+    startBubbleTrapPoison() {
+        if (!this.isShooting.POISON && !this.otherDirection) {
+            this.isShooting.POISON = true;
+            this.currentImage = 0;
+            console.log(this.world.poisonBar.percentage);
+            this.world.poisonBar.setPercentage(this.world.poisonBar.percentage - 10);
 
             // TODO: add shooting in otherDirection
         }
@@ -282,12 +317,27 @@ class Character extends MoveableObject {
     }
 
     playBubbleTrap() {
-        this.playAnimation(this.IMAGES_BUBBLETRAP);
+        this.playAnimation(this.IMAGES_BUBBLETRAP['NORMAL']);
 
-        if (this.currentImage >= this.IMAGES_BUBBLETRAP.length) {
+        if (this.currentImage >= this.IMAGES_BUBBLETRAP['NORMAL'].length) {
             let bubble = new ShootableObject(this.x, this.y);
             this.world.shootableObjects.push(bubble);
-            this.isShooting = false;
+            this.isShooting.NORMAL = false;
+        }
+
+        // TODO: if too easy (too fast shooting), add cooldown
+
+        // TODO: Add poisoned version
+        this.lastMovement = 0;
+    }
+
+    playBubbleTrapPoison() {
+        this.playAnimation(this.IMAGES_BUBBLETRAP['POISON']);
+
+        if (this.currentImage >= this.IMAGES_BUBBLETRAP['POISON'].length) {
+            let bubble = new ShootableObject(this.x, this.y, 'poison');
+            this.world.shootableObjects.push(bubble);
+            this.isShooting.POISON = false;
         }
 
         // TODO: if too easy (too fast shooting), add cooldown

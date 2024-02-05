@@ -42,6 +42,10 @@ window.addEventListener('keydown', (event) => {
     if (event.keyCode == 72) {
         keyboard.H = true;
     }
+
+    if (event.keyCode == 74) {
+        keyboard.J = true;
+    }
 })
 
 
@@ -68,5 +72,9 @@ window.addEventListener('keyup', (event) => {
 
     if (event.keyCode == 72) {
         keyboard.H = false;
+    }
+
+    if (event.keyCode == 74) {
+        keyboard.J = false;
     }
 })

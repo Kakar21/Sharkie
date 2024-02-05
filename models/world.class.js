@@ -82,7 +82,7 @@ class World {
                 this.shootableObjects.forEach((bubble) => {
                     if (bubble.isColliding(enemy)) {
 
-                        if (enemy instanceof JellyFish) {
+                        if (enemy instanceof JellyFish && !bubble.poison) {
                             enemy.energy = 0;
                         }
                         //TODO: let bubbles go trought if they are dead
