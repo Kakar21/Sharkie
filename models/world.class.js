@@ -85,7 +85,7 @@ class World {
                         if (enemy instanceof JellyFish && !bubble.poison) {
                             enemy.energy = 0;
                         }
-                        //TODO: let bubbles go trought if they are dead
+
                         let i = this.shootableObjects.indexOf(bubble);
                         this.shootableObjects.splice(i, 1);
                         // TODO: Add popping sound
@@ -93,6 +93,8 @@ class World {
                 });
             })
         }
+
+        // TODO: Any static animation 60 FPS!
 
         // Character with collectables
         this.level.collectables.forEach((collectable) => {
@@ -114,6 +116,13 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof PufferFish && this.character.isNearby(enemy)) {
                 enemy.startPuffingUp();
+            };
+        });
+
+        // Character near Endboss
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss && this.character.x > 3860) {
+                enemy.startIntroduce();
             };
         });
     }

@@ -271,7 +271,7 @@ class Character extends MoveableObject {
     }
 
     startFinSlap() {
-        if (!this.isSlapping) {
+        if (!this.isSlapping && !this.otherDirection) {
             this.isSlapping = true;
             this.currentImage = 0;
         }
@@ -281,8 +281,6 @@ class Character extends MoveableObject {
         if (!this.isShooting.NORMAL && !this.otherDirection) {
             this.isShooting.NORMAL = true;
             this.currentImage = 0;
-
-            // TODO: add shooting in otherDirection
         }
     }
 
@@ -292,8 +290,6 @@ class Character extends MoveableObject {
             this.currentImage = 0;
             console.log(this.world.poisonBar.percentage);
             this.world.poisonBar.setPercentage(this.world.poisonBar.percentage - 10);
-
-            // TODO: add shooting in otherDirection
         }
     }
 
@@ -322,7 +318,6 @@ class Character extends MoveableObject {
         if (this.currentImage >= this.IMAGES_FINSLAP.length) {
             this.isSlapping = false;
         }
-        // TODO: Add other direction
 
         this.lastMovement = 0;
     }

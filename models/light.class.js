@@ -19,4 +19,4 @@ class Light extends MoveableObject {
     }
 }
 
-//TODO: Add more lights naturally
+//TODO: Add more lights naturally / manually? 

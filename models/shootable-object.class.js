@@ -38,5 +38,3 @@ class ShootableObject extends MoveableObject {
         }, 1000 / 60);
     }
 }
-
-// TODO: Bubble shooting to other direction when swimming back

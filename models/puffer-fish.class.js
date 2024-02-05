@@ -15,7 +15,7 @@ class PufferFish extends MoveableObject {
         left: 100
     }
     color;
-    puffedUp = false;
+    hasPuffedUp = false;
     isPuffingUp = false;
     dead = false;
 
@@ -148,9 +148,9 @@ class PufferFish extends MoveableObject {
 
             if (this.isDead()) {
                 this.playDead();
-            } else if (this.isPuffingUp && !this.puffedUp) {
+            } else if (this.isPuffingUp) {
                 this.playPuffingUp();
-            } else if (this.puffedUp) {
+            } else if (this.hasPuffedUp) {
                 this.playAnimation(this.IMAGES_PUFFED_SWIM[this.color]);
             } else {
                 this.playAnimation(this.IMAGES_SWIM[this.color]);
@@ -159,7 +159,7 @@ class PufferFish extends MoveableObject {
     }
 
     startPuffingUp() {
-        if (!this.isPuffingUp) {
+        if (!this.isPuffingUp && !this.hasPuffedUp) {
             this.isPuffingUp = true;
             this.currentImage = 0;
         }
@@ -170,7 +170,7 @@ class PufferFish extends MoveableObject {
 
         if (this.currentImage >= this.IMAGES_PUFFING_UP[this.color].length) {
             this.isPuffingUp = false;
-            this.puffedUp = true;
+            this.hasPuffedUp = true;
         }
     }
 

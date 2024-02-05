@@ -2,13 +2,29 @@ class Endboss extends MoveableObject {
 
     width = 350;
     height = 350;
-    y = 0;
+    y = -1000;
+    x = 4380 - 150; // (Endboss Width - Character Width); 
     offset = {
         top: 164,
         right: 63,
         bottom: 71,
         left: 21
     };
+    isIntroducing = false;
+    hasIntroduced = false;
+
+    IMAGES_INTRODUCE = [
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/1.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/2.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/3.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/4.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/5.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/6.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/7.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/8.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/9.png',
+        '../img/2. Enemy/3 Final Enemy/1.Introduce/10.png'
+    ]
 
     IMAGES_SWIM = [
         '../img/2. Enemy/3 Final Enemy/2.floating/1.png',
@@ -28,9 +44,9 @@ class Endboss extends MoveableObject {
 
 
     constructor() {
-        super().loadImage(this.IMAGES_SWIM[0]);
+        super();
+        this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
-        this.x = 4380 - 150 // (Endboss Width - Character Width); 
         this.animate();
     }
 
@@ -40,11 +56,39 @@ class Endboss extends MoveableObject {
      */
     animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_SWIM);
+
+            if (this.isDead()) {
+
+            } else if (this.isIntroducing) {
+                this.playIntroduce();
+
+            } else {
+                this.playSwim();
+            }
         }, 100);
+    }
+
+    startIntroduce() {
+        if (!this.isIntroducing && !this.hasIntroduced) {
+            this.isIntroducing = true;
+            this.currentImage = 0;
+        }
+    }
+
+    playIntroduce() {
+        this.playAnimation(this.IMAGES_INTRODUCE);
+        this.y = 0;
+
+        if (this.currentImage >= this.IMAGES_INTRODUCE.length) {
+            this.isIntroducing = false;
+            this.hasIntroduced = true;
+        }
+    }
+
+    playSwim() {
+        this.playAnimation(this.IMAGES_SWIM);
     }
 }
 
-// TODO: Add come in animation
 // TODO: Add endboss lifebar
 // TODO: Add endboss following logic
