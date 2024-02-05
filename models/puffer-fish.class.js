@@ -16,8 +16,8 @@ class PufferFish extends MoveableObject {
     }
     color;
     puffedUp = false;
-    puffingUp = false;
-    i = 0
+    isPuffingUp = false;
+    dead = false;
 
     IMAGES_SWIM = {
         GREEN: [
@@ -147,13 +147,9 @@ class PufferFish extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-                // TODO: startDead (add floating up when dead);
-                this.playAnimation(this.IMAGES_DEAD[this.color]);
-            } else if (this.puffingUp && this.i <= 4) {
-                // TODO: startPuffingUp;
-                this.playAnimation(this.IMAGES_PUFFING_UP[this.color]);
-                this.i++;
-                this.puffedUp = true;
+                this.playDead();
+            } else if (this.isPuffingUp && !this.puffedUp) {
+                this.playPuffingUp();
             } else if (this.puffedUp) {
                 this.playAnimation(this.IMAGES_PUFFED_SWIM[this.color]);
             } else {
@@ -161,4 +157,33 @@ class PufferFish extends MoveableObject {
             }
         }, 100);
     }
+
+    startPuffingUp() {
+        if (!this.isPuffingUp) {
+            this.isPuffingUp = true;
+            this.currentImage = 0;
+        }
+    }
+
+    playPuffingUp() {
+        this.playAnimation(this.IMAGES_PUFFING_UP[this.color]);
+
+        if (this.currentImage >= this.IMAGES_PUFFING_UP[this.color].length) {
+            this.isPuffingUp = false;
+            this.puffedUp = true;
+        }
+    }
+
+    playDead() {
+        this.playAnimation(this.IMAGES_DEAD[this.color]);
+
+        if (!this.dead) {
+            this.dead = true;
+            setInterval(() => {
+                this.x += 5
+                this.y -= 6
+            }, 1000 / 60)
+        }
+    }
+
 }

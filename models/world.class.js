@@ -113,10 +113,7 @@ class World {
         // Character with Puffer Fishes nearby
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof PufferFish && this.character.isNearby(enemy)) {
-                if (enemy.puffedUp == false) {
-                    enemy.currentImage = 0;
-                    enemy.puffingUp = true;
-                }
+                enemy.startPuffingUp();
             };
         });
     }

@@ -106,11 +106,13 @@ class MoveableObject extends DrawableObject {
      */
     moveLeft() {
         setInterval(() => {
-            this.x -= this.speed;
+            if (this.energy > 0) {
+                this.x -= this.speed;
+            }
         }, 1000 / 60);
     }
 
-    
+
     /**
      *  Moves the object up and down till the canvas borders in a loop in itselfs speed
      */
@@ -120,7 +122,7 @@ class MoveableObject extends DrawableObject {
                 return;
             }
 
-            if (this.y < 1 && this. y > -20) {
+            if (this.y < 1 && this.y > -20) {
                 this.direction = 'down';
             } else if ((this.y + this.height) > 480 && (this.y + this.height) < 500) {
                 this.direction = 'up';

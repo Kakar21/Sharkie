@@ -311,15 +311,15 @@ class Character extends MoveableObject {
     playFinSlap() {
         this.playAnimation(this.IMAGES_FINSLAP);
 
-        if (this.currentImage >= this.IMAGES_FINSLAP.length) {
-
-            // TODO: run after the slap touches:
+        if (this.currentImage == 3) {
             this.world.level.enemies.forEach((enemy) => {
                 if (enemy instanceof PufferFish && enemy.isNearby(this)) {
                     enemy.energy = 0;
                 }
             });
+        }
 
+        if (this.currentImage >= this.IMAGES_FINSLAP.length) {
             this.isSlapping = false;
         }
         // TODO: Add other direction

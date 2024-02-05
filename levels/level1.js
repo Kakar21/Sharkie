@@ -65,3 +65,6 @@ const level1 = new Level(
     ]);
 
 // TODO: Place all objects perfectly like in a real level
+
+
+// TODO: if to easy, add barriers 
