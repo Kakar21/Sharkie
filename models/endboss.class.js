@@ -62,6 +62,8 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/Dead/5.png',
     ]
 
+    // TODO: Fix dead animation playing to fast / not looking good
+
 
     constructor() {
         super().loadImage(this.IMAGES_SWIM[0]);
@@ -72,6 +74,39 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+    move() {
+        if (!this.isDead() && !this.world.character.isDead()) {
+            setInterval(() => {
+                // Move Left
+                if (this.getMiddleX(this.world.character) < (this.x + this.offset.left)) {
+                    this.x -= 4;
+                    this.otherDirection = false;
+                }
+                // Move Right
+                if (this.getMiddleX(this.world.character) > (this.x - this.offset.left + this.width)) {
+                    this.x += 4;
+                    this.otherDirection = true;
+                }
+                // Move Up
+                if (this.getMiddleY(this.world.character) < this.getMiddleY(this)) {
+                    this.y -= 4;
+                }
+                // Move Down
+                if (this.getMiddleY(this.world.character) > this.getMiddleY(this)) {
+                    this.y += 4;
+                }
+            }, 10)
+
+        }
+    }
+
+    getMiddleX(obj) {
+        return obj.x + obj.offset.left + ((obj.width - obj.offset.left - obj.offset.right) / 2);
+    }
+
+    getMiddleY(obj) {
+        return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2)
+    }
 
     /**
      * Checks endboss state to play animations in a loop
@@ -108,6 +143,7 @@ class Endboss extends MoveableObject {
         if (this.currentImage >= this.IMAGES_INTRODUCE.length) {
             this.isIntroducing = false;
             this.hasIntroduced = true;
+            this.move();
         }
     }
 
