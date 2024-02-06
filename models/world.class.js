@@ -141,6 +141,12 @@ class World {
                 }
             });
         }
+
+        // Character with Endboss
+        if (this.character.isColliding(this.endboss) && !this.character.isDead()) {
+            console.log('isColliding')
+            this.endboss.startBite();
+        }
     }
 
 

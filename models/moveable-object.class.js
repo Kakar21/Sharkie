@@ -17,6 +17,7 @@ class MoveableObject extends DrawableObject {
             (this.y - this.offset.bottom + this.height) >= (obj.y + obj.offset.top) &&
             (this.y + this.offset.top) <= (obj.y - obj.offset.bottom + obj.height);
     }
+    // TODO: Fix collision when character right and endboss left biting from behind too late (offset of endboss left and right are not the same)
 
 
     /**
@@ -28,6 +29,15 @@ class MoveableObject extends DrawableObject {
         return (this.x + this.width - this.offset.right) >= obj.x + obj.offset.left - obj.offsetNear.left && this.x + this.offset.left <= (obj.x + obj.width - obj.offset.right + obj.offsetNear.right) &&
             (this.y - this.offset.bottom + this.height) >= (obj.y + obj.offset.top - obj.offsetNear.top) &&
             (this.y + this.offset.top) <= (obj.y - obj.offset.bottom + obj.offsetNear.bottom + obj.height);
+    }
+
+
+    getMiddleX(obj) {
+        return obj.x + obj.offset.left + ((obj.width - obj.offset.left - obj.offset.right) / 2);
+    }
+
+    getMiddleY(obj) {
+        return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2)
     }
 
 

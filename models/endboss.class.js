@@ -40,8 +40,17 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/2.floating/10.png',
         '../img/2. Enemy/3 Final Enemy/2.floating/11.png',
         '../img/2. Enemy/3 Final Enemy/2.floating/12.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/13.png',
+        '../img/2. Enemy/3 Final Enemy/2.floating/13.png'
     ];
+
+    IMAGES_BITE = [
+        '../img/2. Enemy/3 Final Enemy/Attack/1.png',
+        '../img/2. Enemy/3 Final Enemy/Attack/2.png',
+        '../img/2. Enemy/3 Final Enemy/Attack/3.png',
+        '../img/2. Enemy/3 Final Enemy/Attack/4.png',
+        '../img/2. Enemy/3 Final Enemy/Attack/5.png',
+        '../img/2. Enemy/3 Final Enemy/Attack/6.png'
+    ]
 
     IMAGES_HURT = [
         '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
@@ -59,7 +68,7 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/Dead/2.png',
         '../img/2. Enemy/3 Final Enemy/Dead/3.png',
         '../img/2. Enemy/3 Final Enemy/Dead/4.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/5.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/5.png'
     ]
 
     // TODO: Fix dead animation playing to fast / not looking good
@@ -69,23 +78,31 @@ class Endboss extends MoveableObject {
         super().loadImage(this.IMAGES_SWIM[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_BITE);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
 
     move() {
-        if (!this.isDead() && !this.world.character.isDead()) {
-            setInterval(() => {
+        setInterval(() => {
+            if (!this.isDead() && !this.world.character.isDead()) {
+
+                // Turn Left
+                if (this.getMiddleX(this.world.character) < this.getMiddleX(this)) {
+                    this.otherDirection = false;
+                }
+                // Turn Right
+                if (this.getMiddleX(this.world.character) > this.getMiddleX(this)) {
+                    this.otherDirection = true;
+                }
                 // Move Left
                 if (this.getMiddleX(this.world.character) < (this.x + this.offset.left)) {
                     this.x -= 4;
-                    this.otherDirection = false;
                 }
                 // Move Right
                 if (this.getMiddleX(this.world.character) > (this.x - this.offset.left + this.width)) {
                     this.x += 4;
-                    this.otherDirection = true;
                 }
                 // Move Up
                 if (this.getMiddleY(this.world.character) < this.getMiddleY(this)) {
@@ -95,18 +112,10 @@ class Endboss extends MoveableObject {
                 if (this.getMiddleY(this.world.character) > this.getMiddleY(this)) {
                     this.y += 4;
                 }
-            }, 10)
-
-        }
+            }
+        }, 100)
     }
 
-    getMiddleX(obj) {
-        return obj.x + obj.offset.left + ((obj.width - obj.offset.left - obj.offset.right) / 2);
-    }
-
-    getMiddleY(obj) {
-        return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2)
-    }
 
     /**
      * Checks endboss state to play animations in a loop
@@ -116,6 +125,10 @@ class Endboss extends MoveableObject {
 
             if (this.isDead()) {
                 this.playDead();
+
+            } else if (this.isBiting) {
+                this.playBite();
+
             } else if (this.isHurt()) {
                 this.playHurt();
 
@@ -131,6 +144,13 @@ class Endboss extends MoveableObject {
     startIntroduce() {
         if (!this.isIntroducing && !this.hasIntroduced) {
             this.isIntroducing = true;
+            this.currentImage = 0;
+        }
+    }
+
+    startBite() {
+        if (!this.isBiting) {
+            this.isBiting = true;
             this.currentImage = 0;
         }
     }
@@ -151,6 +171,19 @@ class Endboss extends MoveableObject {
         this.playAnimation(this.IMAGES_SWIM);
     }
 
+    playBite() {
+        this.playAnimation(this.IMAGES_BITE);
+
+        if (this.currentImage >= this.IMAGES_BITE.length) {
+            this.isBiting = false;
+
+            if (this.world.character.isColliding(this)) {
+                this.world.character.hit(10);
+                this.world.healthBar.setPercentage(this.world.character.energy);
+            }
+        }
+    }
+
     playHurt() {
         this.playAnimation(this.IMAGES_HURT);
     }
@@ -159,5 +192,3 @@ class Endboss extends MoveableObject {
         this.playAnimationOnce(this.IMAGES_DEAD);
     }
 }
-
-// TODO: Add endboss following logic
