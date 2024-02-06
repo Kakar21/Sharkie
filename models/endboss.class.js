@@ -50,12 +50,25 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/Hurt/4.png'
     ]
 
+    IMAGES_DEAD = [
+        '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/2.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/3.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/4.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/1.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/2.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/3.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/4.png',
+        '../img/2. Enemy/3 Final Enemy/Dead/5.png',
+    ]
+
 
     constructor() {
         super().loadImage(this.IMAGES_SWIM[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
     }
 
@@ -67,7 +80,7 @@ class Endboss extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
-
+                this.playDead();
             } else if (this.isHurt()) {
                 this.playHurt();
 
@@ -104,6 +117,10 @@ class Endboss extends MoveableObject {
 
     playHurt() {
         this.playAnimation(this.IMAGES_HURT);
+    }
+
+    playDead() {
+        this.playAnimationOnce(this.IMAGES_DEAD);
     }
 }
 
