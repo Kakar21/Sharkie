@@ -1,13 +1,15 @@
 class World {
     character = new Character();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
-    lifeBar = new LifeBar();
+    healthBar = new HealthBar();
     coinBar = new CoinBar();
     poisonBar = new PoisonBar();
+    healthBarEndboss = new HealthBarEndboss();
     shootableObjects = [];
 
     //TODO: Add underwater ambience and music
@@ -27,6 +29,7 @@ class World {
      */
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
 
@@ -71,7 +74,7 @@ class World {
                     this.character.hit(1);
                 }
 
-                this.lifeBar.setPercentage(this.character.energy)
+                this.healthBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);
             };
         });
@@ -120,11 +123,9 @@ class World {
         });
 
         // Character near Endboss
-        this.level.enemies.forEach((enemy) => {
-            if (enemy instanceof Endboss && this.character.x > 3860) {
-                enemy.startIntroduce();
-            };
-        });
+        if (this.character.x > 3860) {
+            this.endboss.startIntroduce();
+        }
     }
 
 
@@ -147,12 +148,14 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.shootableObjects);
         this.addToMap(this.character);
+        this.addToMap(this.endboss);
 
         // Space for fixed objects
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.lifeBar);
+        this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.poisonBar);
+        this.addToMap(this.healthBarEndboss);
         this.ctx.translate(this.camera_x, 0);
 
 

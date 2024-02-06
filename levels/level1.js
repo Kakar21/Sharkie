@@ -19,8 +19,7 @@ const level1 = new Level(
         new JellyFish('charged'),
         new JellyFish(),
         new JellyFish(),
-        new JellyFish('charged'),
-        new Endboss()
+        new JellyFish('charged')
     ],
     [
         new Coin(400, 100),

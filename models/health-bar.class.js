@@ -1,4 +1,4 @@
-class LifeBar extends DrawableObject {
+class HealthBar extends DrawableObject {
 
     percentage = 100;
     width = 180;
@@ -7,12 +7,12 @@ class LifeBar extends DrawableObject {
     y = 0;
 
     IMAGES_LIFE = [
-        '../img/4. Score/orange/status-bar_1.png',
-        '../img/4. Score/orange/status-bar_2.png',
-        '../img/4. Score/orange/status-bar_3.png',
-        '../img/4. Score/orange/status-bar_4.png',
-        '../img/4. Score/orange/status-bar_5.png',
-        '../img/4. Score/orange/status-bar_6.png',
+        '../img/4. Score/orange/health-bar_1.png',
+        '../img/4. Score/orange/health-bar_2.png',
+        '../img/4. Score/orange/health-bar_3.png',
+        '../img/4. Score/orange/health-bar_4.png',
+        '../img/4. Score/orange/health-bar_5.png',
+        '../img/4. Score/orange/health-bar_6.png'
     ]
 
 
@@ -25,7 +25,7 @@ class LifeBar extends DrawableObject {
 
 
     /**
-     * Sets the lifebar to the given number in percent
+     * Sets the healthbar to the given number in percent
      * @param {number} percentage 
      */
     setPercentage(percentage) {

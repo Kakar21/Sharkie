@@ -12,6 +12,7 @@ class Endboss extends MoveableObject {
     };
     isIntroducing = false;
     hasIntroduced = false;
+    world;
 
     IMAGES_INTRODUCE = [
         '../img/2. Enemy/3 Final Enemy/1.Introduce/1.png',
@@ -44,7 +45,7 @@ class Endboss extends MoveableObject {
 
 
     constructor() {
-        super();
+        super().loadImage(this.IMAGES_SWIM[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
         this.animate();
@@ -78,6 +79,7 @@ class Endboss extends MoveableObject {
     playIntroduce() {
         this.playAnimation(this.IMAGES_INTRODUCE);
         this.y = 0;
+        this.world.healthBarEndboss.y = 0;
 
         if (this.currentImage >= this.IMAGES_INTRODUCE.length) {
             this.isIntroducing = false;
@@ -90,5 +92,5 @@ class Endboss extends MoveableObject {
     }
 }
 
-// TODO: Add endboss lifebar
+// TODO: Add endboss healthbar
 // TODO: Add endboss following logic
