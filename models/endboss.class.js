@@ -43,11 +43,19 @@ class Endboss extends MoveableObject {
         '../img/2. Enemy/3 Final Enemy/2.floating/13.png',
     ];
 
+    IMAGES_HURT = [
+        '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/2.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/3.png',
+        '../img/2. Enemy/3 Final Enemy/Hurt/4.png'
+    ]
+
 
     constructor() {
         super().loadImage(this.IMAGES_SWIM[0]);
         this.loadImages(this.IMAGES_INTRODUCE);
         this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_HURT);
         this.animate();
     }
 
@@ -59,6 +67,9 @@ class Endboss extends MoveableObject {
         setInterval(() => {
 
             if (this.isDead()) {
+
+            } else if (this.isHurt()) {
+                this.playHurt();
 
             } else if (this.isIntroducing) {
                 this.playIntroduce();
@@ -90,7 +101,10 @@ class Endboss extends MoveableObject {
     playSwim() {
         this.playAnimation(this.IMAGES_SWIM);
     }
+
+    playHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+    }
 }
 
-// TODO: Add endboss healthbar
 // TODO: Add endboss following logic

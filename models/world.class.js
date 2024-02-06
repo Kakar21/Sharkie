@@ -126,6 +126,21 @@ class World {
         if (this.character.x > 3860) {
             this.endboss.startIntroduce();
         }
+
+        // Poison Bubble with Endboss
+        if (this.shootableObjects.length >= 1) {
+            this.shootableObjects.forEach((bubble) => {
+                if (bubble.isColliding(this.endboss)) {
+                    if (bubble.poison) {
+                        this.endboss.hit(10);
+                    }
+
+                    this.healthBarEndboss.setPercentage(this.endboss.energy)
+                    let i = this.shootableObjects.indexOf(bubble);
+                    this.shootableObjects.splice(i, 1);
+                }
+            });
+        }
     }
 
 
@@ -146,9 +161,10 @@ class World {
         this.ctx.globalAlpha = 1;
 
         this.addObjectsToMap(this.level.enemies);
+        this.addToMap(this.endboss);
         this.addObjectsToMap(this.shootableObjects);
         this.addToMap(this.character);
-        this.addToMap(this.endboss);
+
 
         // Space for fixed objects
         this.ctx.translate(-this.camera_x, 0);
