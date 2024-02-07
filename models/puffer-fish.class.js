@@ -13,13 +13,21 @@ class PufferFish extends MoveableObject {
         right: 100,
         bottom: 100,
         left: 100
-    }
+    };
+    offsets = {
+        puffedUp: {
+            top: 1,
+            right: 4,
+            bottom: 1,
+            left: 2
+        }
+    };
     color;
     hasPuffedUp = false;
     isPuffingUp = false;
     dead = false;
 
-    
+
     constructor() {
         super();
         this.color = this.getColor();
@@ -52,8 +60,7 @@ class PufferFish extends MoveableObject {
         }
     }
 
-    //TODO: Change hit box when puffed up
-
+    
     /**
      * Checks puffer fish state to play animations in a loop
      */
@@ -86,6 +93,7 @@ class PufferFish extends MoveableObject {
 
         if (this.currentImage >= PUFFERFISH_IMAGES_PUFFING_UP[this.color].length) {
             this.isPuffingUp = false;
+            this.offset = this.offsets.puffedUp;
             this.hasPuffedUp = true;
         }
     }

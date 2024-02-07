@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = 100;
-    x = 4000;
+    x = 0;
     speed = 10;
     offset = {
         top: 95,
@@ -13,10 +13,48 @@ class Character extends MoveableObject {
     };
     offsetNear = {
         top: 0,
-        right: 50,
+        right: 66,
         bottom: 0,
         left: 0
     }
+    offsets = {
+        normal: {
+            top: 95,
+            right: 40,
+            bottom: 50,
+            left: 40
+        },
+        sleep: {
+            top: 120,
+            right: 38,
+            bottom: 26,
+            left: 40
+        },
+        poison: {
+            top: 99,
+            right: 53,
+            bottom: 45,
+            left: 51
+        },
+        shock: {
+            top: 83,
+            right: 53,
+            bottom: 35,
+            left: 64
+        },
+        finslap: {
+            top: 100,
+            right: 66,
+            bottom: 50,
+            left: 43
+        },
+        bubbletrap: {
+            top: 75,
+            right: 41,
+            bottom: 51,
+            left: 22
+        }
+    };
     hitBy;
     lastMovement = 0;
     isSlapping = false;
@@ -149,79 +187,15 @@ class Character extends MoveableObject {
         }
     }
 
-    playDead() {
-        if (this.hitBy == 'JellyFish') {
-            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
-        } else {
-            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
-        }
-
-        this.lastMovement = 0;
-        // TODO: Add floating up after dying
-    }
-
-    playFinSlap() {
-        this.playAnimation(CHARACTER_IMAGES_FINSLAP);
-
-        if (this.currentImage == 3) {
-            this.world.level.enemies.forEach((enemy) => {
-                if (enemy instanceof PufferFish && enemy.isNearby(this)) {
-                    enemy.energy = 0;
-                }
-            });
-        }
-
-        if (this.currentImage >= CHARACTER_IMAGES_FINSLAP.length) {
-            this.isSlapping = false;
-        }
-
-        this.lastMovement = 0;
-    }
-
-    playBubbleTrap() {
-        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
-
-        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
-            let bubble = new ShootableObject(this.x, this.y);
-            this.world.shootableObjects.push(bubble);
-            this.isShooting.NORMAL = false;
-        }
-
-        // TODO: if too easy (too fast shooting), add cooldown
-        this.lastMovement = 0;
-    }
-
-    playBubbleTrapPoison() {
-        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
-
-        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
-            let bubble = new ShootableObject(this.x, this.y, 'poison');
-            this.world.shootableObjects.push(bubble);
-            this.isShooting.POISON = false;
-        }
-
-        // TODO: if too easy (too fast shooting), add cooldown
-        this.lastMovement = 0;
-    }
-
-    playHurt() {
-        if (this.hitBy == 'JellyFish') {
-            this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
-        } else {
-            this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
-        }
-        // TODO: Add individual hurt sounds
-
-        this.lastMovement = 0;
-    }
-
     playSwim() {
         this.playAnimation(CHARACTER_IMAGES_SWIM);
+        this.offset = this.offsets.normal;
         this.lastMovement = 0;
     }
 
     playIDLE() {
         this.playAnimation(CHARACTER_IMAGES_IDLE);
+        this.offset = this.offsets.normal;
         this.lastMovement += 1;
     }
 
@@ -244,6 +218,78 @@ class Character extends MoveableObject {
 
     playSleep() {
         this.playAnimation(CHARACTER_IMAGES_SLEEP);
+        this.offset = this.offsets.sleep;
+    }
+
+    playFinSlap() {
+        this.playAnimation(CHARACTER_IMAGES_FINSLAP);
+        this.offset = this.offsets.finslap;
+
+        if (this.currentImage == 3) {
+            this.world.level.enemies.forEach((enemy) => {
+                if (enemy instanceof PufferFish && enemy.isNearby(this)) {
+                    enemy.energy = 0;
+                }
+            });
+        }
+
+        if (this.currentImage >= CHARACTER_IMAGES_FINSLAP.length) {
+            this.isSlapping = false;
+        }
+
+        this.lastMovement = 0;
+    }
+
+    playBubbleTrap() {
+        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
+        this.offset = this.offsets.bubbletrap;
+
+        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
+            let bubble = new ShootableObject(this.x, this.y);
+            this.world.shootableObjects.push(bubble);
+            this.isShooting.NORMAL = false;
+        }
+
+        // TODO: if too easy (too fast shooting), add cooldown
+        this.lastMovement = 0;
+    }
+
+    playBubbleTrapPoison() {
+        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
+        this.offset = this.offsets.bubbletrap;
+
+        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
+            let bubble = new ShootableObject(this.x, this.y, 'poison');
+            this.world.shootableObjects.push(bubble);
+            this.isShooting.POISON = false;
+        }
+
+        // TODO: if too easy (too fast shooting), add cooldown
+        this.lastMovement = 0;
+    }
+
+    playHurt() {
+        if (this.hitBy == 'JellyFish') {
+            this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
+            this.offset = this.offsets.shock;
+        } else {
+            this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
+            this.offset = this.offsets.poison;
+        }
+        // TODO: Add individual hurt sounds
+
+        this.lastMovement = 0;
+    }
+
+    playDead() {
+        if (this.hitBy == 'JellyFish') {
+            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
+        } else {
+            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
+        }
+
+        this.lastMovement = 0;
+        // TODO: Add floating up after dying
     }
 }
 

@@ -63,7 +63,7 @@ class JellyFish extends MoveableObject {
 
             if (this.isDead()) {
                 this.playAnimation(JELLYFISH_IMAGES_DEAD[this.color]);
-                this.y -= 10;
+                this.y -= 4;
             } else {
                 this.playAnimation(JELLYFISH_IMAGES_SWIM[this.color]);
             }
