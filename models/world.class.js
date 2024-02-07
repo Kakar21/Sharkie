@@ -144,7 +144,8 @@ class World {
 
         // Character with Endboss
         if (this.character.isColliding(this.endboss) && !this.character.isDead()) {
-            console.log('isColliding')
+            this.character.hitBy = this.endboss.constructor.name;
+            console.log(this.character.hitBy);
             this.endboss.startBite();
         }
     }

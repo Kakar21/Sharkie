@@ -5,7 +5,7 @@ class PoisonBar extends DrawableObject {
     height = 50;
     x = 15;
     y = 80;
-    
+
 
     constructor() {
         super();

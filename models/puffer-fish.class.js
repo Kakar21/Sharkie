@@ -15,7 +15,7 @@ class PufferFish extends MoveableObject {
         left: 100
     };
     offsets = {
-        puffedUp: {
+        puffed: {
             top: 1,
             right: 4,
             bottom: 1,
@@ -93,7 +93,7 @@ class PufferFish extends MoveableObject {
 
         if (this.currentImage >= PUFFERFISH_IMAGES_PUFFING_UP[this.color].length) {
             this.isPuffingUp = false;
-            this.offset = this.offsets.puffedUp;
+            this.offset = this.offsets.puffed;
             this.hasPuffedUp = true;
         }
     }

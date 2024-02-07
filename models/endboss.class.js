@@ -10,10 +10,42 @@ class Endboss extends MoveableObject {
         bottom: 71,
         left: 21
     };
+    offsets = {
+        introduce: {
+            top: 0,
+            right: 55,
+            bottom: 200,
+            left: 175
+        },
+        normal: {
+            top: 164,
+            right: 63,
+            bottom: 71,
+            left: 21
+        },
+        bite: {
+            top: 127,
+            right: 63,
+            bottom: 63,
+            left: 3
+        },
+        hurt: {
+            top: 140,
+            right: 74,
+            bottom: 79,
+            left: 45
+        },
+        dead: {
+            top: 74,
+            right: 68,
+            bottom: 145,
+            left: 44
+        }
+    };
     isIntroducing = false;
     hasIntroduced = false;
     world;
-    
+
     // TODO: Fix dead animation playing to fast / not looking good
 
     constructor() {
@@ -86,6 +118,7 @@ class Endboss extends MoveableObject {
     startIntroduce() {
         if (!this.isIntroducing && !this.hasIntroduced) {
             this.isIntroducing = true;
+            this.offset = this.offsets.introduce;
             this.currentImage = 0;
         }
     }
@@ -93,6 +126,7 @@ class Endboss extends MoveableObject {
     startBite() {
         if (!this.isBiting) {
             this.isBiting = true;
+            this.offset = this.offsets.bite;
             this.currentImage = 0;
         }
     }
@@ -111,6 +145,7 @@ class Endboss extends MoveableObject {
 
     playSwim() {
         this.playAnimation(ENDBOSS_IMAGES_SWIM);
+        this.offset = this.offsets.normal;
     }
 
     playBite() {
@@ -128,9 +163,11 @@ class Endboss extends MoveableObject {
 
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
+        this.offset = this.offsets.hurt;
     }
 
     playDead() {
         this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
+        this.offset = this.offsets.dead;
     }
 }

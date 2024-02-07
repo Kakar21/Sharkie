@@ -4,6 +4,7 @@ class Character extends MoveableObject {
     height = 200;
     y = 100;
     x = 0;
+    energy = 1000000000000000;
     speed = 10;
     offset = {
         top: 95,
@@ -168,6 +169,7 @@ class Character extends MoveableObject {
         if (!this.isSlapping && !this.otherDirection) {
             this.isSlapping = true;
             this.currentImage = 0;
+            this.offset = this.offsets.finslap;
         }
     }
 
@@ -175,6 +177,7 @@ class Character extends MoveableObject {
         if (!this.isShooting.NORMAL && !this.otherDirection) {
             this.isShooting.NORMAL = true;
             this.currentImage = 0;
+            this.offset = this.offsets.bubbletrap;
         }
     }
 
@@ -182,6 +185,7 @@ class Character extends MoveableObject {
         if (!this.isShooting.POISON && !this.otherDirection) {
             this.isShooting.POISON = true;
             this.currentImage = 0;
+            this.offset = this.offsets.bubbletrap;
             console.log(this.world.poisonBar.percentage);
             this.world.poisonBar.setPercentage(this.world.poisonBar.percentage - 10);
         }
@@ -223,7 +227,6 @@ class Character extends MoveableObject {
 
     playFinSlap() {
         this.playAnimation(CHARACTER_IMAGES_FINSLAP);
-        this.offset = this.offsets.finslap;
 
         if (this.currentImage == 3) {
             this.world.level.enemies.forEach((enemy) => {
@@ -242,7 +245,6 @@ class Character extends MoveableObject {
 
     playBubbleTrap() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
-        this.offset = this.offsets.bubbletrap;
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
             let bubble = new ShootableObject(this.x, this.y);
@@ -256,7 +258,6 @@ class Character extends MoveableObject {
 
     playBubbleTrapPoison() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
-        this.offset = this.offsets.bubbletrap;
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
             let bubble = new ShootableObject(this.x, this.y, 'poison');
