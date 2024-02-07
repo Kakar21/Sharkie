@@ -13,74 +13,16 @@ class Endboss extends MoveableObject {
     isIntroducing = false;
     hasIntroduced = false;
     world;
-
-    IMAGES_INTRODUCE = [
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/1.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/2.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/3.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/4.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/5.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/6.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/7.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/8.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/9.png',
-        '../img/2. Enemy/3 Final Enemy/1.Introduce/10.png'
-    ]
-
-    IMAGES_SWIM = [
-        '../img/2. Enemy/3 Final Enemy/2.floating/1.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/2.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/3.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/4.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/5.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/6.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/7.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/8.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/9.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/10.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/11.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/12.png',
-        '../img/2. Enemy/3 Final Enemy/2.floating/13.png'
-    ];
-
-    IMAGES_BITE = [
-        '../img/2. Enemy/3 Final Enemy/Attack/1.png',
-        '../img/2. Enemy/3 Final Enemy/Attack/2.png',
-        '../img/2. Enemy/3 Final Enemy/Attack/3.png',
-        '../img/2. Enemy/3 Final Enemy/Attack/4.png',
-        '../img/2. Enemy/3 Final Enemy/Attack/5.png',
-        '../img/2. Enemy/3 Final Enemy/Attack/6.png'
-    ]
-
-    IMAGES_HURT = [
-        '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/2.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/3.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/4.png'
-    ]
-
-    IMAGES_DEAD = [
-        '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/2.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/3.png',
-        '../img/2. Enemy/3 Final Enemy/Hurt/4.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/1.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/2.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/3.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/4.png',
-        '../img/2. Enemy/3 Final Enemy/Dead/5.png'
-    ]
-
+    
     // TODO: Fix dead animation playing to fast / not looking good
 
-
     constructor() {
-        super().loadImage(this.IMAGES_SWIM[0]);
-        this.loadImages(this.IMAGES_INTRODUCE);
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_BITE);
-        this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_DEAD);
+        super().loadImage(ENDBOSS_IMAGES_SWIM[0]);
+        this.loadImages(ENDBOSS_IMAGES_INTRODUCE);
+        this.loadImages(ENDBOSS_IMAGES_SWIM);
+        this.loadImages(ENDBOSS_IMAGES_BITE);
+        this.loadImages(ENDBOSS_IMAGES_HURT);
+        this.loadImages(ENDBOSS_IMAGES_DEAD);
         this.animate();
     }
 
@@ -156,11 +98,11 @@ class Endboss extends MoveableObject {
     }
 
     playIntroduce() {
-        this.playAnimation(this.IMAGES_INTRODUCE);
+        this.playAnimation(ENDBOSS_IMAGES_INTRODUCE);
         this.y = 0;
         this.world.healthBarEndboss.y = 0;
 
-        if (this.currentImage >= this.IMAGES_INTRODUCE.length) {
+        if (this.currentImage >= ENDBOSS_IMAGES_INTRODUCE.length) {
             this.isIntroducing = false;
             this.hasIntroduced = true;
             this.move();
@@ -168,13 +110,13 @@ class Endboss extends MoveableObject {
     }
 
     playSwim() {
-        this.playAnimation(this.IMAGES_SWIM);
+        this.playAnimation(ENDBOSS_IMAGES_SWIM);
     }
 
     playBite() {
-        this.playAnimation(this.IMAGES_BITE);
+        this.playAnimation(ENDBOSS_IMAGES_BITE);
 
-        if (this.currentImage >= this.IMAGES_BITE.length) {
+        if (this.currentImage >= ENDBOSS_IMAGES_BITE.length) {
             this.isBiting = false;
 
             if (this.world.character.isColliding(this)) {
@@ -185,10 +127,10 @@ class Endboss extends MoveableObject {
     }
 
     playHurt() {
-        this.playAnimation(this.IMAGES_HURT);
+        this.playAnimation(ENDBOSS_IMAGES_HURT);
     }
 
     playDead() {
-        this.playAnimationOnce(this.IMAGES_DEAD);
+        this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
     }
 }

@@ -6,20 +6,10 @@ class HealthBar extends DrawableObject {
     x = 15;
     y = 0;
 
-    IMAGES_LIFE = [
-        '../img/4. Score/orange/health-bar_1.png',
-        '../img/4. Score/orange/health-bar_2.png',
-        '../img/4. Score/orange/health-bar_3.png',
-        '../img/4. Score/orange/health-bar_4.png',
-        '../img/4. Score/orange/health-bar_5.png',
-        '../img/4. Score/orange/health-bar_6.png'
-    ]
-
-
-
+    
     constructor() {
         super();
-        this.loadImages(this.IMAGES_LIFE);
+        this.loadImages(HEALTHBAR_IMAGES);
         this.setPercentage(100);
     }
 
@@ -30,7 +20,7 @@ class HealthBar extends DrawableObject {
      */
     setPercentage(percentage) {
         this.percentage = percentage;
-        let path = this.IMAGES_LIFE[this.resolveImageIndex()];
+        let path = HEALTHBAR_IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 }

@@ -27,165 +27,20 @@ class Character extends MoveableObject {
     isLongIDLE = false;
     world;
 
-    IMAGES_IDLE = [
-        '../img/1. Sharkie/1.IDLE/1.png',
-        '../img/1. Sharkie/1.IDLE/2.png',
-        '../img/1. Sharkie/1.IDLE/3.png',
-        '../img/1. Sharkie/1.IDLE/4.png',
-        '../img/1. Sharkie/1.IDLE/5.png',
-        '../img/1. Sharkie/1.IDLE/6.png',
-        '../img/1. Sharkie/1.IDLE/7.png',
-        '../img/1. Sharkie/1.IDLE/8.png',
-        '../img/1. Sharkie/1.IDLE/9.png',
-        '../img/1. Sharkie/1.IDLE/10.png',
-        '../img/1. Sharkie/1.IDLE/11.png',
-        '../img/1. Sharkie/1.IDLE/12.png',
-        '../img/1. Sharkie/1.IDLE/13.png',
-        '../img/1. Sharkie/1.IDLE/14.png',
-        '../img/1. Sharkie/1.IDLE/15.png',
-        '../img/1. Sharkie/1.IDLE/16.png',
-        '../img/1. Sharkie/1.IDLE/17.png',
-        '../img/1. Sharkie/1.IDLE/18.png'
-    ];
-
-    IMAGES_LONG_IDLE = [
-        '../img/1. Sharkie/2.Long_IDLE/1.png',
-        '../img/1. Sharkie/2.Long_IDLE/2.png',
-        '../img/1. Sharkie/2.Long_IDLE/3.png',
-        '../img/1. Sharkie/2.Long_IDLE/4.png',
-        '../img/1. Sharkie/2.Long_IDLE/5.png',
-        '../img/1. Sharkie/2.Long_IDLE/6.png',
-        '../img/1. Sharkie/2.Long_IDLE/7.png',
-        '../img/1. Sharkie/2.Long_IDLE/8.png',
-        '../img/1. Sharkie/2.Long_IDLE/9.png',
-        '../img/1. Sharkie/2.Long_IDLE/10.png'
-    ]
-
-    IMAGES_SLEEP = [
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/11.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/12.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/13.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png',
-        '../img/1. Sharkie/2.Long_IDLE/14.png'
-    ]
-
-    IMAGES_SWIM = [
-        '../img/1. Sharkie/3.Swim/1.png',
-        '../img/1. Sharkie/3.Swim/2.png',
-        '../img/1. Sharkie/3.Swim/3.png',
-        '../img/1. Sharkie/3.Swim/4.png',
-        '../img/1. Sharkie/3.Swim/5.png',
-        '../img/1. Sharkie/3.Swim/6.png'
-    ];
-
-    IMAGES_FINSLAP = [
-        '../img/1. Sharkie/4.Attack/Fin slap/1.png',
-        '../img/1. Sharkie/4.Attack/Fin slap/4.png',
-        '../img/1. Sharkie/4.Attack/Fin slap/5.png',
-        '../img/1. Sharkie/4.Attack/Fin slap/6.png',
-        '../img/1. Sharkie/4.Attack/Fin slap/7.png',
-        '../img/1. Sharkie/4.Attack/Fin slap/8.png'
-    ]
-
-    IMAGES_BUBBLETRAP = {
-        NORMAL: [
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png'
-        ],
-        POISON: [
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/1.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/2.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/3.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/4.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/5.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/6.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/7.png',
-            '../img/1. Sharkie/4.Attack/Bubble trap/For Whale/8.png'
-        ]
-    }
-
-    IMAGES_DEAD = {
-        POISON: [
-            '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/2.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/3.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/4.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/5.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/6.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/7.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/8.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
-            '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
-        ],
-        SHOCK: [
-            '../img/1. Sharkie/6.dead/2.Electro_shock/1.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/2.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/3.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/4.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/5.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/6.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/7.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/8.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/9.png',
-            '../img/1. Sharkie/6.dead/2.Electro_shock/10.png'
-        ]
-    };
-    //TODO: Fix dead animation playing from currentImage ?
-
-    IMAGES_HURT = {
-        POISON: [
-            '../img/1. Sharkie/5.Hurt/1.Poisoned/1.png',
-            '../img/1. Sharkie/5.Hurt/1.Poisoned/2.png',
-            '../img/1. Sharkie/5.Hurt/1.Poisoned/3.png',
-            '../img/1. Sharkie/5.Hurt/1.Poisoned/4.png'
-        ],
-        SHOCK: [
-            '../img/1. Sharkie/5.Hurt/2.Electric shock/1.png',
-            '../img/1. Sharkie/5.Hurt/2.Electric shock/2.png',
-            '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png',
-        ]
-    }
-
-    SOUND_SWIM = new Audio('../audio/swimming.mp3');
-    // TODO: damp swim sound for underwater feeling?
-    //TODO: Fix playing after a fast keypress
 
     constructor() {
         super().loadImage('../img/1. Sharkie/3.Swim/1.png');
-        this.loadImages(this.IMAGES_IDLE);
-        this.loadImages(this.IMAGES_LONG_IDLE);
-        this.loadImages(this.IMAGES_SLEEP);
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_FINSLAP);
-        this.loadImages(this.IMAGES_BUBBLETRAP['NORMAL']);
-        this.loadImages(this.IMAGES_BUBBLETRAP['POISON']);
-        this.loadImages(this.IMAGES_DEAD['POISON']);
-        this.loadImages(this.IMAGES_DEAD['SHOCK']);
-        this.loadImages(this.IMAGES_HURT['POISON']);
-        this.loadImages(this.IMAGES_HURT['SHOCK']);
+        this.loadImages(CHARACTER_IMAGES_IDLE);
+        this.loadImages(CHARACTER_IMAGES_LONG_IDLE);
+        this.loadImages(CHARACTER_IMAGES_SLEEP);
+        this.loadImages(CHARACTER_IMAGES_SWIM);
+        this.loadImages(CHARACTER_IMAGES_FINSLAP);
+        this.loadImages(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
+        this.loadImages(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
+        this.loadImages(CHARACTER_IMAGES_HURT['POISON']);
+        this.loadImages(CHARACTER_IMAGES_HURT['SHOCK']);
+        this.loadImages(CHARACTER_IMAGES_DEAD['POISON']);
+        this.loadImages(CHARACTER_IMAGES_DEAD['SHOCK']);
 
         this.animate();
     };
@@ -199,27 +54,28 @@ class Character extends MoveableObject {
 
         // Movement
         setInterval(() => {
-            this.SOUND_SWIM.pause();
+            CHARACTER_SOUND_SWIM.pause();
+            //TODO: Fix playing after a fast keypress
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed;
                 this.otherDirection = false;
-                this.SOUND_SWIM.play();
+                CHARACTER_SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-                this.SOUND_SWIM.play();
+                CHARACTER_SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.UP && this.y > -50) {
                 this.y -= this.speed;
-                this.SOUND_SWIM.play();
+                CHARACTER_SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.DOWN && this.y < this.world.level.level_end_y - this.height) {
                 this.y += this.speed;
-                this.SOUND_SWIM.play();
+                CHARACTER_SOUND_SWIM.play();
             }
 
             if (this.world.keyboard.SPACE) {
@@ -243,7 +99,7 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 this.playDead();
-
+                //TODO: Fix dead animation playing from currentImage ?
             } else if (this.isHurt()) {
                 this.playHurt();
 
@@ -295,9 +151,9 @@ class Character extends MoveableObject {
 
     playDead() {
         if (this.hitBy == 'JellyFish') {
-            this.playAnimationOnce(this.IMAGES_DEAD['SHOCK']);
+            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
         } else {
-            this.playAnimationOnce(this.IMAGES_DEAD['POISON']);
+            this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
         }
 
         this.lastMovement = 0;
@@ -305,7 +161,7 @@ class Character extends MoveableObject {
     }
 
     playFinSlap() {
-        this.playAnimation(this.IMAGES_FINSLAP);
+        this.playAnimation(CHARACTER_IMAGES_FINSLAP);
 
         if (this.currentImage == 3) {
             this.world.level.enemies.forEach((enemy) => {
@@ -315,7 +171,7 @@ class Character extends MoveableObject {
             });
         }
 
-        if (this.currentImage >= this.IMAGES_FINSLAP.length) {
+        if (this.currentImage >= CHARACTER_IMAGES_FINSLAP.length) {
             this.isSlapping = false;
         }
 
@@ -323,9 +179,9 @@ class Character extends MoveableObject {
     }
 
     playBubbleTrap() {
-        this.playAnimation(this.IMAGES_BUBBLETRAP['NORMAL']);
+        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
 
-        if (this.currentImage >= this.IMAGES_BUBBLETRAP['NORMAL'].length) {
+        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
             let bubble = new ShootableObject(this.x, this.y);
             this.world.shootableObjects.push(bubble);
             this.isShooting.NORMAL = false;
@@ -336,9 +192,9 @@ class Character extends MoveableObject {
     }
 
     playBubbleTrapPoison() {
-        this.playAnimation(this.IMAGES_BUBBLETRAP['POISON']);
+        this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
 
-        if (this.currentImage >= this.IMAGES_BUBBLETRAP['POISON'].length) {
+        if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
             let bubble = new ShootableObject(this.x, this.y, 'poison');
             this.world.shootableObjects.push(bubble);
             this.isShooting.POISON = false;
@@ -350,9 +206,9 @@ class Character extends MoveableObject {
 
     playHurt() {
         if (this.hitBy == 'JellyFish') {
-            this.playAnimation(this.IMAGES_HURT['SHOCK']);
+            this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
         } else {
-            this.playAnimation(this.IMAGES_HURT['POISON']);
+            this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
         }
         // TODO: Add individual hurt sounds
 
@@ -360,12 +216,12 @@ class Character extends MoveableObject {
     }
 
     playSwim() {
-        this.playAnimation(this.IMAGES_SWIM);
+        this.playAnimation(CHARACTER_IMAGES_SWIM);
         this.lastMovement = 0;
     }
 
     playIDLE() {
-        this.playAnimation(this.IMAGES_IDLE);
+        this.playAnimation(CHARACTER_IMAGES_IDLE);
         this.lastMovement += 1;
     }
 
@@ -376,9 +232,9 @@ class Character extends MoveableObject {
             this.currentImage = 0;
         }
 
-        this.playAnimation(this.IMAGES_LONG_IDLE);
+        this.playAnimation(CHARACTER_IMAGES_LONG_IDLE);
 
-        if (this.currentImage >= this.IMAGES_LONG_IDLE.length) {
+        if (this.currentImage >= CHARACTER_IMAGES_LONG_IDLE.length) {
             this.isLongIDLE = false;
             this.currentImage = 0;
         }
@@ -387,7 +243,7 @@ class Character extends MoveableObject {
     }
 
     playSleep() {
-        this.playAnimation(this.IMAGES_SLEEP);
+        this.playAnimation(CHARACTER_IMAGES_SLEEP);
     }
 }
 

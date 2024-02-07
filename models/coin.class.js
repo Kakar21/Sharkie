@@ -3,20 +3,13 @@ class Coin extends CollectableObject {
     width = 45;
     height = 45;
 
-    IMAGES_COIN = [
-        '../img/4. Score/1. Coins/1.png',
-        '../img/4. Score/1. Coins/2.png',
-        '../img/4. Score/1. Coins/3.png',
-        '../img/4. Score/1. Coins/4.png'
-    ];
-
 
     constructor(x, y) {
-        super().loadImage(this.IMAGES_COIN[0]);
+        super().loadImage(COIN_IMAGES[0]);
         this.x = x;
         this.y = y;
 
-        this.loadImages(this.IMAGES_COIN);
+        this.loadImages(COIN_IMAGES);
         this.animate();
     }
 
@@ -26,7 +19,7 @@ class Coin extends CollectableObject {
      */
     animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_COIN);
+            this.playAnimation(COIN_IMAGES);
         }, 150);
     }
 }
