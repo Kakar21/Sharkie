@@ -32,6 +32,9 @@ class PufferFish extends MoveableObject {
     hasPuffedUp = false;
     isPuffingUp = false;
     dead = false;
+    acceleration = 1.012;
+    knockSpeedX = 10;
+    knockSpeedY = 10;
 
 
     constructor() {
@@ -110,11 +113,12 @@ class PufferFish extends MoveableObject {
         if (!this.dead) {
             this.dead = true;
             setInterval(() => {
-                this.x += 5
-                this.y -= 6
+                this.x += this.knockSpeedX;
+                this.y -= this.knockSpeedY;
+                this.knockSpeedX /= this.acceleration * 1.015;
+                this.knockSpeedY /= this.acceleration;
             }, 1000 / 60)
         }
-        // TODO: Perfectly adjust knock away speed and direction
     }
 
 }

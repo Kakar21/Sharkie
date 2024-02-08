@@ -6,7 +6,7 @@ class Endboss extends MoveableObject {
     x = 4380 - 150; // (Endboss Width - Character Width); 
     offset = {
         top: 164,
-        right: 63,
+        right: 21,
         bottom: 71,
         left: 21
     };
@@ -19,7 +19,7 @@ class Endboss extends MoveableObject {
         },
         normal: {
             top: 164,
-            right: 63,
+            right: 21,
             bottom: 71,
             left: 21
         },

@@ -2,7 +2,7 @@ class Character extends MoveableObject {
 
     width = 200;
     height = 200;
-    y = 280;
+    y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
     x = 0;
     energy = 100;
     speed = 10;
@@ -104,7 +104,6 @@ class Character extends MoveableObject {
 
                 if ((this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left')) {
                     this.x -= this.speed;
-                    console.log(this.x + this.offsets.normal.left)
                     this.otherDirection = true;
                     CHARACTER_SOUND_SWIM.play();
                 }
@@ -297,7 +296,7 @@ class Character extends MoveableObject {
         }
 
         this.lastMovement = 0;
-        // TODO: perfect floating up speed
+        // TODO: Perfect floating up speed
     }
 }
 

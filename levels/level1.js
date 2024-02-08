@@ -43,7 +43,7 @@ const level1 = new Level(
         new Poison(1, 100),
         new Poison(1, 100),
         new Poison(300, 200)
-        // TODO: Place coins and poisons perfectly after size readjustment
+        // TODO: Perfectly place coins and poisons  after size readjustment
     ],
     [
         new Light()
@@ -63,7 +63,7 @@ const level1 = new Level(
         new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 3412)
     ]);
 
-// TODO: Place all objects perfectly like in a real level
+// TODO: Perfectly place all objects like in a real level
 
 
 // TODO: if to easy, add barriers 

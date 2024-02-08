@@ -13,7 +13,6 @@ class World {
     shootableObjects = [];
 
     //TODO: Add underwater ambience and music
-    // TODO: Perfectly set world border then implement it to all moving objects
     // TODO: Perfectly set all speeds 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
