@@ -51,11 +51,11 @@ class PufferFish extends MoveableObject {
     getColor() {
         let random = Math.floor(Math.random() * 3);
 
-        if (random == 0) {
+        if (random === 0) {
             return 'GREEN';
-        } else if (random == 1) {
+        } else if (random === 1) {
             return 'ORANGE';
-        } else if (random == 2) {
+        } else if (random === 2) {
             return 'RED';
         }
     }
@@ -108,6 +108,7 @@ class PufferFish extends MoveableObject {
                 this.y -= 6
             }, 1000 / 60)
         }
+        // TODO: Perfectly adjust knock away speed and direction
     }
 
 }

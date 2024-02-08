@@ -13,8 +13,8 @@ class World {
     shootableObjects = [];
 
     //TODO: Add underwater ambience and music
-
-
+    // TODO: Perfectly set world border then implement it to all moving objects
+    // TODO: Perfectly set all speeds 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -64,11 +64,11 @@ class World {
     checkCollisions() {
         // Character with all Enemies
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isDead()) {
                 this.character.hitBy = enemy.constructor.name;
 
                 // Character with diffrent types of Jelly Fishes
-                if (enemy instanceof JellyFish && enemy.color == 'GREEN' || enemy.color == 'PINK') {
+                if (enemy instanceof JellyFish && enemy.color === 'GREEN' || enemy.color === 'PINK') {
                     this.character.hit(10);
                 } else {
                     this.character.hit(1);

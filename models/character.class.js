@@ -2,9 +2,9 @@ class Character extends MoveableObject {
 
     width = 200;
     height = 200;
-    y = 100;
+    y = 280;
     x = 0;
-    energy = 1000000000000000;
+    energy = 100;
     speed = 10;
     offset = {
         top: 95,
@@ -95,41 +95,42 @@ class Character extends MoveableObject {
         setInterval(() => {
             CHARACTER_SOUND_SWIM.pause();
             //TODO: Fix playing after a fast keypress
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
-                this.otherDirection = false;
-                CHARACTER_SOUND_SWIM.play();
+            if (!this.isDead()) {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+                    this.x += this.speed;
+                    this.otherDirection = false;
+                    CHARACTER_SOUND_SWIM.play();
+                }
+    
+                if (this.world.keyboard.LEFT || this.world.keyboard.A && this.x > 0) {
+                    this.x -= this.speed;
+                    this.otherDirection = true;
+                    CHARACTER_SOUND_SWIM.play();
+                }
+    
+                if (this.world.keyboard.UP || this.world.keyboard.W && this.y > -50) {
+                    this.y -= this.speed;
+                    CHARACTER_SOUND_SWIM.play();
+                }
+    
+                if (this.world.keyboard.DOWN || this.world.keyboard.S && this.y < this.world.level.level_end_y - this.height) {
+                    this.y += this.speed;
+                    CHARACTER_SOUND_SWIM.play();
+                }
+    
+                if (this.world.keyboard.SPACE) {
+                    this.startFinSlap();
+                }
+    
+                if (this.world.keyboard.H) {
+                    this.startBubbleTrap();
+                }
+    
+                if (this.world.keyboard.J) {
+                    if (this.world.poisonBar.percentage >= 10)
+                        this.startBubbleTrapPoison();
+                }
             }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.x -= this.speed;
-                this.otherDirection = true;
-                CHARACTER_SOUND_SWIM.play();
-            }
-
-            if (this.world.keyboard.UP && this.y > -50) {
-                this.y -= this.speed;
-                CHARACTER_SOUND_SWIM.play();
-            }
-
-            if (this.world.keyboard.DOWN && this.y < this.world.level.level_end_y - this.height) {
-                this.y += this.speed;
-                CHARACTER_SOUND_SWIM.play();
-            }
-
-            if (this.world.keyboard.SPACE) {
-                this.startFinSlap();
-            }
-
-            if (this.world.keyboard.H) {
-                this.startBubbleTrap();
-            }
-
-            if (this.world.keyboard.J) {
-                if (this.world.poisonBar.percentage >= 10)
-                    this.startBubbleTrapPoison();
-            }
-
             this.world.camera_x = -this.x;
         }, 1000 / 60)
 
@@ -151,7 +152,7 @@ class Character extends MoveableObject {
             } else if (this.isShooting.POISON) {
                 this.playBubbleTrapPoison();
 
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.W || this.world.keyboard.A || this.world.keyboard.S || this.world.keyboard.D) {
                 this.playSwim();
 
             } else if (this.lastMovement >= 60) {
@@ -228,7 +229,7 @@ class Character extends MoveableObject {
     playFinSlap() {
         this.playAnimation(CHARACTER_IMAGES_FINSLAP);
 
-        if (this.currentImage == 3) {
+        if (this.currentImage === 3) {
             this.world.level.enemies.forEach((enemy) => {
                 if (enemy instanceof PufferFish && enemy.isNearby(this)) {
                     enemy.energy = 0;
@@ -270,7 +271,7 @@ class Character extends MoveableObject {
     }
 
     playHurt() {
-        if (this.hitBy == 'JellyFish') {
+        if (this.hitBy === 'JellyFish') {
             this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
             this.offset = this.offsets.shock;
         } else {
@@ -283,14 +284,19 @@ class Character extends MoveableObject {
     }
 
     playDead() {
-        if (this.hitBy == 'JellyFish') {
+        if (this.hitBy === 'JellyFish') {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
+            if (this.y <= 250) {
+                this.y += 5
+            }
+
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
+            this.y -= 5
         }
 
         this.lastMovement = 0;
-        // TODO: Add floating up after dying
+        // TODO: perfect floating up speed
     }
 }
 

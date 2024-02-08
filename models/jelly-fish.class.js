@@ -48,13 +48,13 @@ class JellyFish extends MoveableObject {
             random = Math.floor(Math.random() * 2);
         }
 
-        if (random == 0) {
+        if (random === 0) {
             return 'PURPLE';
-        } else if (random == 1) {
+        } else if (random === 1) {
             return 'YELLOW';
-        } else if (random == 2) {
+        } else if (random === 2) {
             return 'GREEN';
-        } else if (random == 3) {
+        } else if (random === 3) {
             return 'PINK';
         }
     }

@@ -72,7 +72,7 @@ class MoveableObject extends DrawableObject {
      * @returns - boolean
      */
     isDead() {
-        return this.energy == 0;
+        return this.energy === 0;
     }
 
 
@@ -135,9 +135,9 @@ class MoveableObject extends DrawableObject {
                     this.direction = 'up';
                 }
     
-                if (this.direction == 'down') {
+                if (this.direction === 'down') {
                     this.y += this.speed;
-                } else if (this.direction == 'up') {
+                } else if (this.direction === 'up') {
                     this.y -= this.speed;
                 }
             }
