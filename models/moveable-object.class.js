@@ -5,6 +5,9 @@ class MoveableObject extends DrawableObject {
     lastHit = 0;
     offsetY = 0;
     direction = 'up';
+    level_end_x = 4536;
+    level_end_y = 480;
+    level_end_space = 30;
 
 
     /**
@@ -38,6 +41,19 @@ class MoveableObject extends DrawableObject {
 
     getMiddleY(obj) {
         return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2)
+    }
+
+
+    isAtLevelEnd(obj, direction) {
+        if (direction === 'left') {
+            return (obj.x + obj.offsets.normal.left) < this.level_end_space;
+        } else if (direction === 'right') {
+            return (obj.x + obj.width - obj.offsets.normal.right) > this.level_end_x;
+        } else if (direction === 'up') {
+            return (obj.y + obj.offsets.normal.top) < this.level_end_space;
+        } else if (direction === 'down') {
+            return (obj.y + obj.height - obj.offsets.normal.bottom) > this.level_end_y - this.level_end_space;
+        }
     }
 
 
@@ -134,7 +150,7 @@ class MoveableObject extends DrawableObject {
                 } else if ((this.y + this.height) > 480 && (this.y + this.height) < 500) {
                     this.direction = 'up';
                 }
-    
+
                 if (this.direction === 'down') {
                     this.y += this.speed;
                 } else if (this.direction === 'up') {

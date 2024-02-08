@@ -15,6 +15,12 @@ class PufferFish extends MoveableObject {
         left: 100
     };
     offsets = {
+        normal: {
+            top: 4,
+            right: 4,
+            bottom: 11,
+            left: 2
+        },
         puffed: {
             top: 1,
             right: 4,

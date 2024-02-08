@@ -96,42 +96,43 @@ class Character extends MoveableObject {
             CHARACTER_SOUND_SWIM.pause();
             //TODO: Fix playing after a fast keypress
             if (!this.isDead()) {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+                if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right')) {
                     this.x += this.speed;
                     this.otherDirection = false;
                     CHARACTER_SOUND_SWIM.play();
                 }
-    
-                if (this.world.keyboard.LEFT || this.world.keyboard.A && this.x > 0) {
+
+                if ((this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left')) {
                     this.x -= this.speed;
+                    console.log(this.x + this.offsets.normal.left)
                     this.otherDirection = true;
                     CHARACTER_SOUND_SWIM.play();
                 }
-    
-                if (this.world.keyboard.UP || this.world.keyboard.W && this.y > -50) {
+
+                if ((this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up')) {
                     this.y -= this.speed;
                     CHARACTER_SOUND_SWIM.play();
                 }
-    
-                if (this.world.keyboard.DOWN || this.world.keyboard.S && this.y < this.world.level.level_end_y - this.height) {
+
+                if ((this.world.keyboard.DOWN || this.world.keyboard.S) && !this.isAtLevelEnd(this, 'down')) {
                     this.y += this.speed;
                     CHARACTER_SOUND_SWIM.play();
                 }
-    
+
                 if (this.world.keyboard.SPACE) {
                     this.startFinSlap();
                 }
-    
+
                 if (this.world.keyboard.H) {
                     this.startBubbleTrap();
                 }
-    
+
                 if (this.world.keyboard.J) {
                     if (this.world.poisonBar.percentage >= 10)
                         this.startBubbleTrapPoison();
                 }
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x - this.offsets.normal.left + this.level_end_space;
         }, 1000 / 60)
 
         // Animation
