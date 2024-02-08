@@ -71,19 +71,19 @@ class Endboss extends MoveableObject {
                     this.otherDirection = true;
                 }
                 // Move Left
-                if (this.getMiddleX(this.world.character) < (this.x + this.offset.left)) {
+                if ((this.getMiddleX(this.world.character) < (this.x + this.offset.left)) && !this.isAtLevelEnd(this, 'left')) {
                     this.x -= 4;
                 }
                 // Move Right
-                if (this.getMiddleX(this.world.character) > (this.x - this.offset.left + this.width)) {
+                if ((this.getMiddleX(this.world.character) > (this.x - this.offset.left + this.width)) && !this.isAtLevelEnd(this, 'right')) {
                     this.x += 4;
                 }
                 // Move Up
-                if (this.getMiddleY(this.world.character) < this.getMiddleY(this)) {
+                if ((this.getMiddleY(this.world.character) < this.getMiddleY(this)) && !this.isAtLevelEnd(this, 'up')) {
                     this.y -= 4;
                 }
                 // Move Down
-                if (this.getMiddleY(this.world.character) > this.getMiddleY(this)) {
+                if ((this.getMiddleY(this.world.character) > this.getMiddleY(this)) && !this.isAtLevelEnd(this, 'down')) {
                     this.y += 4;
                 }
             }

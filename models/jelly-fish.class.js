@@ -10,6 +10,12 @@ class JellyFish extends MoveableObject {
     };
     color;
     offsets = {
+        normal: {
+            top: 5,
+            right: 2,
+            bottom: 15,
+            left: 0
+        },
         dead: {
             top: 14,
             right: 5,
@@ -24,7 +30,7 @@ class JellyFish extends MoveableObject {
         this.color = this.getColor(charged);
         this.loadImage(JELLYFISH_IMAGES_SWIM[this.color][0]);
         this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
-        this.y = Math.random() * (480 - this.height);
+        this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
         this.speed = 0.1 + Math.random() * 0.5;
 
 

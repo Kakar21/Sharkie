@@ -39,7 +39,7 @@ class PufferFish extends MoveableObject {
         this.color = this.getColor();
         this.loadImage(PUFFERFISH_IMAGES_SWIM[this.color][0]);
         this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
-        this.y = Math.random() * (480 - this.height);
+        this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
         this.speed = 0.1 + Math.random() * 0.5;
 
         this.loadImages(PUFFERFISH_IMAGES_DEAD[this.color]);
@@ -66,7 +66,7 @@ class PufferFish extends MoveableObject {
         }
     }
 
-    
+
     /**
      * Checks puffer fish state to play animations in a loop
      */
