@@ -99,6 +99,7 @@ class PufferFish extends MoveableObject {
 
     playPuffingUp() {
         this.playAnimation(PUFFERFISH_IMAGES_PUFFING_UP[this.color]);
+        PUFFERFISH_SOUND_PUFFING_UP.play()
 
         if (this.currentImage >= PUFFERFISH_IMAGES_PUFFING_UP[this.color].length) {
             this.isPuffingUp = false;

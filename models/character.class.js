@@ -233,6 +233,7 @@ class Character extends MoveableObject {
             this.world.level.enemies.forEach((enemy) => {
                 if (enemy instanceof PufferFish && enemy.isNearby(this)) {
                     enemy.energy = 0;
+                    CHARACTER_SOUND_FINSLAP.play()
                 }
             });
         }
@@ -274,6 +275,7 @@ class Character extends MoveableObject {
         if (this.hitBy === 'JellyFish') {
             this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
             this.offset = this.offsets.shock;
+            CHARACTER_SOUND_SHOCK.play();
         } else {
             this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
             this.offset = this.offsets.poison;

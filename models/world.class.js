@@ -86,6 +86,9 @@ class World {
 
                         if (enemy instanceof JellyFish && !bubble.poison) {
                             enemy.energy = 0;
+                            BUBBLE_SOUND.play()
+                        } else {
+                            BUBBLE_SOUND_POP.play()
                         }
 
                         let i = this.shootableObjects.indexOf(bubble);
@@ -104,6 +107,7 @@ class World {
 
                 if (collectable instanceof Coin) {
                     this.coinBar.setPercentage(this.coinBar.percentage += 10);
+                    COIN_SOUND.play()
                 } else if (collectable instanceof Poison) {
                     this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
                 }
