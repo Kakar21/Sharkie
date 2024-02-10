@@ -110,6 +110,7 @@ class World {
                     COIN_SOUND.play()
                 } else if (collectable instanceof Poison) {
                     this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
+                    POISON_SOUND.play()
                 }
 
                 let i = this.level.collectables.indexOf(collectable);

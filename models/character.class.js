@@ -247,6 +247,7 @@ class Character extends MoveableObject {
 
     playBubbleTrap() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
+        CHARACTER_SOUND_BUBBLETRAP.play()
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
             let bubble = new ShootableObject(this.x, this.y);
@@ -260,6 +261,7 @@ class Character extends MoveableObject {
 
     playBubbleTrapPoison() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
+        CHARACTER_SOUND_BUBBLETRAP.play()
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
             let bubble = new ShootableObject(this.x, this.y, 'poison');

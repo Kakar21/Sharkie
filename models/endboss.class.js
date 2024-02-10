@@ -150,6 +150,7 @@ class Endboss extends MoveableObject {
 
     playBite() {
         this.playAnimation(ENDBOSS_IMAGES_BITE);
+        ENDBOSS_SOUND_BITE.play()
 
         if (this.currentImage >= ENDBOSS_IMAGES_BITE.length) {
             this.isBiting = false;
@@ -163,6 +164,7 @@ class Endboss extends MoveableObject {
 
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
+        ENDBOSS_SOUND_HURT.play();
         this.offset = this.offsets.hurt;
     }
 
