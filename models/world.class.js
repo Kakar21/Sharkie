@@ -12,7 +12,6 @@ class World {
     healthBarEndboss = new HealthBarEndboss();
     shootableObjects = [];
 
-    //TODO: Add underwater ambience and music
     // TODO: Perfectly set all speeds 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,6 +37,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            // BACKGROUND_SOUND_MUSIC.play()
             // this.checkShootObjects();
         }, 100);
     }
@@ -93,7 +93,6 @@ class World {
 
                         let i = this.shootableObjects.indexOf(bubble);
                         this.shootableObjects.splice(i, 1);
-                        // TODO: Add popping sound
                     };
                 });
             })
@@ -115,7 +114,6 @@ class World {
 
                 let i = this.level.collectables.indexOf(collectable);
                 this.level.collectables.splice(i, 1);
-                // TODO: Add collecting sound
             };
         });
 

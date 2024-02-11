@@ -5,10 +5,15 @@ let CHARACTER_SOUND_SWIM = new Audio('../audio/CHARACTER_SWIM.mp3');
 
 let CHARACTER_SOUND_SHOCK = new Audio('../audio/CHARACTER_SHOCK.mp3');
 
+let CHARACTER_SOUND_POISON = new Audio('../audio/CHARACTER_POISON.mp3');
+// TODO: Play once a hit
+
 let CHARACTER_SOUND_FINSLAP = new Audio('../audio/CHARACTER_FINSLAP.mp3');
 
 let CHARACTER_SOUND_BUBBLETRAP = new Audio('../audio/CHARACTER_BUBBLETRAP.mp3');
-// TODO: Is good?
+
+let CHARACTER_SOUND_DEAD = new Audio('../audio/CHARACTER_DEAD.mp3');
+// TODO: Play once
 
 let COIN_SOUND = new Audio('../audio/COIN.mp3');
 // TODO: Play for every Coin once
@@ -25,8 +30,9 @@ let PUFFERFISH_SOUND_PUFFING_UP = new Audio('../audio/PUFFERFISH_PUFFING_UP.mp3'
 let ENDBOSS_SOUND_BITE = new Audio('../audio/ENDBOSS_BITE.mp3');
 
 let ENDBOSS_SOUND_HURT = new Audio('../audio/ENDBOSS_HURT.mp3');
-// TODO: Play once a bite?
+// TODO: Play once a hit
 
-// TODO: Perfect Hurt sounds for character and endboss?
+let ENDBOSS_SOUND_DEAD = new Audio('../audio/ENDBOSS_DEAD.mp3');
+// TODO: Play once
 
-// TODO: Correct all audio volumes
+// TODO: Correct all audio volumes and playing time

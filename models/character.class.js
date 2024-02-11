@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
-    x = 0;
+    x = 4000;
     energy = 100;
     speed = 10;
     offset = {
@@ -281,8 +281,8 @@ class Character extends MoveableObject {
         } else {
             this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
             this.offset = this.offsets.poison;
+            CHARACTER_SOUND_POISON.play();
         }
-        // TODO: Add individual hurt sounds
 
         this.lastMovement = 0;
     }
@@ -296,6 +296,7 @@ class Character extends MoveableObject {
 
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
+            CHARACTER_SOUND_DEAD.play();
             this.y -= 5
         }
 

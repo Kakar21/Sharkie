@@ -164,12 +164,15 @@ class Endboss extends MoveableObject {
 
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
+
         ENDBOSS_SOUND_HURT.play();
         this.offset = this.offsets.hurt;
     }
 
     playDead() {
         this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
+        ENDBOSS_SOUND_DEAD.play();
+
         this.offset = this.offsets.dead;
     }
 }
