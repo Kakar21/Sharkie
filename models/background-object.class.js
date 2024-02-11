@@ -9,4 +9,5 @@ class BackgroundObject extends MoveableObject {
         super().loadImage(imagePath);
         this.x = x;
     }
+    // TODO: Add controlls to background?
 }

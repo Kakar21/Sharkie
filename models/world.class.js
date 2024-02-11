@@ -37,7 +37,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            // BACKGROUND_SOUND_MUSIC.play()
+            BACKGROUND_SOUND_MUSIC.play()
             // this.checkShootObjects();
         }, 100);
     }
@@ -119,7 +119,7 @@ class World {
                     POISON_SOUND.currentTime = 0;
                     POISON_SOUND.play()
                 }
-
+                // TODO: Collect only if character alive
                 let i = this.level.collectables.indexOf(collectable);
                 this.level.collectables.splice(i, 1);
             };
