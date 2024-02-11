@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
-    x = 4000;
+    x = 1440;
     energy = 100;
     speed = 10;
     offset = {

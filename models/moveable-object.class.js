@@ -115,7 +115,7 @@ class MoveableObject extends DrawableObject {
             this.currentImage++;
         }
     }
-    
+
 
     /**
      * Moves the object left in itselfs speed
@@ -151,6 +151,31 @@ class MoveableObject extends DrawableObject {
             }
         }, 1000 / 60);
     }
+
+    moveLeftAndRight() {
+        let startX = this.x;
+        let endX = this.x + 300;
+        this.direction = 'left';
+
+        setInterval(() => {
+            if (!this.isDead()) {
+                // Change Direction
+                if (this.x > endX) {
+                    this.direction = 'left';
+                } else if (this.x < startX) {
+                    this.direction = 'right';
+                }
+
+                // Movement
+                if (this.direction === 'right') {
+                    this.x += this.speed;
+                } else if (this.direction === 'left') {
+                    this.x -= this.speed;
+                }
+            }
+        }, 1000 / 60);
+    }
+
 
 
 }
