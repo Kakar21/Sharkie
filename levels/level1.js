@@ -15,36 +15,36 @@ const level1 = new Level(
         new JellyFish('horizontal', 1650, 100, 2),
         new JellyFish('horizontal', 1650, 200, 2),
         new JellyFish('horizontal', 1650, 300, 2),
-        // new JellyFish(0, 0, 'charged'),
-        // new JellyFish(),
-        // new JellyFish(),
-        // new JellyFish(0, 0, 'charged'),
-        // new JellyFish(),
-        // new JellyFish(),
-        // new JellyFish(0, 0, 'charged')
+        new JellyFish('vertical', 2400, 200, 2),
+        new JellyFish('vertical', 2500, 100, 2, 'charged'),
+        new JellyFish('vertical', 2600, 200, 2),
+        new JellyFish('horizontal', 2950, 50, 2),
+        new JellyFish('horizontal', 3050, 150, 1, 'charged'),
+        new JellyFish('horizontal', 3150, 250, 2),
+        new JellyFish('horizontal', 3250, 350, 1, 'charged'),
     ],
     [
         new Coin(400, 200),
         new Coin(450, 150),
         new Coin(500, 200),
-        new Coin(1250, 400),
-        new Coin(1300, 400),
-        // new Coin(350, 100),
-        // new Coin(400, 100),
-        // new Coin(450, 100),
-        // new Coin(500, 100),
-        // new Coin(550, 100),
-        new Poison(450, 300),
-        new Poison(1275, 150),
-        // new Poison(1300, 150),
-        // new Poison(250, 150),
-        // new Poison(300, 150),
-        // new Poison(350, 150),
-        // new Poison(400, 150),
-        // new Poison(450, 150),
-        // new Poison(500, 150),
-        // new Poison(550, 150)
-        // TODO: Perfectly place coins and poisons  after size readjustment
+        new Coin(1250, 350),
+        new Coin(1300, 350),
+        new Coin(1900, 100),
+        new Coin(2510.83, 100),
+        new Coin(3350, 200),
+        new Coin(3300, 250),
+        new Coin(3250, 300),
+
+        new Poison(447.5, 300),
+        new Poison(1272.5, 100),
+        new Poison(1897.5, 200),
+        new Poison(1897.5, 275),
+        new Poison(2508.33, 300),
+        new Poison(3150, 100),
+        new Poison(3400, 300),
+        new Poison(3900, 75),
+        new Poison(3900, 212.5),
+        new Poison(3900, 350),
     ],
     [
         new Light()
@@ -63,8 +63,3 @@ const level1 = new Level(
         new BackgroundObject('../img/3. Background/Layers/3.Fondo 1/D.png', 3412),
         new BackgroundObject('../img/3. Background/Layers/2. Floor/D.png', 3412)
     ]);
-
-// TODO: Perfectly place all objects like in a real level
-
-
-// TODO: if to easy, add barriers 
