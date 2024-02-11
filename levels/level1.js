@@ -47,7 +47,16 @@ const level1 = new Level(
         new Poison(3900, 350),
     ],
     [
-        new Light()
+        new Light(0),
+        new Light(1706.67),
+        new Light(3413.34),
+        new Light(5120.01),
+        new Light(6826.68),
+        new Light(8533.35),
+        new Light(10240.02),
+        new Light(11946.69),
+        new Light(13653.36),
+        new Light(15360.03),
     ],
     [
         new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 0),

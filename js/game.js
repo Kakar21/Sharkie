@@ -14,6 +14,11 @@ function init() {
     console.log('My Character is', world.character);
 }
 
+// TODO: Add start game screen
+// TODO: Add play again screen
+// TODO: Add win screen
+
+// TODO: Add mobile version
 
 // Keyboard Events
 window.addEventListener('keydown', (event) => {

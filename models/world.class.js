@@ -108,7 +108,7 @@ class World {
 
         // Character with collectables
         this.level.collectables.forEach((collectable) => {
-            if (this.character.isColliding(collectable)) {
+            if (this.character.isColliding(collectable) && !this.character.isDead()) {
 
                 if (collectable instanceof Coin) {
                     this.coinBar.setPercentage(this.coinBar.percentage += 10);
@@ -119,7 +119,6 @@ class World {
                     POISON_SOUND.currentTime = 0;
                     POISON_SOUND.play()
                 }
-                // TODO: Collect only if character alive
                 let i = this.level.collectables.indexOf(collectable);
                 this.level.collectables.splice(i, 1);
             };
@@ -141,9 +140,9 @@ class World {
         if (this.shootableObjects.length >= 1) {
             this.shootableObjects.forEach((bubble) => {
                 if (bubble.isColliding(this.endboss)) {
-                    if (bubble.poison) {
+                    if (bubble.poison && !this.endboss.isDead()) {
                         ENDBOSS_SOUND_HURT.play();
-                        this.endboss.hit(10);
+                        this.endboss.hit(20);
                         BUBBLE_SOUND.play()
                     } else {
                         BUBBLE_SOUND_POP.play()

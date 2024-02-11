@@ -4,9 +4,9 @@ class Light extends MoveableObject {
     width = 1706.67;
 
 
-    constructor() {
+    constructor(x) {
         super().loadImage('../img/3. Background/Layers/1. Light/COMPLETO.png');
-        this.x = Math.random() * 500;
+        this.x = x
         this.animate();
     }
 
@@ -18,5 +18,3 @@ class Light extends MoveableObject {
         this.moveLeft();
     }
 }
-
-//TODO: Add more lights naturally / manually? 

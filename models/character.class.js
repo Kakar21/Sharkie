@@ -140,7 +140,7 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 this.playDead();
-                //TODO: Fix dead animation playing from currentImage ?
+                //TODO: Fix all animation playing from currentImage! For Character, endboss and all other objects
             } else if (this.isHurt()) {
                 this.playHurt();
 
