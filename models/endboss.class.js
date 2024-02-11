@@ -44,6 +44,7 @@ class Endboss extends MoveableObject {
     };
     isIntroducing = false;
     hasIntroduced = false;
+    hasDied = false;
     world;
 
     // TODO: Fix dead animation playing to fast / not looking good
@@ -157,6 +158,7 @@ class Endboss extends MoveableObject {
 
             if (this.world.character.isColliding(this)) {
                 this.world.character.hit(10);
+                CHARACTER_SOUND_POISON.play();
                 this.world.healthBar.setPercentage(this.world.character.energy);
             }
         }
@@ -165,14 +167,16 @@ class Endboss extends MoveableObject {
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
 
-        ENDBOSS_SOUND_HURT.play();
+
         this.offset = this.offsets.hurt;
     }
 
     playDead() {
         this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
-        ENDBOSS_SOUND_DEAD.play();
-
+        if (this.hasDied === false) {
+            ENDBOSS_SOUND_DEAD.play();
+        }
         this.offset = this.offsets.dead;
+        this.hasDied = true;
     }
 }

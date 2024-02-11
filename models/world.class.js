@@ -73,6 +73,12 @@ class World {
                     this.character.hit(1);
                 }
 
+                if (this.character.hitBy === 'JellyFish') {
+                    CHARACTER_SOUND_SHOCK.play();
+                } else {
+                    CHARACTER_SOUND_POISON.play();
+                }
+
                 this.healthBar.setPercentage(this.character.energy)
                 console.log('Collision with Character, energy', this.character.energy);
             };
@@ -106,9 +112,11 @@ class World {
 
                 if (collectable instanceof Coin) {
                     this.coinBar.setPercentage(this.coinBar.percentage += 10);
+                    COIN_SOUND.currentTime = 0;
                     COIN_SOUND.play()
                 } else if (collectable instanceof Poison) {
                     this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
+                    POISON_SOUND.currentTime = 0;
                     POISON_SOUND.play()
                 }
 
@@ -134,7 +142,11 @@ class World {
             this.shootableObjects.forEach((bubble) => {
                 if (bubble.isColliding(this.endboss)) {
                     if (bubble.poison) {
+                        ENDBOSS_SOUND_HURT.play();
                         this.endboss.hit(10);
+                        BUBBLE_SOUND.play()
+                    } else {
+                        BUBBLE_SOUND_POP.play()
                     }
 
                     this.healthBarEndboss.setPercentage(this.endboss.energy)

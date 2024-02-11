@@ -64,6 +64,7 @@ class Character extends MoveableObject {
         POISON: false
     };
     isLongIDLE = false;
+    hasDied = false;
     world;
 
 
@@ -277,11 +278,11 @@ class Character extends MoveableObject {
         if (this.hitBy === 'JellyFish') {
             this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
             this.offset = this.offsets.shock;
-            CHARACTER_SOUND_SHOCK.play();
+
         } else {
             this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
             this.offset = this.offsets.poison;
-            CHARACTER_SOUND_POISON.play();
+
         }
 
         this.lastMovement = 0;
@@ -296,8 +297,11 @@ class Character extends MoveableObject {
 
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
-            CHARACTER_SOUND_DEAD.play();
+            if (this.hasDied === false) {
+                CHARACTER_SOUND_DEAD.play();
+            }
             this.y -= 5
+            this.hasDied = true;
         }
 
         this.lastMovement = 0;
