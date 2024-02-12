@@ -112,18 +112,18 @@ let CHARACTER_IMAGES_HURT = {
 
 let CHARACTER_IMAGES_DEAD = {
     POISON: [
-        '../img/1. Sharkie/6.dead/1.Poisoned/1.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/2.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/3.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/4.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/5.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/6.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/7.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/8.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/9.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/10.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/11.png',
-        '../img/1. Sharkie/6.dead/1.Poisoned/12.png'
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/1.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/2.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/3.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/4.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/5.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/6.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/7.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/8.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/9.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/10.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/11.png',
+        '../img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png'
     ],
     SHOCK: [
         '../img/1. Sharkie/6.dead/2.Electro_shock/1.png',
@@ -330,6 +330,7 @@ let ENDBOSS_IMAGES_DEAD = [
     '../img/2. Enemy/3 Final Enemy/Hurt/2.png',
     '../img/2. Enemy/3 Final Enemy/Hurt/3.png',
     '../img/2. Enemy/3 Final Enemy/Hurt/4.png',
+    '../img/2. Enemy/3 Final Enemy/Hurt/1.png',
     '../img/2. Enemy/3 Final Enemy/Dead/1.png',
     '../img/2. Enemy/3 Final Enemy/Dead/2.png',
     '../img/2. Enemy/3 Final Enemy/Dead/3.png',

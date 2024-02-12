@@ -3,9 +3,9 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
-    x = 4000;
+    x = 0;
     energy = 100;
-    speed = 10;
+    speed = 5;
     offset = {
         top: 95,
         right: 40,
@@ -290,7 +290,7 @@ class Character extends MoveableObject {
 
     playDead() {
 
-        if (!this.hasDied && (this.hitBy === 'PufferFish' || 'Endboss')) {
+        if (!this.hasDied && (this.hitBy === 'PufferFish' || this.hitBy === 'Endboss')) {
             CHARACTER_SOUND_DEAD.play();
         }
 
@@ -301,17 +301,20 @@ class Character extends MoveableObject {
 
         if (this.hitBy === 'JellyFish') {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
-            if (this.y <= 250) {
-                this.y += 5
+            if ((this.currentImage >= CHARACTER_IMAGES_DEAD['SHOCK'].length) && this.y <= 250) {
+                this.y += 3
             }
 
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
-            this.y -= 5
+
+            if (this.currentImage >= CHARACTER_IMAGES_DEAD['POISON'].length - 4) {
+                this.y -= 3
+            }
+
         }
 
         this.lastMovement = 0;
-        // TODO: Perfect floating up speed
     }
 }
 

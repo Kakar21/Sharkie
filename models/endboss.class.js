@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
     height = 350;
     y = -1000;
     x = 4380 - 150; // (Endboss Width - Character Width); 
+    speed = 1;
     offset = {
         top: 164,
         right: 21,
@@ -61,7 +62,7 @@ class Endboss extends MoveableObject {
 
     move() {
         setInterval(() => {
-            if (!this.isDead() && !this.world.character.isDead()) {
+            if (!this.isDead() && !this.world.character.isDead() && !this.isHurt()) {
 
                 // Turn Left
                 if (this.getMiddleX(this.world.character) < this.getMiddleX(this)) {
@@ -73,22 +74,22 @@ class Endboss extends MoveableObject {
                 }
                 // Move Left
                 if ((this.getMiddleX(this.world.character) < (this.x + this.offset.left)) && !this.isAtLevelEnd(this, 'left')) {
-                    this.x -= 4;
+                    this.x -= this.speed;
                 }
                 // Move Right
                 if ((this.getMiddleX(this.world.character) > (this.x - this.offset.left + this.width)) && !this.isAtLevelEnd(this, 'right')) {
-                    this.x += 4;
+                    this.x += this.speed;
                 }
                 // Move Up
                 if ((this.getMiddleY(this.world.character) < this.getMiddleY(this)) && !this.isAtLevelEnd(this, 'up')) {
-                    this.y -= 4;
+                    this.y -= this.speed;
                 }
                 // Move Down
                 if ((this.getMiddleY(this.world.character) > this.getMiddleY(this)) && !this.isAtLevelEnd(this, 'down')) {
-                    this.y += 4;
+                    this.y += this.speed;
                 }
             }
-        }, 100)
+        }, 1000 / 60)
     }
 
 
@@ -180,8 +181,11 @@ class Endboss extends MoveableObject {
         }
 
         this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
-        this.y -= 4
-        // TODO: Perfect floating up speed
+
+        if (this.currentImage >= ENDBOSS_IMAGES_DEAD.length - 1) {
+            this.y -= 3
+        }
+
         this.offset = this.offsets.dead;
     }
 }

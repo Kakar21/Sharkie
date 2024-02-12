@@ -12,7 +12,7 @@ class World {
     healthBarEndboss = new HealthBarEndboss();
     shootableObjects = [];
 
-    // TODO: Perfectly set all speeds 
+    // TODO: Perfectly set all damagage
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -39,7 +39,7 @@ class World {
             this.checkCollisions();
             BACKGROUND_SOUND_MUSIC.play()
             // this.checkShootObjects();
-        }, 100);
+        }, 1000 / 60);
     }
 
 
@@ -103,8 +103,6 @@ class World {
                 });
             })
         }
-
-        // TODO: Any static animation 60 FPS!
 
         // Character with collectables
         this.level.collectables.forEach((collectable) => {

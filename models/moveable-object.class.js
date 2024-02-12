@@ -45,7 +45,7 @@ class MoveableObject extends DrawableObject {
 
     isAtLevelEnd(obj, direction) {
         if (direction === 'left') {
-            return (obj.x + obj.offsets.normal.left) < this.level_end_space;
+            return (obj.x + obj.offsets.normal.left - 5) < this.level_end_space;
         } else if (direction === 'right') {
             return (obj.x + obj.width - obj.offsets.normal.right) > this.level_end_x;
         } else if (direction === 'up') {
@@ -108,11 +108,14 @@ class MoveableObject extends DrawableObject {
      * @param {array} images 
      */
     playAnimationOnce(images) {
-        let i = this.currentImage % images.length;
-        if (i < images.length - 1) {
+        let i = this.currentImage;
+        if (i < images.length) {
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
+        } else if (i > images.length) {
+            let path = images[images.length - 1];
+            this.img = this.imageCache[path];
         }
     }
 
