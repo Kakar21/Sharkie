@@ -94,29 +94,35 @@ class Character extends MoveableObject {
 
         // Movement
         setInterval(() => {
-            CHARACTER_SOUND_SWIM.pause();
-            //TODO: Fix playing after a fast keypress
+            const moveRight = (this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right');
+            const moveLeft = (this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left');
+            const moveUp = (this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up');
+            const moveDown = (this.world.keyboard.DOWN || this.world.keyboard.S) && !this.isAtLevelEnd(this, 'down');
+
             if (!this.isDead()) {
-                if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right')) {
+                if (moveRight) {
                     this.x += this.speed;
                     this.otherDirection = false;
-                    CHARACTER_SOUND_SWIM.play();
                 }
 
-                if ((this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left')) {
+                if (moveLeft) {
                     this.x -= this.speed;
                     this.otherDirection = true;
-                    CHARACTER_SOUND_SWIM.play();
                 }
 
-                if ((this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up')) {
+                if (moveUp) {
                     this.y -= this.speed;
-                    CHARACTER_SOUND_SWIM.play();
                 }
 
-                if ((this.world.keyboard.DOWN || this.world.keyboard.S) && !this.isAtLevelEnd(this, 'down')) {
+                if (moveDown) {
                     this.y += this.speed;
+                }
+
+                if (moveRight || moveLeft || moveUp || moveDown) {
                     CHARACTER_SOUND_SWIM.play();
+                } else {
+                    CHARACTER_SOUND_SWIM.pause();
+                    CHARACTER_SOUND_SWIM.currentTime = 0;
                 }
 
                 if (this.world.keyboard.SPACE) {

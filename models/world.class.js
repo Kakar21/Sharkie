@@ -12,7 +12,7 @@ class World {
     healthBarEndboss = new HealthBarEndboss();
     shootableObjects = [];
 
-    // TODO: Perfectly set all damagage
+    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -68,9 +68,9 @@ class World {
 
                 // Character with diffrent types of Jelly Fishes
                 if (enemy instanceof JellyFish && enemy.color === 'GREEN' || enemy.color === 'PINK') {
-                    this.character.hit(10);
-                } else {
                     this.character.hit(1);
+                } else {
+                    this.character.hit(0.5);
                 }
 
                 if (this.character.hitBy === 'JellyFish') {
@@ -80,7 +80,7 @@ class World {
                 }
 
                 this.healthBar.setPercentage(this.character.energy)
-                console.log('Collision with Character, energy', this.character.energy);
+                console.log(this.character.energy);
             };
         });
 

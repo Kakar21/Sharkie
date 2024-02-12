@@ -47,8 +47,7 @@ class Endboss extends MoveableObject {
     hasIntroduced = false;
     hasDied = false;
     world;
-
-    // TODO: Fix dead animation playing to fast / not looking good
+    
 
     constructor() {
         super().loadImage(ENDBOSS_IMAGES_SWIM[0]);
@@ -158,7 +157,7 @@ class Endboss extends MoveableObject {
             this.isBiting = false;
 
             if (this.world.character.isColliding(this)) {
-                this.world.character.hit(10);
+                this.world.character.hit(20);
                 CHARACTER_SOUND_POISON.play();
                 this.world.healthBar.setPercentage(this.world.character.energy);
             }
