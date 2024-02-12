@@ -3,7 +3,7 @@ class Character extends MoveableObject {
     width = 200;
     height = 200;
     y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
-    x = 0;
+    x = 4000;
     energy = 100;
     speed = 10;
     offset = {
@@ -140,7 +140,7 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 this.playDead();
-                //TODO: Fix all animation playing from currentImage! For Character, endboss and all other objects
+
             } else if (this.isHurt()) {
                 this.playHurt();
 
@@ -289,6 +289,16 @@ class Character extends MoveableObject {
     }
 
     playDead() {
+
+        if (!this.hasDied && (this.hitBy === 'PufferFish' || 'Endboss')) {
+            CHARACTER_SOUND_DEAD.play();
+        }
+
+        if (!this.hasDied) {
+            this.hasDied = true;
+            this.currentImage = 0;
+        }
+
         if (this.hitBy === 'JellyFish') {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
             if (this.y <= 250) {
@@ -297,11 +307,7 @@ class Character extends MoveableObject {
 
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
-            if (this.hasDied === false) {
-                CHARACTER_SOUND_DEAD.play();
-            }
             this.y -= 5
-            this.hasDied = true;
         }
 
         this.lastMovement = 0;

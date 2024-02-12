@@ -172,11 +172,16 @@ class Endboss extends MoveableObject {
     }
 
     playDead() {
-        this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
-        if (this.hasDied === false) {
+
+        if (!this.hasDied) {
+            this.hasDied = true;
+            this.currentImage = 0;
             ENDBOSS_SOUND_DEAD.play();
         }
+
+        this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
+        this.y -= 4
+        // TODO: Perfect floating up speed
         this.offset = this.offsets.dead;
-        this.hasDied = true;
     }
 }
