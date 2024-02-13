@@ -262,7 +262,6 @@ class Character extends MoveableObject {
             this.isShooting.NORMAL = false;
         }
 
-        // TODO: if too easy (too fast shooting), add cooldown
         this.lastMovement = 0;
     }
 
@@ -276,7 +275,6 @@ class Character extends MoveableObject {
             this.isShooting.POISON = false;
         }
 
-        // TODO: if too easy (too fast shooting), add cooldown
         this.lastMovement = 0;
     }
 

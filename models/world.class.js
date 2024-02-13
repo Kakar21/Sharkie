@@ -12,7 +12,7 @@ class World {
     healthBarEndboss = new HealthBarEndboss();
     shootableObjects = [];
 
-    
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -38,23 +38,8 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             BACKGROUND_SOUND_MUSIC.play()
-            // this.checkShootObjects();
         }, 1000 / 60);
     }
-
-
-    // /**
-    //  * Checks if the player pressed the key to shoot a bubble and creates a new object
-    //  */
-    // checkShootObjects() {
-    //     // Shooting bubbles
-    //     if (this.keyboard.H) {
-    //         let bubble = new ShootableObject(this.character.x, this.character.y);
-    //         this.shootableObjects.push(bubble);
-    //     }
-
-
-    // }
 
 
     /**
