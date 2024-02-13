@@ -14,7 +14,8 @@ function init() {
     console.log('My Character is', world.character);
 }
 
-// TODO: Add start game screen
+// TODO: Add start game function
+// TODO: Add instruction on start screen
 // TODO: Add play again screen
 // TODO: Add win screen
 
