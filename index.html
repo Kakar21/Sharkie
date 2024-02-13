@@ -34,11 +34,18 @@
 
 <body onload="init()">
 
+    <div id="instructions" class="instructions d-none">
+        <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
+        <img onclick="previousInstruction()" src="./img/6. Button/Other/left.png" alt="Previous">
+        <img src="./img/6. Button/Instructions 0.png">
+        <img onclick="nextInstruction()" src="./img/6. Button/Other/right.png" alt="Next">
+    </div>
+
     <div id="startScreen">
         <h1 class="floating">SHARKIE</h1>
-        <div>
+        <div class="buttons">
             <img src="./img/6. Button/Start/3.png" alt="Start">
-            <img src="./img/6. Button/Start/how-to-play-btn.png" alt="How to play">
+            <img onclick="openInstructions()" src="./img/6. Button/Start/how-to-play-btn.png" alt="How to play">
         </div>
     </div>
 

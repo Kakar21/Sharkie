@@ -1,6 +1,11 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let instructions = [
+    './img/6. Button/Instructions 0.png',
+    './img/6. Button/Instructions 1.png',
+    './img/6. Button/Instructions 2.png'
+];
 
 
 /**
@@ -12,6 +17,54 @@ function init() {
     
 
     console.log('My Character is', world.character);
+}
+
+
+function openInstructions() {
+    let container = document.getElementById('instructions');
+    let i = 0;
+
+    container.innerHTML = /* html */ `
+        <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
+        <img onclick="previousInstruction(${i - 1})" src="./img/6. Button/Other/left.png" alt="Previous">
+        <img src="${instructions[0]}">
+        <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
+        `;
+
+    container.classList.remove('d-none');
+}
+
+
+function closeInstructions() {
+    document.getElementById('instructions').classList.add('d-none');
+}
+
+
+function nextInstruction(i) {
+    if (i > 2) {
+        i = 0;
+    }
+
+    document.getElementById('instructions').innerHTML = /* html */ `
+        <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
+        <img onclick="previousInstruction(${i - 1})" src="./img/6. Button/Other/left.png" alt="Previous">
+        <img src="${instructions[i]}">
+        <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
+    `;
+}
+
+
+function previousInstruction(i) {
+    if (i < 0) {
+        i = 2;
+    }
+
+    document.getElementById('instructions').innerHTML = /* html */ `
+        <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
+        <img onclick="previousInstruction(${i - 1})" src="./img/6. Button/Other/left.png" alt="Previous">
+        <img src="${instructions[i]}">
+        <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
+    `;
 }
 
 // TODO: Add start game function
