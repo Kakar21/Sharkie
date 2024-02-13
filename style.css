@@ -78,25 +78,27 @@ canvas {
     inset: 0;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
 #instructionsClose {
     width: 2rem;
     position: fixed;
-    left: 25rem;
-    top: 17.5rem;
+    margin: 0 42.5rem 20em 0;
 }
 
 .instructions img:not(.instructions img:nth-child(3)) {
     width: 2.5rem;
     transition: 80ms ease-in-out;
+    padding: 1rem;
+    margin: 0 -4rem;
+    z-index: 2;
 }
 
 .instructions img:hover:not(.instructions img:nth-child(3)) {
     cursor: pointer;
-    transform: scale(1.25);
+    transform: scale(1.15);
 }
 
 .instructions img:nth-child(3) {
@@ -104,7 +106,7 @@ canvas {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .floating {

@@ -22,6 +22,7 @@ function init() {
 
 function openInstructions() {
     let container = document.getElementById('instructions');
+    let startScreen = document.getElementById('startScreen');
     let i = 0;
 
     container.innerHTML = /* html */ `
@@ -31,12 +32,18 @@ function openInstructions() {
         <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
         `;
 
+    startScreen.firstElementChild.classList.add('d-none');
+    startScreen.lastElementChild.classList.add('d-none');
     container.classList.remove('d-none');
 }
 
 
 function closeInstructions() {
+    let startScreen = document.getElementById('startScreen');
+    
     document.getElementById('instructions').classList.add('d-none');
+    startScreen.firstElementChild.classList.remove('d-none');
+    startScreen.lastElementChild.classList.remove('d-none');
 }
 
 
