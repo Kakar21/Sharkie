@@ -124,7 +124,7 @@ class MoveableObject extends DrawableObject {
      * Moves the object left in itselfs speed
      */
     moveLeft() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (this.energy > 0) {
                 this.x -= this.speed;
             }
@@ -136,7 +136,7 @@ class MoveableObject extends DrawableObject {
      *  Moves the object up and down till the canvas borders in a loop in itselfs speed
      */
     moveUpAndDown() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (!this.isDead()) {
                 // Change Direction
                 if (this.isAtLevelEnd(this, 'up')) {
@@ -160,7 +160,7 @@ class MoveableObject extends DrawableObject {
         let endX = this.x + 300;
         this.direction = 'left';
 
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (!this.isDead()) {
                 // Change Direction
                 if (this.x > endX) {

@@ -93,7 +93,7 @@ class Character extends MoveableObject {
     animate() {
 
         // Movement
-        setInterval(() => {
+        setStoppableInterval(() => {
             const moveRight = (this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right');
             const moveLeft = (this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left');
             const moveUp = (this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up');
@@ -142,7 +142,7 @@ class Character extends MoveableObject {
         }, 1000 / 60)
 
         // Animation
-        setInterval(() => {
+        setStoppableInterval(() => {
 
             if (this.isDead()) {
                 this.playDead();

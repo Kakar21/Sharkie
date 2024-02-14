@@ -34,6 +34,12 @@
 
 <body>
 
+    <div id="gameLost" class="d-none">
+        <img src="./img/6. Button/Tittles/Game Over/Recurso 13.png">
+        <img id="deadSharkie" src="./img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png">
+        <img onclick="tryAgain()" src="./img/6. Button/Try again/Recurso 15.png" alt="Try Again">
+    </div>
+
     <div id="instructions" class="instructions d-none">
         <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
         <img onclick="previousInstruction()" src="./img/6. Button/Other/left.png" alt="Previous">
@@ -49,7 +55,7 @@
         </div>
     </div>
 
-    <h1>SHARKIE</h1>
+    <h1 id="gameTitle">SHARKIE</h1>
 
 
     <canvas id="canvas" width="720" height="480">

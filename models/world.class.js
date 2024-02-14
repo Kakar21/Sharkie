@@ -35,10 +35,20 @@ class World {
      * Runs different function in a loop
      */
     run() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.checkCollisions();
+            this.checkGameStatus();
             BACKGROUND_SOUND_MUSIC.play()
         }, 1000 / 60);
+    }
+
+
+    checkGameStatus() {
+        if (this.character.hasDied) {
+            setTimeout(() => {
+                gameLost();
+            }, 3000);
+        }
     }
 
 

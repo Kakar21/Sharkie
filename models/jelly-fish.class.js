@@ -82,7 +82,7 @@ class JellyFish extends MoveableObject {
 
 
         // Animation
-        setInterval(() => {
+        setStoppableInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(JELLYFISH_IMAGES_DEAD[this.color]);

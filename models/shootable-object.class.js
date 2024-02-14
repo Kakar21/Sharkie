@@ -32,7 +32,7 @@ class ShootableObject extends MoveableObject {
      * Shoots the object to the right up
      */
     shoot() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.x += 2;
             this.y -= 1;
         }, 1000 / 60);

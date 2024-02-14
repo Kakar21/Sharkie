@@ -76,7 +76,7 @@ class PufferFish extends MoveableObject {
     animate() {
         this.moveLeft();
 
-        setInterval(() => {
+        setStoppableInterval(() => {
 
             if (this.isDead()) {
                 this.playDead();
@@ -114,7 +114,7 @@ class PufferFish extends MoveableObject {
 
         if (!this.dead) {
             this.dead = true;
-            setInterval(() => {
+            setStoppableInterval(() => {
                 this.x += this.knockSpeedX;
                 this.y -= this.knockSpeedY;
                 this.knockSpeedX /= this.acceleration * 1.015;

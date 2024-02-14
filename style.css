@@ -62,14 +62,13 @@ canvas {
 }
 
 #startScreen img {
-    height: 10vh;
+    height: 6rem;
     transition: 80ms ease-in-out;
 }
 
 #startScreen img:hover {
     cursor: pointer;
     transform: scale(1.05);
-
 }
 
 .instructions {
@@ -103,6 +102,35 @@ canvas {
 
 .instructions img:nth-child(3) {
     width: 60rem;
+}
+
+#gameLost {
+    display: flex;
+    width: 720px;
+    height: 480px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gameLost img:nth-child(1) {
+    width: 100%;
+}
+
+#gameLost img:nth-child(2) {
+    width: 200px;
+    margin-top: -100px;
+}
+
+#gameLost img:nth-child(3) {
+    height: 6rem;
+    width: min-content;
+    transition: 80ms ease-in-out;
+}
+
+#gameLost img:nth-child(3):hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 .d-none {

@@ -6,6 +6,7 @@ let instructions = [
     './img/6. Button/Instructions 1.png',
     './img/6. Button/Instructions 2.png'
 ];
+allIntervals = [];
 
 
 /**
@@ -17,6 +18,42 @@ function init() {
     
 
     console.log('My Character is', world.character);
+}
+
+
+function stopGame() {
+    allIntervals.forEach(clearInterval);
+}
+
+function gameLost() {
+    stopGame();
+    canvas.classList.add('d-none');
+    document.getElementById('gameTitle').classList.add('d-none');
+    document.getElementById('gameLost').classList.remove('d-none');
+
+    if (world.character.hitBy === 'JellyFish') {
+        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png'
+    } else {
+        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png'
+    }
+}
+
+// function gameWon() {
+//     stopGame();
+//     canvas.classList.add('d-none');    
+// }
+
+
+function tryAgain() {
+    canvas.classList.remove('d-none');
+    document.getElementById('gameTitle').classList.remove('d-none');
+    document.getElementById('gameLost').classList.add('d-none');
+
+    initLevel();
+    init();
+    // TODO: Fix music playing bug
+    // TODO: Fix interval still running bug (if try again clicked to fast sharkie is dead again)
+    // TODO: Add game over sound
 }
 
 
@@ -87,7 +124,15 @@ function previousInstruction(i) {
 // TODO: Add play again / game over screen
 // TODO: Add win screen
 
+// TODO: Add fullscreen
+// TODO: Add mute & controls
+
 // TODO: Add mobile version
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    allIntervals.push(id);
+}
 
 // Keyboard Events
 window.addEventListener('keydown', (event) => {
@@ -182,3 +227,6 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+
+
+// TODO: Delete all console logs

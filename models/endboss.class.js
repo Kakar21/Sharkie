@@ -60,7 +60,7 @@ class Endboss extends MoveableObject {
     }
 
     move() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             if (!this.isDead() && !this.world.character.isDead() && !this.isHurt()) {
 
                 // Turn Left
@@ -96,7 +96,7 @@ class Endboss extends MoveableObject {
      * Checks endboss state to play animations in a loop
      */
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
 
             if (this.isDead()) {
                 this.playDead();

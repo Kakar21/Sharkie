@@ -18,7 +18,7 @@ class Coin extends CollectableObject {
      * Plays the coin animation in a loop
      */
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.playAnimation(COIN_IMAGES);
         }, 150);
     }

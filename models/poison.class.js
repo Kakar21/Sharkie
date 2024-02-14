@@ -24,7 +24,7 @@ class Poison extends CollectableObject {
      * Plays the coin animation in a loop
      */
     animate() {
-        setInterval(() => {
+        setStoppableInterval(() => {
             this.playAnimation(POISON_IMAGES);
         }, 100);
     }
