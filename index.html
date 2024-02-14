@@ -32,7 +32,7 @@
     <!-- TODO: Sort loading of all scripts -->
 </head>
 
-<body onload="init()">
+<body>
 
     <div id="instructions" class="instructions d-none">
         <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
@@ -44,7 +44,7 @@
     <div id="startScreen">
         <h1 class="floating">SHARKIE</h1>
         <div class="buttons">
-            <img src="./img/6. Button/Start/3.png" alt="Start">
+            <img onclick="closeStartScreen()" src="./img/6. Button/Start/3.png" alt="Start">
             <img onclick="openInstructions()" src="./img/6. Button/Start/how-to-play-btn.png" alt="How to play">
         </div>
     </div>

@@ -20,6 +20,16 @@ function init() {
 }
 
 
+function closeStartScreen() {
+    document.getElementById('startScreen').classList.add('d-none');
+
+    initLevel();
+    init();
+}
+
+// TODO: Start screen title music?
+// TODO: Add loading screen?
+
 function openInstructions() {
     let container = document.getElementById('instructions');
     let startScreen = document.getElementById('startScreen');
@@ -40,7 +50,7 @@ function openInstructions() {
 
 function closeInstructions() {
     let startScreen = document.getElementById('startScreen');
-    
+
     document.getElementById('instructions').classList.add('d-none');
     startScreen.firstElementChild.classList.remove('d-none');
     startScreen.lastElementChild.classList.remove('d-none');
@@ -74,9 +84,7 @@ function previousInstruction(i) {
     `;
 }
 
-// TODO: Add start game function
-// TODO: Add instruction on start screen
-// TODO: Add play again screen
+// TODO: Add play again / game over screen
 // TODO: Add win screen
 
 // TODO: Add mobile version
