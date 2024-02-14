@@ -48,6 +48,10 @@ class World {
             setTimeout(() => {
                 gameLost();
             }, 3000);
+        } else if (this.endboss.hasDied) {
+            setTimeout(() => {
+                gameWon();
+            }, 3000);
         }
     }
 
@@ -73,6 +77,8 @@ class World {
                 } else {
                     CHARACTER_SOUND_POISON.play();
                 }
+
+                // TODO: Fix damage from dead jelly fish
 
                 this.healthBar.setPercentage(this.character.energy)
                 console.log(this.character.energy);

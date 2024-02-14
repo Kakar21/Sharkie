@@ -20,6 +20,8 @@ function init() {
     console.log('My Character is', world.character);
 }
 
+// TODO: Add menu click sound
+
 
 function stopGame() {
     allIntervals.forEach(clearInterval);
@@ -38,10 +40,22 @@ function gameLost() {
     }
 }
 
-// function gameWon() {
-//     stopGame();
-//     canvas.classList.add('d-none');    
-// }
+function gameWon() {
+    stopGame();
+    canvas.classList.add('d-none');
+    document.getElementById('gameTitle').classList.add('d-none');
+    document.getElementById('gameWon').classList.remove('d-none');
+}
+
+
+function playAgain() {
+    canvas.classList.remove('d-none');
+    document.getElementById('gameTitle').classList.remove('d-none');
+    document.getElementById('gameWon').classList.add('d-none');
+
+    initLevel();
+    init();
+}
 
 
 function tryAgain() {
@@ -51,9 +65,9 @@ function tryAgain() {
 
     initLevel();
     init();
-    // TODO: Fix music playing bug
-    // TODO: Fix interval still running bug (if try again clicked to fast sharkie is dead again)
-    // TODO: Add game over sound
+    // TODO: Fix music playing bug + for game won
+    // TODO: Fix interval still running bug (if try again clicked to fast sharkie is dead again) + for game won
+    // TODO: Add game over sound + game won sound
 }
 
 
@@ -83,7 +97,6 @@ function openInstructions() {
     startScreen.lastElementChild.classList.add('d-none');
     container.classList.remove('d-none');
 }
-
 
 function closeInstructions() {
     let startScreen = document.getElementById('startScreen');
@@ -120,9 +133,6 @@ function previousInstruction(i) {
         <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
     `;
 }
-
-// TODO: Add play again / game over screen
-// TODO: Add win screen
 
 // TODO: Add fullscreen
 // TODO: Add mute & controls

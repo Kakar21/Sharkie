@@ -104,6 +104,30 @@ canvas {
     width: 60rem;
 }
 
+#gameWon {
+    display: flex;
+    width: 720px;
+    height: 480px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gameWon img:first-child {
+    height: calc(100% - 6rem);
+}
+
+#gameWon img:last-child {
+    height: 6rem;
+    width: min-content;
+    transition: 80ms ease-in-out;
+}
+
+#gameWon img:last-child:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 #gameLost {
     display: flex;
     width: 720px;
@@ -144,6 +168,13 @@ canvas {
     animation-timing-function: ease-in-out;
 }
 
+.popping {
+    animation-name: popping;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
 @keyframes floating {
     0% {
         transform: translate(0, 0px);
@@ -156,5 +187,20 @@ canvas {
 
     100% {
         transform: translate(0, -0px);
+    }
+}
+
+@keyframes popping {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
