@@ -47,7 +47,7 @@ class Endboss extends MoveableObject {
     hasIntroduced = false;
     hasDied = false;
     world;
-    
+
 
     constructor() {
         super().loadImage(ENDBOSS_IMAGES_SWIM[0]);

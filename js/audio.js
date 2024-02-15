@@ -39,3 +39,22 @@ let PUFFERFISH_SOUND_PUFFING_UP = new Audio('../audio/PUFFERFISH_PUFFING_UP.mp3'
 PUFFERFISH_SOUND_PUFFING_UP.volume = 0.25;
 
 // TODO: Add endboss music?
+
+function toggleSounds(boolean) {
+
+    BACKGROUND_SOUND_MUSIC.muted = boolean;
+    COIN_SOUND.muted = boolean;
+    POISON_SOUND.muted = boolean;
+    CHARACTER_SOUND_SWIM.muted = boolean;
+    CHARACTER_SOUND_FINSLAP.muted = boolean;
+    CHARACTER_SOUND_BUBBLETRAP.muted = boolean;
+    CHARACTER_SOUND_SHOCK.muted = boolean;
+    CHARACTER_SOUND_POISON.muted = boolean;
+    CHARACTER_SOUND_DEAD.muted = boolean;
+    ENDBOSS_SOUND_BITE.muted = boolean;
+    ENDBOSS_SOUND_HURT.muted = boolean;
+    ENDBOSS_SOUND_DEAD.muted = boolean;
+    BUBBLE_SOUND.muted = boolean;
+    BUBBLE_SOUND_POP.muted = boolean;
+    PUFFERFISH_SOUND_PUFFING_UP.muted = boolean;
+}

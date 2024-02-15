@@ -141,6 +141,26 @@ function previousInstruction(i) {
 }
 
 
+function muteGame() {
+    toggleSounds(true);
+    
+    let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
+
+    muteButton.src = './img/6. Button/Other/muted.png';
+    muteButton.setAttribute('onclick', 'unmuteGame()');
+}
+
+
+function unmuteGame() {
+    toggleSounds(false);
+    
+    let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
+
+    muteButton.src = './img/6. Button/Other/unmuted.png';
+    muteButton.setAttribute('onclick', 'muteGame()');
+}
+
+
 function enterFullscreen() {
     let element = document.querySelector('canvas');
 
@@ -161,8 +181,6 @@ function exitFullscreen() {
         document.webkitExitFullscreen();
     }
 }
-
-// TODO: Add mute & controls
 
 // TODO: Add mobile version
 
