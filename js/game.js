@@ -25,56 +25,78 @@ function init() {
 
 function stopGame() {
     allIntervals.forEach(clearInterval);
+    cancelAnimationFrame(world.game);
 }
 
 function gameLost() {
     stopGame();
+    toggleSounds(true);
     exitFullscreen();
+
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
     document.getElementById('buttons').classList.add('d-none');
-    document.getElementById('gameLost').classList.remove('d-none');
 
     if (world.character.hitBy === 'JellyFish') {
         document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png'
     } else {
         document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png'
     }
+
+    document.getElementById('gameLost').classList.remove('d-none');
+
+    setTimeout(() => {
+        document.getElementById('tryAgain').classList.remove('d-none')
+    }, 3000);
 }
 
 function gameWon() {
     stopGame();
+    toggleSounds(true);
     exitFullscreen();
+
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
     document.getElementById('buttons').classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
+
+    setTimeout(() => {
+        document.getElementById('playAgain').classList.remove('d-none')
+    }, 3000);
 }
 
 
 function playAgain() {
+    document.getElementById('gameWon').classList.add('d-none');
     canvas.classList.remove('d-none');
+    toggleSounds(false);
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('buttons').classList.remove('d-none');
-    document.getElementById('gameWon').classList.add('d-none');
 
     initLevel();
     init();
+
+    setTimeout(() => {
+        document.getElementById('playAgain').classList.add('d-none');
+    }, 3000);
 }
 
 
 function tryAgain() {
+    document.getElementById('gameLost').classList.add('d-none');
     canvas.classList.remove('d-none');
+    toggleSounds(false);
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('buttons').classList.remove('d-none');
-    document.getElementById('gameLost').classList.add('d-none');
 
     initLevel();
     init();
-    // TODO: Fix music playing bug + for game won
-    // TODO: Fix interval still running bug (if try again clicked to fast sharkie is dead again) + for game won
-    // TODO: Add game over sound + game won sound
+
+    setTimeout(() => {
+        document.getElementById('tryAgain').classList.add('d-none');
+    }, 3000);
 }
+    // TODO: Add game over sound + game won sound
 
 
 function closeStartScreen() {
@@ -143,7 +165,7 @@ function previousInstruction(i) {
 
 function muteGame() {
     toggleSounds(true);
-    
+
     let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
 
     muteButton.src = './img/6. Button/Other/muted.png';
@@ -153,7 +175,7 @@ function muteGame() {
 
 function unmuteGame() {
     toggleSounds(false);
-    
+
     let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
 
     muteButton.src = './img/6. Button/Other/unmuted.png';
@@ -284,4 +306,4 @@ window.addEventListener('keyup', (event) => {
 })
 
 
-// TODO: Delete all console logs
+// TODO: Delete all console logs & frames

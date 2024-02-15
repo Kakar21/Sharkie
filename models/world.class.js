@@ -3,6 +3,7 @@ class World {
     endboss = new Endboss();
     level = level1;
     canvas;
+    game;
     ctx;
     keyboard;
     camera_x = 0;
@@ -62,7 +63,7 @@ class World {
     checkCollisions() {
         // Character with all Enemies
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isDead()) {
+            if (this.character.isColliding(enemy) && !this.character.isDead() && !enemy.isDead()) {
                 this.character.hitBy = enemy.constructor.name;
 
                 // Character with diffrent types of Jelly Fishes
@@ -77,8 +78,6 @@ class World {
                 } else {
                     CHARACTER_SOUND_POISON.play();
                 }
-
-                // TODO: Fix damage from dead jelly fish
 
                 this.healthBar.setPercentage(this.character.energy)
                 console.log(this.character.energy);
@@ -199,7 +198,7 @@ class World {
 
         // Draw() wird immer wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function () {
+        this.game = requestAnimationFrame(function () {
             self.draw();
         });
     }

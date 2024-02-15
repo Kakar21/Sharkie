@@ -87,7 +87,7 @@ class JellyFish extends MoveableObject {
             if (this.isDead()) {
                 this.playAnimation(JELLYFISH_IMAGES_DEAD[this.color]);
                 this.offset = this.offsets.dead;
-                this.y -= 3;
+                this.y -= 6;
             } else {
                 this.playAnimation(JELLYFISH_IMAGES_SWIM[this.color]);
             }
