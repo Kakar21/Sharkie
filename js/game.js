@@ -15,7 +15,7 @@ allIntervals = [];
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
+
 
     console.log('My Character is', world.character);
 }
@@ -29,8 +29,10 @@ function stopGame() {
 
 function gameLost() {
     stopGame();
+    exitFullscreen();
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
+    document.getElementById('buttons').classList.add('d-none');
     document.getElementById('gameLost').classList.remove('d-none');
 
     if (world.character.hitBy === 'JellyFish') {
@@ -42,8 +44,10 @@ function gameLost() {
 
 function gameWon() {
     stopGame();
+    exitFullscreen();
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
+    document.getElementById('buttons').classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
 }
 
@@ -51,6 +55,7 @@ function gameWon() {
 function playAgain() {
     canvas.classList.remove('d-none');
     document.getElementById('gameTitle').classList.remove('d-none');
+    document.getElementById('buttons').classList.remove('d-none');
     document.getElementById('gameWon').classList.add('d-none');
 
     initLevel();
@@ -61,6 +66,7 @@ function playAgain() {
 function tryAgain() {
     canvas.classList.remove('d-none');
     document.getElementById('gameTitle').classList.remove('d-none');
+    document.getElementById('buttons').classList.remove('d-none');
     document.getElementById('gameLost').classList.add('d-none');
 
     initLevel();
@@ -89,7 +95,7 @@ function openInstructions() {
     container.innerHTML = /* html */ `
         <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
         <img onclick="previousInstruction(${i - 1})" src="./img/6. Button/Other/left.png" alt="Previous">
-        <img src="${instructions[0]}">
+        <img src="${instructions[i]}">
         <img onclick="nextInstruction(${i + 1})" src="./img/6. Button/Other/right.png" alt="Next">
         `;
 
@@ -134,7 +140,28 @@ function previousInstruction(i) {
     `;
 }
 
-// TODO: Add fullscreen
+
+function enterFullscreen() {
+    let element = document.querySelector('canvas');
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
+
 // TODO: Add mute & controls
 
 // TODO: Add mobile version

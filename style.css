@@ -158,7 +158,7 @@ canvas {
     transform: scale(1.05);
 }
 
-.buttons {
+#buttons {
     display: flex;
     width: 720px;
     justify-content: space-between;
@@ -166,17 +166,17 @@ canvas {
     margin-bottom: -3.5rem;
 }
 
-.buttons img {
+#buttons img {
     height: 3rem;
     transition: 80ms ease-in-out;
 }
 
-.buttons img:hover {
+#buttons img:hover {
     cursor: pointer;
     transform: scale(1.05);
 }
 
-.buttons div {
+#buttons div {
     display: flex;
     gap: 0.5rem;
 }
