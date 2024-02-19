@@ -106,7 +106,6 @@ function closeStartScreen() {
     init();
 }
 
-// TODO: Start screen title music?
 // TODO: Add loading screen?
 
 function openInstructions() {
