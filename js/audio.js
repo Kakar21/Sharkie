@@ -1,3 +1,8 @@
+let muted = false;
+
+let MENU_SOUND_CLICK = new Audio('../audio/MENU_CLICK.mp3');
+MENU_SOUND_CLICK.volume = 0.5;
+
 let BACKGROUND_SOUND_MUSIC = new Audio('../audio/BACKGROUND_MUSIC.mp3');
 BACKGROUND_SOUND_MUSIC.volume = 0.15;
 
@@ -46,7 +51,13 @@ PUFFERFISH_SOUND_PUFFING_UP.volume = 0.25;
 
 // TODO: Add endboss music?
 
-function toggleSounds(boolean) {
+function toggleSounds(boolean, type) {
+
+    if (type !== 'ingame') {
+        GAME_SOUND_WON.muted = boolean;
+        GAME_SOUND_LOST.muted = boolean;
+        muted = boolean;
+    }
 
     BACKGROUND_SOUND_MUSIC.muted = boolean;
     COIN_SOUND.muted = boolean;

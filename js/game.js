@@ -20,9 +20,6 @@ function init() {
     console.log('My Character is', world.character);
 }
 
-// TODO: Add menu click sound
-
-
 function stopGame() {
     allIntervals.forEach(clearInterval);
     cancelAnimationFrame(world.game);
@@ -32,7 +29,7 @@ function stopGame() {
 
 function gameLost() {
     stopGame();
-    toggleSounds(true);
+    toggleSounds(true, 'ingame');
     exitFullscreen();
 
     canvas.classList.add('d-none');
@@ -56,7 +53,7 @@ function gameLost() {
 
 function gameWon() {
     stopGame();
-    toggleSounds(true);
+    toggleSounds(true, 'ingame');
     exitFullscreen();
 
     canvas.classList.add('d-none');
@@ -74,7 +71,10 @@ function gameWon() {
 function playAgain() {
     document.getElementById('gameWon').classList.add('d-none');
     canvas.classList.remove('d-none');
-    toggleSounds(false);
+    if (!muted) {
+        toggleSounds(false, 'ingame');
+    }
+
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('buttons').classList.remove('d-none');
 
@@ -90,7 +90,9 @@ function playAgain() {
 function tryAgain() {
     document.getElementById('gameLost').classList.add('d-none');
     canvas.classList.remove('d-none');
-    toggleSounds(false);
+    if (!muted) {
+        toggleSounds(false, 'ingame');
+    }
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('buttons').classList.remove('d-none');
 
@@ -104,6 +106,8 @@ function tryAgain() {
 
 
 function closeStartScreen() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     document.getElementById('startScreen').classList.add('d-none');
 
     initLevel();
@@ -113,6 +117,8 @@ function closeStartScreen() {
 // TODO: Add loading screen?
 
 function openInstructions() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     let container = document.getElementById('instructions');
     let startScreen = document.getElementById('startScreen');
     let i = 0;
@@ -130,6 +136,8 @@ function openInstructions() {
 }
 
 function closeInstructions() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     let startScreen = document.getElementById('startScreen');
 
     document.getElementById('instructions').classList.add('d-none');
@@ -139,6 +147,8 @@ function closeInstructions() {
 
 
 function nextInstruction(i) {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     if (i > 2) {
         i = 0;
     }
@@ -153,6 +163,8 @@ function nextInstruction(i) {
 
 
 function previousInstruction(i) {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     if (i < 0) {
         i = 2;
     }
@@ -167,6 +179,8 @@ function previousInstruction(i) {
 
 
 function muteGame() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     toggleSounds(true);
 
     let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
@@ -175,8 +189,9 @@ function muteGame() {
     muteButton.setAttribute('onclick', 'unmuteGame()');
 }
 
-
 function unmuteGame() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     toggleSounds(false);
 
     let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
@@ -187,6 +202,8 @@ function unmuteGame() {
 
 
 function enterFullscreen() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
     let element = document.querySelector('canvas');
 
     if (element.requestFullscreen) {
