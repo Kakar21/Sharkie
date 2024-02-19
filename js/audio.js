@@ -1,6 +1,12 @@
 let BACKGROUND_SOUND_MUSIC = new Audio('../audio/BACKGROUND_MUSIC.mp3');
 BACKGROUND_SOUND_MUSIC.volume = 0.15;
 
+let GAME_SOUND_WON = new Audio('../audio/GAME_WON.mp3');
+GAME_SOUND_WON.loop = false;
+
+let GAME_SOUND_LOST = new Audio('../audio/GAME_LOST.mp3');
+GAME_SOUND_LOST.loop = false;
+
 let COIN_SOUND = new Audio('../audio/COIN.mp3');
 COIN_SOUND.volume = 0.7;
 

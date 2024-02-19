@@ -26,6 +26,8 @@ function init() {
 function stopGame() {
     allIntervals.forEach(clearInterval);
     cancelAnimationFrame(world.game);
+    BACKGROUND_SOUND_MUSIC.pause();
+    BACKGROUND_SOUND_MUSIC.currentTime = 0;
 }
 
 function gameLost() {
@@ -44,6 +46,8 @@ function gameLost() {
     }
 
     document.getElementById('gameLost').classList.remove('d-none');
+    GAME_SOUND_LOST.play();
+
 
     setTimeout(() => {
         document.getElementById('tryAgain').classList.remove('d-none')
@@ -59,6 +63,7 @@ function gameWon() {
     document.getElementById('gameTitle').classList.add('d-none');
     document.getElementById('buttons').classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
+    GAME_SOUND_WON.play();
 
     setTimeout(() => {
         document.getElementById('playAgain').classList.remove('d-none')
@@ -96,7 +101,6 @@ function tryAgain() {
         document.getElementById('tryAgain').classList.add('d-none');
     }, 3000);
 }
-    // TODO: Add game over sound + game won sound
 
 
 function closeStartScreen() {
@@ -304,5 +308,5 @@ window.addEventListener('keyup', (event) => {
     }
 })
 
-
+// TODO: Fix all console errors
 // TODO: Delete all console logs & frames
