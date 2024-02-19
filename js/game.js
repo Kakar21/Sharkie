@@ -6,7 +6,10 @@ let instructions = [
     './img/6. Button/Instructions 1.png',
     './img/6. Button/Instructions 2.png'
 ];
-allIntervals = [];
+let allIntervals = [];
+let imagesLoaded = 0;
+let imagesToLoad = 0;
+let percent = 0;
 
 
 /**
@@ -114,7 +117,6 @@ function closeStartScreen() {
     init();
 }
 
-// TODO: Add loading screen?
 
 function openInstructions() {
     MENU_SOUND_CLICK.currentTime = 0;

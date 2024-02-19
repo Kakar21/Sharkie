@@ -12,6 +12,7 @@ class DrawableObject {
         bottom: 0,
         left: 0
     };
+    percent;
 
 
     /**
@@ -32,7 +33,17 @@ class DrawableObject {
      * @param {string} path 
      */
     loadImage(path) {
+        imagesToLoad++
         this.img = new Image();
+        this.img.onload = () => {
+            imagesLoaded++;
+            percent = (imagesLoaded / imagesToLoad) * 100;
+            document.getElementById('loadingBar').value = percent;
+
+            if (percent == 100) {
+                document.getElementById('loadingScreen').classList.add('d-none');
+            }
+        }
         this.img.src = path;
     }
 
