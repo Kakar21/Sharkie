@@ -41,6 +41,7 @@ canvas {
 }
 
 #startScreen {
+    z-index: 2;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -74,13 +75,13 @@ canvas {
 }
 
 .instructions {
+    z-index: 3;
     position: fixed;
     display: flex;
     inset: 0;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
 }
 
 #instructionsClose {
@@ -94,7 +95,7 @@ canvas {
     transition: 80ms ease-in-out;
     padding: 1rem;
     margin: 0 -4rem;
-    z-index: 2;
+    z-index: 4;
 }
 
 .instructions img:hover:not(.instructions img:nth-child(3)) {
@@ -183,6 +184,7 @@ canvas {
 }
 
 #loadingScreen {
+    z-index: 1;
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -195,6 +197,9 @@ canvas {
     background-position: center;
     background-size: cover;
 }
+
+/* TODO: Make Game Won/Lost screen resposive */
+/* TODO: Make Start screen & loading screen responsive */
 
 #loadingScreen h1 {
     margin: 0;
@@ -255,7 +260,7 @@ progress {
     opacity: 1;
 }
 
-/* TODO: Remove highlighting from all buttons */
+/* TODO: Edit buttons positions when < 720px width or < 480px height*/
 
 #moveButtons {
     display: flex;
@@ -281,6 +286,22 @@ progress {
 #attackButtons img:nth-child(3) {
     width: 2rem;
     height: 2rem;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .d-none {

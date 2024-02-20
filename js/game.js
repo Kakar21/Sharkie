@@ -38,6 +38,8 @@ function gameLost() {
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
     document.getElementById('canvasButtons').classList.add('d-none');
+    document.getElementById('mobileCanvasButtons').classList.add('d-none');
+    document.getElementById('moveButtons').parentElement.classList.add('d-none');
 
     if (world.character.hitBy === 'JellyFish') {
         document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png'
@@ -62,6 +64,8 @@ function gameWon() {
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
     document.getElementById('canvasButtons').classList.add('d-none');
+    document.getElementById('mobileCanvasButtons').classList.add('d-none');
+    document.getElementById('moveButtons').parentElement.classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
     GAME_SOUND_WON.play();
 
@@ -80,6 +84,8 @@ function playAgain() {
 
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('canvasButtons').classList.remove('d-none');
+    document.getElementById('mobileCanvasButtons').classList.remove('d-none');
+    document.getElementById('moveButtons').parentElement.classList.remove('d-none');
 
     initLevel();
     init();
@@ -98,6 +104,8 @@ function tryAgain() {
     }
     document.getElementById('gameTitle').classList.remove('d-none');
     document.getElementById('canvasButtons').classList.remove('d-none');
+    document.getElementById('mobileCanvasButtons').classList.remove('d-none');
+    document.getElementById('moveButtons').parentElement.classList.remove('d-none');
 
     initLevel();
     init();
@@ -186,9 +194,12 @@ function muteGame() {
     toggleSounds(true);
 
     let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
+    let muteButtonMobile = document.getElementById('mobileCanvasButtons').firstElementChild;
 
     muteButton.src = './img/6. Button/Other/muted.png';
+    muteButtonMobile.src = './img/6. Button/Other/muted.png';
     muteButton.setAttribute('onclick', 'unmuteGame()');
+    muteButtonMobile.setAttribute('onclick', 'unmuteGame()');
 }
 
 function unmuteGame() {
@@ -197,9 +208,13 @@ function unmuteGame() {
     toggleSounds(false);
 
     let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
+    let muteButtonMobile = document.getElementById('mobileCanvasButtons').firstElementChild;
+
 
     muteButton.src = './img/6. Button/Other/unmuted.png';
+    muteButtonMobile.src = './img/6. Button/Other/unmuted.png';
     muteButton.setAttribute('onclick', 'muteGame()');
+    muteButtonMobile.setAttribute('onclick', 'muteGame()');
 }
 
 
