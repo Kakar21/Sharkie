@@ -18,7 +18,7 @@ let percent = 0;
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
+    bindButtonEvents();
 
     console.log('My Character is', world.character);
 }
@@ -341,6 +341,80 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+
+
+// Mobile Button Events
+function bindButtonEvents() {
+    document.getElementById('right').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('right').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('left').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+
+    document.getElementById('left').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('up').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+
+    document.getElementById('up').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+
+    document.getElementById('down').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.DOWN = true;
+    });
+
+    document.getElementById('down').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.DOWN = false;
+    });
+
+    document.getElementById('finslap').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+
+    document.getElementById('finslap').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+
+    document.getElementById('bubbleTrap').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.H = true;
+    });
+
+    document.getElementById('bubbleTrap').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.H = false;
+    });
+
+    document.getElementById('bubbleTrapPoison').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.J = true;
+    });
+
+    document.getElementById('bubbleTrapPoison').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.J = false;
+    });
+}
 
 // TODO: Fix all console errors
 // TODO: Delete all console logs & frames

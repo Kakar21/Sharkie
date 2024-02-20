@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./img/7. Favicon/1.png">
+    <link rel="icon" type="image/png" href="./img/7. Other/favicon.png">
     <title>Sharkie</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./js/img.js"></script>
@@ -34,6 +34,12 @@
 </head>
 
 <body>
+
+    <!-- Rotate Device Screen -->
+    <div class="rotateDeviceScreen">
+        <h1>PLEASE ROTATE YOUR DEVICE</h1>
+        <img src="img/7. Other/smartphone.png">
+    </div>
 
     <!-- Loading Screen -->
     <div id="loadingScreen" class="noselect">
@@ -76,7 +82,7 @@
     <!-- Game Screen -->
     <h1 id="gameTitle">SHARKIE</h1>
 
-    <canvas id="canvas" width="720" height="480">
+    <canvas id="canvas" class="noselect" width="720" height="480">
     </canvas>
 
     <!-- Desktop Canvas Buttons -->
@@ -98,18 +104,18 @@
     <!-- Mobile Game Buttons -->
     <div class="mobileGameButtons noselect">
         <div id="moveButtons">
-            <img src="./img/6. Button/Mobile Buttons/up.png" alt="Up">
+            <img id="up" src="./img/6. Button/Mobile Buttons/up.png" alt="Up">
             <div>
-                <img src="./img/6. Button/Mobile Buttons/left.png" alt="Left">
-                <img src="./img/6. Button/Mobile Buttons/down.png" alt="Down">
-                <img src="./img/6. Button/Mobile Buttons/right.png" alt="Right">
+                <img id="left" src="./img/6. Button/Mobile Buttons/left.png" alt="Left">
+                <img id="down" src="./img/6. Button/Mobile Buttons/down.png" alt="Down">
+                <img id="right" src="./img/6. Button/Mobile Buttons/right.png" alt="Right">
             </div>
         </div>
         <div id="attackButtons">
-            <img src="./img/6. Button/Mobile Buttons/finslap.png" alt="Finslap">
-            <img src="./img/6. Button/Mobile Buttons/bubbletrap.png" alt="Bubble-Trap">
+            <img id="finslap" src="./img/6. Button/Mobile Buttons/finslap.png" alt="Finslap">
+            <img id="bubbleTrap" src="./img/6. Button/Mobile Buttons/bubbletrap.png" alt="Bubble-Trap">
             <img src="img/6. Button/Mobile Buttons/icons8-line-filled-100.png" alt="">
-            <img src="./img/6. Button/Mobile Buttons/bubbletrap-poison.png" alt="Bubble-Trap-Poison">
+            <img id="bubbleTrapPoison" src="./img/6. Button/Mobile Buttons/bubbletrap-poison.png" alt="Bubble-Trap-Poison">
         </div>
     </div>
 
