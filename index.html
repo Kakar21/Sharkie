@@ -35,17 +35,20 @@
 
 <body>
 
+    <!-- Loading Screen -->
     <div id="loadingScreen">
         <img src="img/1. Sharkie/3.Swim/1.png" alt="">
         <h1>LOADING...</h1>
         <progress id="loadingBar" max="100" value="20"></progress>
     </div>
 
+    <!-- Winning Screen -->
     <div id="gameWon" class="d-none">
         <img class="popping" src="./img/6. Button/Tittles/You win/You Win!.png">
         <img onclick="playAgain()" id="playAgain" class="d-none" src="./img/6. Button/Start/3.png" alt="Play Again">
     </div>
 
+    <!-- Losing Screen -->
     <div id="gameLost" class="d-none">
         <img src="./img/6. Button/Tittles/Game Over/Recurso 13.png">
         <img id="deadSharkie" src="./img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png">
@@ -53,6 +56,7 @@
             alt="Try Again">
     </div>
 
+    <!-- Instructions -->
     <div id="instructions" class="instructions d-none">
         <img onclick="closeInstructions()" id="instructionsClose" src="./img/6. Button/Other/close.svg" alt="Close">
         <img onclick="previousInstruction()" src="./img/6. Button/Other/left.png" alt="Previous">
@@ -60,6 +64,7 @@
         <img onclick="nextInstruction()" src="./img/6. Button/Other/right.png" alt="Next">
     </div>
 
+    <!-- Start Screen -->
     <div id="startScreen">
         <h1 class="floating">SHARKIE</h1>
         <div class="arrowButtons">
@@ -68,17 +73,44 @@
         </div>
     </div>
 
+    <!-- Game Screen -->
     <h1 id="gameTitle">SHARKIE</h1>
 
-
     <canvas id="canvas" width="720" height="480">
-
     </canvas>
-    <div id="buttons">
+
+    <!-- Desktop Canvas Buttons -->
+    <div id="canvasButtons">
         <img onclick="openInstructions()" src="./img/6. Button/Other/controls.png" alt="Controls">
         <div>
             <img onclick="muteGame()" src="./img/6. Button/Other/unmuted.png" alt="Mute">
             <img onclick="enterFullscreen()" src="./img/6. Button/Other/fullscreen.png" alt="Fullscreen">
+        </div>
+    </div>
+
+    <!-- Mobile Canvas Buttons -->
+    <div id="mobileCanvasButtons">
+        <img onclick="muteGame()" src="./img/6. Button/Other/unmuted.png" alt="Mute">
+        <img onclick="openInstructions()" src="./img/6. Button/Other/controls.png" alt="Controls">
+    </div>
+    <!-- TODO: add mobileCanvasButtons to the same javascript like canvasButtons -->
+    <!-- TODO: on mobile fullscreen remove full screen -->
+
+
+    <div class="mobileGameButtons">
+        <div id="moveButtons">
+            <img src="./img/6. Button/Mobile Buttons/up.png" alt="Up">
+            <div>
+                <img src="./img/6. Button/Mobile Buttons/left.png" alt="Left">
+                <img src="./img/6. Button/Mobile Buttons/down.png" alt="Down">
+                <img src="./img/6. Button/Mobile Buttons/right.png" alt="Right">
+            </div>
+        </div>
+        <div id="attackButtons">
+            <img src="./img/6. Button/Mobile Buttons/finslap.png" alt="Finslap">
+            <img src="./img/6. Button/Mobile Buttons/bubbletrap.png" alt="Bubble-Trap">
+            <img src="img/6. Button/Mobile Buttons/icons8-line-filled-100.png" alt="">
+            <img src="./img/6. Button/Mobile Buttons/bubbletrap-poison.png" alt="Bubble-Trap-Poison">
         </div>
     </div>
 

@@ -37,7 +37,7 @@ function gameLost() {
 
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
-    document.getElementById('buttons').classList.add('d-none');
+    document.getElementById('canvasButtons').classList.add('d-none');
 
     if (world.character.hitBy === 'JellyFish') {
         document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png'
@@ -61,7 +61,7 @@ function gameWon() {
 
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
-    document.getElementById('buttons').classList.add('d-none');
+    document.getElementById('canvasButtons').classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
     GAME_SOUND_WON.play();
 
@@ -79,7 +79,7 @@ function playAgain() {
     }
 
     document.getElementById('gameTitle').classList.remove('d-none');
-    document.getElementById('buttons').classList.remove('d-none');
+    document.getElementById('canvasButtons').classList.remove('d-none');
 
     initLevel();
     init();
@@ -97,7 +97,7 @@ function tryAgain() {
         toggleSounds(false, 'ingame');
     }
     document.getElementById('gameTitle').classList.remove('d-none');
-    document.getElementById('buttons').classList.remove('d-none');
+    document.getElementById('canvasButtons').classList.remove('d-none');
 
     initLevel();
     init();
@@ -185,7 +185,7 @@ function muteGame() {
     MENU_SOUND_CLICK.play();
     toggleSounds(true);
 
-    let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
+    let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
 
     muteButton.src = './img/6. Button/Other/muted.png';
     muteButton.setAttribute('onclick', 'unmuteGame()');
@@ -196,7 +196,7 @@ function unmuteGame() {
     MENU_SOUND_CLICK.play();
     toggleSounds(false);
 
-    let muteButton = document.getElementById('buttons').lastElementChild.firstElementChild;
+    let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
 
     muteButton.src = './img/6. Button/Other/unmuted.png';
     muteButton.setAttribute('onclick', 'muteGame()');

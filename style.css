@@ -13,6 +13,7 @@
     font-family: 'Luckiest Guy';
     color: white;
     font-weight: 400;
+    /* overflow: hidden; active when game finished*/
 }
 
 body {
@@ -158,7 +159,7 @@ canvas {
     transform: scale(1.05);
 }
 
-#buttons {
+#canvasButtons {
     display: flex;
     width: 720px;
     justify-content: space-between;
@@ -166,17 +167,17 @@ canvas {
     margin-bottom: -3.5rem;
 }
 
-#buttons img {
+#canvasButtons img {
     height: 3rem;
     transition: 80ms ease-in-out;
 }
 
-#buttons img:hover {
+#canvasButtons img:hover {
     cursor: pointer;
     transform: scale(1.05);
 }
 
-#buttons div {
+#canvasButtons div {
     display: flex;
     gap: 0.5rem;
 }
@@ -197,12 +198,13 @@ canvas {
 
 #loadingScreen h1 {
     margin: 0;
+    font-size: 4rem;
 }
 
 #loadingScreen img {
     width: 200px;
     height: 200px;
-    padding-right: 50px;
+    padding-right: 25px;
 }
 
 progress {
@@ -224,6 +226,62 @@ progress {
     background-color: #7FFEE0;
     color: white;
   }
+
+#mobileCanvasButtons {
+    display: none;
+    position: absolute;
+    top: calc(calc(calc(100vh - 480px) / 2) + 20px - 0.25rem);
+    right: calc(calc(calc(100vw - 720px) / 2) + 20px - 0.25rem);
+}
+
+#mobileCanvasButtons img {
+    height: 2rem;
+    width: 2rem;
+    padding: 0.25rem;
+}
+
+.mobileGameButtons {
+    display: none;
+}
+
+.mobileGameButtons img {
+    opacity: 0.5;
+    height: 3rem;
+    width: 3rem;
+    padding: 0.25rem;
+}
+
+.mobileGameButtons img:active {
+    opacity: 1;
+}
+
+/* TODO: Remove highlighting from all buttons */
+
+#moveButtons {
+    display: flex;
+    position: absolute;
+    bottom: calc(calc(calc(100vh - 480px) / 2) + 20px - 0.25rem);
+    left: calc(calc(calc(100vw - 720px) / 2) + 20px - 0.25rem);
+    flex-direction: column;
+    align-items: center;
+}
+
+#moveButtons div{
+    display: flex;
+}
+
+#attackButtons {
+    position: absolute;
+    align-items: center;
+    bottom: calc(calc(calc(100vh - 480px) / 2) + 20px - 0.25rem + 2.5rem);
+    right: calc(calc(calc(100vw - 720px) / 2) + 20px - 0.25rem);
+    display: flex;
+}
+
+#attackButtons img:nth-child(3) {
+    width: 2rem;
+    height: 2rem;
+}
 
 .d-none {
     display: none !important;
@@ -270,5 +328,34 @@ progress {
 
     100% {
         transform: scale(1);
+    }
+}
+
+/* Smartphone */
+
+@media (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+@media (max-height: 670px) {
+    #gameTitle, #canvasButtons {
+        display: none;
+    }
+
+    
+    #mobileCanvasButtons {
+        display: flex;
+    }
+
+    .mobileGameButtons {
+        display: flex;
     }
 }
