@@ -36,6 +36,7 @@ h1 {
 }
 
 canvas {
+    /* width: 100%; */
     background-color: black;
     border-radius: 10px;
 }
@@ -87,7 +88,7 @@ canvas {
 #instructionsClose {
     width: 2rem;
     position: fixed;
-    margin: 0 42.5rem 20em 0;
+    margin: 0 42.5rem 320px 0;
 }
 
 .instructions img:not(.instructions img:nth-child(3)) {
@@ -161,11 +162,15 @@ canvas {
 }
 
 #canvasButtons {
-    display: flex;
+    display: none;
     width: 720px;
     justify-content: space-between;
     margin-top: 0.5rem;
     margin-bottom: -3.5rem;
+}
+
+#gameTitle {
+    display: none;
 }
 
 #canvasButtons img {
@@ -183,7 +188,8 @@ canvas {
     gap: 0.5rem;
 }
 
-#loadingScreen, .rotateDeviceScreen {
+#loadingScreen,
+.rotateDeviceScreen {
     z-index: 1;
     height: 100vh;
     width: 100vw;
@@ -212,10 +218,6 @@ canvas {
     animation: rotateDevice 2s infinite;
 }
 
-/* TODO: Make Game Won/Lost screen resposive */
-/* TODO: Make Start screen & loading screen responsive */
-/* TODO: Make instructions responsive */
-
 #loadingScreen h1 {
     margin: 0;
     font-size: 4rem;
@@ -228,27 +230,30 @@ canvas {
 }
 
 progress {
-    border-radius: 10px; 
+    border-radius: 10px;
     width: 720px;
     height: 2rem;
     background-color: white;
     border: 0;
-  }
-  progress::-webkit-progress-bar {
+}
+
+progress::-webkit-progress-bar {
     background-color: white;
     border-radius: 10px;
-  }
-  progress::-webkit-progress-value {
+}
+
+progress::-webkit-progress-value {
     background-color: #7FFEE0;
     border-radius: 10px;
-  }
-  progress::-moz-progress-bar {
+}
+
+progress::-moz-progress-bar {
     background-color: #7FFEE0;
     color: white;
-  }
+}
 
 #mobileCanvasButtons {
-    display: none;
+    display: flex;
     position: absolute;
     top: calc(calc(calc(100vh - 480px) / 2) + 20px - 0.25rem);
     right: calc(calc(calc(100vw - 720px) / 2) + 20px - 0.25rem);
@@ -261,7 +266,7 @@ progress {
 }
 
 .mobileGameButtons {
-    display: none;
+    display: flex;
 }
 
 .mobileGameButtons img {
@@ -271,12 +276,10 @@ progress {
     padding: 0.25rem;
 }
 
-.mobileGameButtons img:hover { /* TODO: test on mobile if it works */
+.mobileGameButtons img:hover {
+    /* TODO: test on mobile if it works */
     opacity: 1;
 }
-
-
-/* TODO: Edit buttons positions when < 720px width or < 480px height*/
 
 #moveButtons {
     display: flex;
@@ -287,7 +290,7 @@ progress {
     align-items: center;
 }
 
-#moveButtons div{
+#moveButtons div {
     display: flex;
 }
 
@@ -339,6 +342,8 @@ progress {
     animation-timing-function: ease-in-out;
 }
 
+/* Animations */
+
 @keyframes floating {
     0% {
         transform: translate(0, 0px);
@@ -371,102 +376,103 @@ progress {
 
 @keyframes rotateDevice {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
-  
+
     50% {
-      transform: rotate(-90deg);
+        transform: rotate(-90deg);
     }
-  
+
     100% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
-  }
+}
 
-/* Smartphone */
+/* Different Screen Hights responsiv */
+@media (max-height: 720px) {
+    #startScreen h1 {
+        font-size: 7rem;
+    }
 
-@media (max-width: 720px) {
-    canvas {
+    #startScreen .arrowButtons {
+        gap: 4rem;
+    }
+
+    #startScreen .arrowButtons img {
+        height: 5rem;
+    }
+
+    #instructionsClose {
+        margin: 0 100vh calc(calc(100vh / 16) * 7) 0
+    }
+}
+
+@media (max-height: 600px) {
+
+    #gameWon,
+    #gameLost {
+        width: 80vh;
+        justify-content: center;
+    }
+
+    #gameWon img:first-child {
+        height: auto;
         width: 100%;
     }
 
-    #canvasButtons {
-        width: 100%;
+    #gameLost {
+        gap: 5vh;
     }
 
+    #gameLost img:nth-child(2) {
+        padding-top: 10vh;
+        width: 30vh;
+    }
 
-    #canvasButtons img {
-        height: 2rem;
-        width: 2rem;
+    #gameWon img:last-child,
+    #gameLost img:nth-child(3) {
+        height: auto;
+        width: 50vh;
+    }
+
+    .instructions img:nth-child(3) {
+        width: 80vh;
+    }
+
+    #startScreen {
+        gap: 6rem;
+    }
+    
+    #startScreen h1 {
+        margin: 0 0 0 14rem;
+        font-size: 6rem;
+    }
+
+    #startScreen .arrowButtons {
+        gap: 3rem;
+    }
+
+    #startScreen .arrowButtons img {
+        height: 4.5rem;
     }
 }
 
 @media (max-height: 480px) {
-    canvas {
-        height: 100vh;
+    #loadingScreen img {
+        margin-top: -75px;
     }
 }
 
-@media (max-height: 670px) {
-    #gameTitle, #canvasButtons {
-        display: none;
-    }
-
-    
-    #mobileCanvasButtons {
-        display: flex;
-    }
-
-    .mobileGameButtons {
-        display: flex;
-    }
-}
-
-/* Responsiveness */
+/* Different Screen widths responsiv  */
 @media (max-width: 1024px) {
     .instructions img:nth-child(3) {
         width: 80vw;
     }
 
     #instructionsClose {
-        margin: 0 calc(58vw) 20em 0
-    }
-}
-
-@media (max-width: 768px) {
-    progress {
-        width: 80vw;
-        height: 1.5rem;
+        margin: 0 58vw calc(calc(58vw / 16) * 7) 0
     }
 
-    #loadingScreen h1 {
-        font-size: 3rem;
-    }
-
-    #loadingScreen img {
-        padding-right: 18.75px;
-        width: 150px;
-        height: 150px;
-    }
-}
-
-@media (max-width: 425px) {
-    progress {
-        height: 1rem;
-    }
-
-    #loadingScreen h1 {
-        font-size: 2rem;
-    }
-
-    #loadingScreen img {
-        padding-right: 12.5px;
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media (max-width: 1000px) {
     #startScreen {
         gap: 6rem;
     }
@@ -486,7 +492,23 @@ progress {
 }
 
 @media (max-width: 775px) {
-    #gameWon, #gameLost {
+    progress {
+        width: 80vw;
+        height: 1.5rem;
+    }
+
+    #loadingScreen h1 {
+        font-size: 3rem;
+    }
+
+    #loadingScreen img {
+        padding-right: 18.75px;
+        width: 150px;
+        height: 150px;
+    }
+
+    #gameWon,
+    #gameLost {
         width: 80vw;
         justify-content: center;
     }
@@ -505,7 +527,8 @@ progress {
         width: 20vw;
     }
 
-    #gameWon img:last-child, #gameLost img:nth-child(3) {
+    #gameWon img:last-child,
+    #gameLost img:nth-child(3) {
         height: auto;
         width: 35vw;
     }
@@ -516,15 +539,147 @@ progress {
 
     #startScreen h1 {
         margin: 0;
-        font-size: 5rem;
-    }
-
-    #startScreen .arrowButtons {
-        gap: 3rem;
-    }
-
-    #startScreen .arrowButtons img {
-        height: 3.5rem;
     }
 }
 
+@media (max-width: 425px) {
+    progress {
+        height: 1rem;
+    }
+
+    #loadingScreen h1 {
+        font-size: 2rem;
+    }
+
+    #loadingScreen img {
+        padding-right: 12.5px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+/* Hide Game Buttons when mouse is detected*/
+
+@media (hover: hover) and (pointer: fine) {
+
+    #gameTitle,
+    #canvasButtons {
+        display: flex;
+    }
+
+
+    #mobileCanvasButtons {
+        display: none;
+    }
+
+    .mobileGameButtons {
+        display: none;
+    }
+}
+
+/* Canvas when to small on both sides */
+
+@media (max-width: 720px) and (max-height: 480px) {
+    canvas {
+        width: unset !important;
+        height: 100vh !important;
+    }
+}
+
+/* Canvas when to small */
+
+@media (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+/* Game Buttons < 480px height or < 720px width */
+
+@media (max-height: 480px),
+(max-width: 720px) {
+
+    #moveButtons {
+        bottom: calc(20px - 0.25rem);
+        left: calc(20px - 0.25rem);
+    }
+
+    #attackButtons {
+        bottom: calc(20px - 0.25rem + 2.5rem);
+        right: calc(20px - 0.25rem);
+    }
+
+    #mobileCanvasButtons {
+        top: calc(20px - 0.25rem);
+        right: calc(20px - 0.25rem);
+    }
+}
+
+/* Root Size */
+
+@media (max-width: 720px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 680px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 660px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        font-size: 12px;
+    }
+}
+
+@media (max-height: 480px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 460px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media (max-height: 440px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media (max-height: 420px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media (max-height: 400px) {
+    :root {
+        font-size: 12px;
+    }
+}

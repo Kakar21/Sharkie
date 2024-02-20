@@ -11,6 +11,7 @@ let imagesLoaded = 0;
 let imagesToLoad = 0;
 let percent = 0;
 
+// TODO: Clean code
 
 /**
  * Initializes the game
@@ -241,7 +242,6 @@ function exitFullscreen() {
     }
 }
 
-// TODO: Add mobile version
 
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
