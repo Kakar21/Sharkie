@@ -20,8 +20,6 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     bindButtonEvents();
-
-    console.log('My Character is', world.character);
 }
 
 function stopGame() {
@@ -35,25 +33,19 @@ function gameLost() {
     stopGame();
     toggleSounds(true, 'ingame');
     exitFullscreen();
-
-    canvas.classList.add('d-none');
-    document.getElementById('gameTitle').classList.add('d-none');
-    document.getElementById('canvasButtons').classList.add('d-none');
-    document.getElementById('mobileCanvasButtons').classList.add('d-none');
-    document.getElementById('moveButtons').parentElement.classList.add('d-none');
+    hideGameScreen();
 
     if (world.character.hitBy === 'JellyFish') {
-        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png'
+        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/2.Electro_shock/10.png';
     } else {
-        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png'
+        document.getElementById('deadSharkie').src = './img/1. Sharkie/6.dead/1.Poisoned/without float up/12.png';
     }
 
     document.getElementById('gameLost').classList.remove('d-none');
     GAME_SOUND_LOST.play();
 
-
     setTimeout(() => {
-        document.getElementById('tryAgain').classList.remove('d-none')
+        document.getElementById('tryAgain').classList.remove('d-none');
     }, 3000);
 }
 
@@ -61,33 +53,26 @@ function gameWon() {
     stopGame();
     toggleSounds(true, 'ingame');
     exitFullscreen();
+    hideGameScreen();
 
-    canvas.classList.add('d-none');
-    document.getElementById('gameTitle').classList.add('d-none');
-    document.getElementById('canvasButtons').classList.add('d-none');
-    document.getElementById('mobileCanvasButtons').classList.add('d-none');
-    document.getElementById('moveButtons').parentElement.classList.add('d-none');
     document.getElementById('gameWon').classList.remove('d-none');
     GAME_SOUND_WON.play();
 
     setTimeout(() => {
-        document.getElementById('playAgain').classList.remove('d-none')
+        document.getElementById('playAgain').classList.remove('d-none');
     }, 3000);
 }
 
 
 function playAgain() {
-    document.getElementById('gameWon').classList.add('d-none');
-    canvas.classList.remove('d-none');
+
     if (!muted) {
         toggleSounds(false, 'ingame');
     }
 
-    document.getElementById('gameTitle').classList.remove('d-none');
-    document.getElementById('canvasButtons').classList.remove('d-none');
-    document.getElementById('mobileCanvasButtons').classList.remove('d-none');
-    document.getElementById('moveButtons').parentElement.classList.remove('d-none');
+    document.getElementById('gameWon').classList.add('d-none');
 
+    showGameScreen();
     initLevel();
     init();
 
@@ -98,16 +83,14 @@ function playAgain() {
 
 
 function tryAgain() {
-    document.getElementById('gameLost').classList.add('d-none');
-    canvas.classList.remove('d-none');
+
     if (!muted) {
         toggleSounds(false, 'ingame');
     }
-    document.getElementById('gameTitle').classList.remove('d-none');
-    document.getElementById('canvasButtons').classList.remove('d-none');
-    document.getElementById('mobileCanvasButtons').classList.remove('d-none');
-    document.getElementById('moveButtons').parentElement.classList.remove('d-none');
 
+    document.getElementById('gameLost').classList.add('d-none');
+
+    showGameScreen();
     initLevel();
     init();
 
@@ -117,9 +100,27 @@ function tryAgain() {
 }
 
 
+function showGameScreen() {
+    canvas.classList.remove('d-none');
+    document.getElementById('gameTitle').classList.remove('d-none');
+    document.getElementById('canvasButtons').classList.remove('d-none');
+    document.getElementById('mobileCanvasButtons').classList.remove('d-none');
+    document.getElementById('moveButtons').parentElement.classList.remove('d-none');
+}
+
+
+function hideGameScreen() {
+    canvas.classList.add('d-none');
+    document.getElementById('gameTitle').classList.add('d-none');
+    document.getElementById('canvasButtons').classList.add('d-none');
+    document.getElementById('mobileCanvasButtons').classList.add('d-none');
+    document.getElementById('moveButtons').parentElement.classList.add('d-none');
+}
+
+
 function closeStartScreen() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
+
     document.getElementById('startScreen').classList.add('d-none');
 
     initLevel();
@@ -128,8 +129,8 @@ function closeStartScreen() {
 
 
 function openInstructions() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
+
     let container = document.getElementById('instructions');
     let startScreen = document.getElementById('startScreen');
     let i = 0;
@@ -147,8 +148,8 @@ function openInstructions() {
 }
 
 function closeInstructions() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
+
     let startScreen = document.getElementById('startScreen');
 
     document.getElementById('instructions').classList.add('d-none');
@@ -158,8 +159,8 @@ function closeInstructions() {
 
 
 function nextInstruction(i) {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
+
     if (i > 2) {
         i = 0;
     }
@@ -174,8 +175,8 @@ function nextInstruction(i) {
 
 
 function previousInstruction(i) {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
+
     if (i < 0) {
         i = 2;
     }
@@ -190,8 +191,7 @@ function previousInstruction(i) {
 
 
 function muteGame() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
     toggleSounds(true);
 
     let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
@@ -204,13 +204,11 @@ function muteGame() {
 }
 
 function unmuteGame() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
     toggleSounds(false);
 
     let muteButton = document.getElementById('canvasButtons').lastElementChild.firstElementChild;
     let muteButtonMobile = document.getElementById('mobileCanvasButtons').firstElementChild;
-
 
     muteButton.src = './img/6. Button/Other/unmuted.png';
     muteButtonMobile.src = './img/6. Button/Other/unmuted.png';
@@ -220,8 +218,7 @@ function unmuteGame() {
 
 
 function enterFullscreen() {
-    MENU_SOUND_CLICK.currentTime = 0;
-    MENU_SOUND_CLICK.play();
+    playClickSound();
     let element = document.querySelector('canvas');
 
     if (element.requestFullscreen) {
@@ -293,8 +290,7 @@ window.addEventListener('keydown', (event) => {
     if (event.keyCode === 68) {
         keyboard.D = true;
     }
-})
-
+});
 
 window.addEventListener('keyup', (event) => {
     if (event.keyCode === 37) {
@@ -340,7 +336,7 @@ window.addEventListener('keyup', (event) => {
     if (event.keyCode === 68) {
         keyboard.D = false;
     }
-})
+});
 
 
 // Mobile Button Events
@@ -417,4 +413,3 @@ function bindButtonEvents() {
 }
 
 // TODO: Fix all console errors
-// TODO: Delete all console logs & frames

@@ -2,7 +2,6 @@ let level1;
 
 
 function initLevel() {
-
     level1 = new Level(
         [
             new PufferFish(),
@@ -26,7 +25,7 @@ function initLevel() {
             new JellyFish('horizontal', 2950, 50, 2),
             new JellyFish('horizontal', 3050, 150, 1, 'charged'),
             new JellyFish('horizontal', 3150, 250, 2),
-            new JellyFish('horizontal', 3250, 350, 1, 'charged'),
+            new JellyFish('horizontal', 3250, 350, 1, 'charged')
         ],
         [
             new Coin(400, 200),
@@ -39,7 +38,6 @@ function initLevel() {
             new Coin(3350, 200),
             new Coin(3300, 250),
             new Coin(3250, 300),
-
             new Poison(447.5, 300),
             new Poison(1272.5, 100),
             new Poison(1897.5, 200),
@@ -49,7 +47,7 @@ function initLevel() {
             new Poison(3400, 300),
             new Poison(3900, 75),
             new Poison(3900, 212.5),
-            new Poison(3900, 350),
+            new Poison(3900, 350)
         ],
         [
             new Light(0),
@@ -61,7 +59,7 @@ function initLevel() {
             new Light(10240.02),
             new Light(11946.69),
             new Light(13653.36),
-            new Light(15360.03),
+            new Light(15360.03)
         ],
         [
             new BackgroundObject('../img/3. Background/Layers/5. Water/D.png', 0),

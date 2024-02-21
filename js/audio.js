@@ -74,3 +74,9 @@ function toggleSounds(boolean, type) {
     BUBBLE_SOUND_POP.muted = boolean;
     PUFFERFISH_SOUND_PUFFING_UP.muted = boolean;
 }
+
+
+function playClickSound() {
+    MENU_SOUND_CLICK.currentTime = 0;
+    MENU_SOUND_CLICK.play();
+}

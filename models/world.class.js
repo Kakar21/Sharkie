@@ -39,7 +39,7 @@ class World {
         setStoppableInterval(() => {
             this.checkCollisions();
             this.checkGameStatus();
-            BACKGROUND_SOUND_MUSIC.play()
+            BACKGROUND_SOUND_MUSIC.play();
         }, 1000 / 60);
     }
 
@@ -79,8 +79,7 @@ class World {
                     CHARACTER_SOUND_POISON.play();
                 }
 
-                this.healthBar.setPercentage(this.character.energy)
-                console.log(this.character.energy);
+                this.healthBar.setPercentage(this.character.energy);
             };
         });
 
@@ -92,16 +91,16 @@ class World {
 
                         if (enemy instanceof JellyFish && !bubble.poison) {
                             enemy.energy = 0;
-                            BUBBLE_SOUND.play()
+                            BUBBLE_SOUND.play();
                         } else {
-                            BUBBLE_SOUND_POP.play()
+                            BUBBLE_SOUND_POP.play();
                         }
 
                         let i = this.shootableObjects.indexOf(bubble);
                         this.shootableObjects.splice(i, 1);
                     };
                 });
-            })
+            });
         }
 
         // Character with collectables
@@ -111,11 +110,11 @@ class World {
                 if (collectable instanceof Coin) {
                     this.coinBar.setPercentage(this.coinBar.percentage += 10);
                     COIN_SOUND.currentTime = 0;
-                    COIN_SOUND.play()
+                    COIN_SOUND.play();
                 } else if (collectable instanceof Poison) {
                     this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
                     POISON_SOUND.currentTime = 0;
-                    POISON_SOUND.play()
+                    POISON_SOUND.play();
                 }
                 let i = this.level.collectables.indexOf(collectable);
                 this.level.collectables.splice(i, 1);
@@ -141,12 +140,12 @@ class World {
                     if (bubble.poison && !this.endboss.isDead()) {
                         ENDBOSS_SOUND_HURT.play();
                         this.endboss.hit(20);
-                        BUBBLE_SOUND.play()
+                        BUBBLE_SOUND.play();
                     } else {
-                        BUBBLE_SOUND_POP.play()
+                        BUBBLE_SOUND_POP.play();
                     }
 
-                    this.healthBarEndboss.setPercentage(this.endboss.energy)
+                    this.healthBarEndboss.setPercentage(this.endboss.energy);
                     let i = this.shootableObjects.indexOf(bubble);
                     this.shootableObjects.splice(i, 1);
                 }
@@ -156,7 +155,6 @@ class World {
         // Character with Endboss
         if (this.character.isColliding(this.endboss) && !this.character.isDead()) {
             this.character.hitBy = this.endboss.constructor.name;
-            console.log(this.character.hitBy);
             this.endboss.startBite();
         }
     }
@@ -167,24 +165,24 @@ class World {
      */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-
         this.ctx.translate(this.camera_x, 0);
 
+        // Background
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.collectables);
 
+        // Lights
         this.ctx.globalAlpha = 0.25;
         this.addObjectsToMap(this.level.lights);
         this.ctx.globalAlpha = 1;
 
+        // Moving Objects
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.endboss);
         this.addObjectsToMap(this.shootableObjects);
         this.addToMap(this.character);
 
-
-        // Space for fixed objects
+        // Fixed Objects
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.healthBar);
         this.addToMap(this.coinBar);
@@ -192,11 +190,9 @@ class World {
         this.addToMap(this.healthBarEndboss);
         this.ctx.translate(this.camera_x, 0);
 
-
         this.ctx.translate(-this.camera_x, 0);
 
-
-        // Draw() wird immer wieder aufgerufen
+        // Draw() will executed again and again
         let self = this;
         this.game = requestAnimationFrame(function () {
             self.draw();
@@ -211,7 +207,7 @@ class World {
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
-        })
+        });
     }
 
 
@@ -220,14 +216,15 @@ class World {
      * @param {object} mo 
      */
     addToMap(mo) {
+
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawFrameRedFrame(this.ctx);
-        mo.drawFrameYellowFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
+        // mo.drawFrameRedFrame(this.ctx);
+        // mo.drawFrameYellowFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

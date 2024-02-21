@@ -106,7 +106,7 @@ let CHARACTER_IMAGES_HURT = {
     SHOCK: [
         '../img/1. Sharkie/5.Hurt/2.Electric shock/1.png',
         '../img/1. Sharkie/5.Hurt/2.Electric shock/2.png',
-        '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png',
+        '../img/1. Sharkie/5.Hurt/2.Electric shock/3.png'
     ]
 };
 
@@ -363,7 +363,7 @@ let POISONBAR_IMAGES = [
     '../img/4. Score/orange/poison-bar_3.png',
     '../img/4. Score/orange/poison-bar_4.png',
     '../img/4. Score/orange/poison-bar_5.png',
-    '../img/4. Score/orange/poison-bar_6.png',
+    '../img/4. Score/orange/poison-bar_6.png'
 ];
 
 

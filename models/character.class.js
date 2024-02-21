@@ -17,7 +17,7 @@ class Character extends MoveableObject {
         right: 66,
         bottom: 0,
         left: 0
-    }
+    };
     offsets = {
         normal: {
             top: 95,
@@ -139,7 +139,7 @@ class Character extends MoveableObject {
                 }
             }
             this.world.camera_x = -this.x - this.offsets.normal.left + this.level_end_space;
-        }, 1000 / 60)
+        }, 1000 / 60);
 
         // Animation
         setStoppableInterval(() => {
@@ -194,7 +194,6 @@ class Character extends MoveableObject {
             this.isShooting.POISON = true;
             this.currentImage = 0;
             this.offset = this.offsets.bubbletrap;
-            console.log(this.world.poisonBar.percentage);
             this.world.poisonBar.setPercentage(this.world.poisonBar.percentage - 10);
         }
     }
@@ -240,7 +239,7 @@ class Character extends MoveableObject {
             this.world.level.enemies.forEach((enemy) => {
                 if (enemy instanceof PufferFish && enemy.isNearby(this)) {
                     enemy.energy = 0;
-                    CHARACTER_SOUND_FINSLAP.play()
+                    CHARACTER_SOUND_FINSLAP.play();
                 }
             });
         }
@@ -254,7 +253,7 @@ class Character extends MoveableObject {
 
     playBubbleTrap() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
-        CHARACTER_SOUND_BUBBLETRAP.play()
+        CHARACTER_SOUND_BUBBLETRAP.play();
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['NORMAL'].length) {
             let bubble = new ShootableObject(this.x, this.y);
@@ -267,7 +266,7 @@ class Character extends MoveableObject {
 
     playBubbleTrapPoison() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
-        CHARACTER_SOUND_BUBBLETRAP.play()
+        CHARACTER_SOUND_BUBBLETRAP.play();
 
         if (this.currentImage >= CHARACTER_IMAGES_BUBBLETRAP['POISON'].length) {
             let bubble = new ShootableObject(this.x, this.y, 'poison');
@@ -306,14 +305,14 @@ class Character extends MoveableObject {
         if (this.hitBy === 'JellyFish') {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
             if ((this.currentImage >= CHARACTER_IMAGES_DEAD['SHOCK'].length) && this.y <= 250) {
-                this.y += 3
+                this.y += 3;
             }
 
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
 
             if (this.currentImage >= CHARACTER_IMAGES_DEAD['POISON'].length - 4) {
-                this.y -= 3
+                this.y -= 3;
             }
 
         }

@@ -13,7 +13,6 @@
     font-family: 'Luckiest Guy';
     color: white;
     font-weight: 400;
-    /* overflow: hidden; active when game finished*/
 }
 
 body {
@@ -212,6 +211,7 @@ canvas {
 .rotateDeviceScreen h1 {
     font-size: 3rem;
     text-align: center;
+    padding: 0 1rem;
 }
 
 .rotateDeviceScreen img {
@@ -388,7 +388,14 @@ progress::-moz-progress-bar {
     }
 }
 
-/* Different Screen Hights responsiv */
+/* Display "Rotate your device" message */
+@media (orientation: portrait) {
+    .rotateDeviceScreen {
+        /* display: flex; */
+    }
+}
+
+/* Different screen hights responsive */
 @media (max-height: 720px) {
     #startScreen h1 {
         font-size: 7rem;
@@ -463,7 +470,7 @@ progress::-moz-progress-bar {
     }
 }
 
-/* Different Screen widths responsiv  */
+/* Different screen widths responsive  */
 @media (max-width: 1024px) {
     .instructions img:nth-child(3) {
         width: 80vw;
@@ -561,7 +568,7 @@ progress::-moz-progress-bar {
 
 /* Hide Game Buttons when mouse is detected*/
 
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (min-height: 700px) {
 
     #gameTitle,
     #canvasButtons {
@@ -591,6 +598,10 @@ progress::-moz-progress-bar {
 
 @media (max-width: 720px) {
     canvas {
+        width: 100%;
+    }
+
+    #canvasButtons {
         width: 100%;
     }
 }
