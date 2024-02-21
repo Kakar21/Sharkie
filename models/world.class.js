@@ -37,7 +37,13 @@ class World {
      */
     run() {
         setStoppableInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionCharWithEnemy();
+            this.checkCollisionBubbleWithEnemy();
+            this.checkCollisionCharWithCollectable();
+            this.checkCollisionCharNearPuffer();
+            this.checkCollisionCharNearBoss();
+            this.checkCollisionPoisonWithBoss();
+            this.checkCollisionCharWithBoss();
             this.checkGameStatus();
             BACKGROUND_SOUND_MUSIC.play();
         }, 1000 / 60);
@@ -49,6 +55,7 @@ class World {
             setTimeout(() => {
                 gameLost();
             }, 3000);
+
         } else if (this.endboss.hasDied) {
             setTimeout(() => {
                 gameWon();
@@ -60,9 +67,10 @@ class World {
     /**
      * Check collisions for all kind of different objects
      */
-    checkCollisions() {
+    checkCollisionCharWithEnemy() {
         // Character with all Enemies
         this.level.enemies.forEach((enemy) => {
+
             if (this.character.isColliding(enemy) && !this.character.isDead() && !enemy.isDead()) {
                 this.character.hitBy = enemy.constructor.name;
 
@@ -82,12 +90,19 @@ class World {
                 this.healthBar.setPercentage(this.character.energy);
             };
         });
+    }
 
+    checkCollisionBubbleWithEnemy() {
         // All bubbles with Enemies
         if (this.shootableObjects.length >= 1) {
+
             this.level.enemies.forEach((enemy) => {
+
                 this.shootableObjects.forEach((bubble) => {
+
                     if (bubble.isColliding(enemy)) {
+
+                        let i = this.shootableObjects.indexOf(bubble);
 
                         if (enemy instanceof JellyFish && !bubble.poison) {
                             enemy.energy = 0;
@@ -96,47 +111,64 @@ class World {
                             BUBBLE_SOUND_POP.play();
                         }
 
-                        let i = this.shootableObjects.indexOf(bubble);
                         this.shootableObjects.splice(i, 1);
                     };
                 });
             });
         }
+    }
 
+    checkCollisionCharWithCollectable() {
         // Character with collectables
         this.level.collectables.forEach((collectable) => {
+
             if (this.character.isColliding(collectable) && !this.character.isDead()) {
+
+                let i = this.level.collectables.indexOf(collectable);
 
                 if (collectable instanceof Coin) {
                     this.coinBar.setPercentage(this.coinBar.percentage += 10);
                     COIN_SOUND.currentTime = 0;
                     COIN_SOUND.play();
+
                 } else if (collectable instanceof Poison) {
                     this.poisonBar.setPercentage(this.poisonBar.percentage += 10);
                     POISON_SOUND.currentTime = 0;
                     POISON_SOUND.play();
                 }
-                let i = this.level.collectables.indexOf(collectable);
+
                 this.level.collectables.splice(i, 1);
             };
         });
+    }
 
+    checkCollisionCharNearPuffer() {
         // Character with Puffer Fishes nearby
         this.level.enemies.forEach((enemy) => {
+
             if (enemy instanceof PufferFish && this.character.isNearby(enemy)) {
                 enemy.startPuffingUp();
             };
         });
+    }
 
+    checkCollisionCharNearBoss() {
         // Character near Endboss
         if (this.character.x > 3860) {
             this.endboss.startIntroduce();
         }
+    }
 
+    checkCollisionPoisonWithBoss() {
         // Poison Bubble with Endboss
         if (this.shootableObjects.length >= 1) {
+
             this.shootableObjects.forEach((bubble) => {
+
                 if (bubble.isColliding(this.endboss)) {
+
+                    let i = this.shootableObjects.indexOf(bubble);
+
                     if (bubble.poison && !this.endboss.isDead()) {
                         ENDBOSS_SOUND_HURT.play();
                         this.endboss.hit(20);
@@ -146,12 +178,13 @@ class World {
                     }
 
                     this.healthBarEndboss.setPercentage(this.endboss.energy);
-                    let i = this.shootableObjects.indexOf(bubble);
                     this.shootableObjects.splice(i, 1);
                 }
             });
         }
+    }
 
+    checkCollisionCharWithBoss() {
         // Character with Endboss
         if (this.character.isColliding(this.endboss) && !this.character.isDead()) {
             this.character.hitBy = this.endboss.constructor.name;
@@ -216,7 +249,6 @@ class World {
      * @param {object} mo 
      */
     addToMap(mo) {
-
         if (mo.otherDirection) {
             this.flipImage(mo);
         }

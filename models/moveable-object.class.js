@@ -39,7 +39,7 @@ class MoveableObject extends DrawableObject {
     }
 
     getMiddleY(obj) {
-        return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2)
+        return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2);
     }
 
 
@@ -77,7 +77,7 @@ class MoveableObject extends DrawableObject {
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
-        timePassed = timePassed / 1000 // Difference in s
+        timePassed = timePassed / 1000; // Difference in s
         return timePassed < 1;
     }
 
@@ -138,6 +138,7 @@ class MoveableObject extends DrawableObject {
     moveUpAndDown() {
         setStoppableInterval(() => {
             if (!this.isDead()) {
+
                 // Change Direction
                 if (this.isAtLevelEnd(this, 'up')) {
                     this.direction = 'down';
@@ -162,6 +163,7 @@ class MoveableObject extends DrawableObject {
 
         setStoppableInterval(() => {
             if (!this.isDead()) {
+
                 // Change Direction
                 if (this.x > endX) {
                     this.direction = 'left';
@@ -178,7 +180,4 @@ class MoveableObject extends DrawableObject {
             }
         }, 1000 / 60);
     }
-
-
-
 }

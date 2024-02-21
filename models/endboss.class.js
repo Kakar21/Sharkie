@@ -1,5 +1,4 @@
 class Endboss extends MoveableObject {
-
     width = 350;
     height = 350;
     y = -1000;
@@ -88,7 +87,7 @@ class Endboss extends MoveableObject {
                     this.y += this.speed;
                 }
             }
-        }, 1000 / 60)
+        }, 1000 / 60);
     }
 
 
@@ -97,7 +96,6 @@ class Endboss extends MoveableObject {
      */
     animate() {
         setStoppableInterval(() => {
-
             if (this.isDead()) {
                 this.playDead();
 
@@ -106,10 +104,9 @@ class Endboss extends MoveableObject {
 
             } else if (this.isHurt()) {
                 this.playHurt();
-
+                
             } else if (this.isIntroducing) {
                 this.playIntroduce();
-
             } else {
                 this.playSwim();
             }
@@ -134,6 +131,7 @@ class Endboss extends MoveableObject {
 
     playIntroduce() {
         this.playAnimation(ENDBOSS_IMAGES_INTRODUCE);
+
         this.y = 0;
         this.world.healthBarEndboss.y = 0;
 
@@ -151,7 +149,7 @@ class Endboss extends MoveableObject {
 
     playBite() {
         this.playAnimation(ENDBOSS_IMAGES_BITE);
-        ENDBOSS_SOUND_BITE.play()
+        ENDBOSS_SOUND_BITE.play();
 
         if (this.currentImage >= ENDBOSS_IMAGES_BITE.length) {
             this.isBiting = false;
@@ -166,13 +164,10 @@ class Endboss extends MoveableObject {
 
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
-
-
         this.offset = this.offsets.hurt;
     }
 
     playDead() {
-
         if (!this.hasDied) {
             this.hasDied = true;
             this.currentImage = 0;
@@ -182,7 +177,7 @@ class Endboss extends MoveableObject {
         this.playAnimationOnce(ENDBOSS_IMAGES_DEAD);
 
         if (this.currentImage >= ENDBOSS_IMAGES_DEAD.length - 1) {
-            this.y -= 3
+            this.y -= 3;
         }
 
         this.offset = this.offsets.dead;

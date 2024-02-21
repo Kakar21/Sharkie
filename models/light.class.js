@@ -6,7 +6,8 @@ class Light extends MoveableObject {
 
     constructor(x) {
         super().loadImage('../img/3. Background/Layers/1. Light/COMPLETO.png');
-        this.x = x
+        this.x = x;
+
         this.animate();
     }
 

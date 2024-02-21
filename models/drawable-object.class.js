@@ -33,8 +33,9 @@ class DrawableObject {
      * @param {string} path 
      */
     loadImage(path) {
-        imagesToLoad++
+        imagesToLoad++;
         this.img = new Image();
+        this.img.src = path;
         this.img.onload = () => {
             imagesLoaded++;
             percent = (imagesLoaded / imagesToLoad) * 100;
@@ -43,8 +44,7 @@ class DrawableObject {
             if (percent == 100) {
                 document.getElementById('loadingScreen').classList.add('d-none');
             }
-        }
-        this.img.src = path;
+        };
     }
 
 
@@ -109,19 +109,19 @@ class DrawableObject {
     // }
 
 
-//     /**
-//      * Draws a frame around the object reaction box in yellow
-//      * @param {context} ctx 
-//      */
-//     drawFrameYellowFrame(ctx) {
-//         if (this instanceof PufferFish || this instanceof Character) {
-//             ctx.beginPath();
-//             ctx.lineWidth = '0.5';
-//             ctx.strokeStyle = 'Yellow';
-//             ctx.rect(this.x + this.offset.left - this.offsetNear.left, this.y + this.offset.top - this.offsetNear.top, (this.x + this.width - this.offset.right + this.offsetNear.right) - (this.x + this.offset.left - this.offsetNear.left), (this.y + this.height - this.offset.bottom + this.offsetNear.bottom) - (this.y + this.offset.top - this.offsetNear.top));
-//             ctx.stroke();
-//         }
-//     }
+    //     /**
+    //      * Draws a frame around the object reaction box in yellow
+    //      * @param {context} ctx 
+    //      */
+    //     drawFrameYellowFrame(ctx) {
+    //         if (this instanceof PufferFish || this instanceof Character) {
+    //             ctx.beginPath();
+    //             ctx.lineWidth = '0.5';
+    //             ctx.strokeStyle = 'Yellow';
+    //             ctx.rect(this.x + this.offset.left - this.offsetNear.left, this.y + this.offset.top - this.offsetNear.top, (this.x + this.width - this.offset.right + this.offsetNear.right) - (this.x + this.offset.left - this.offsetNear.left), (this.y + this.height - this.offset.bottom + this.offsetNear.bottom) - (this.y + this.offset.top - this.offsetNear.top));
+    //             ctx.stroke();
+    //         }
+    //     }
 }
 
 // TODO: Lastly delete all irrelevant comments

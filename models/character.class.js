@@ -1,5 +1,4 @@
 class Character extends MoveableObject {
-
     width = 200;
     height = 200;
     y = (480 / 2) - this.offset.top - ((this.height - this.offset.top - this.offset.bottom) / 2); // Mid of the canvas
@@ -143,7 +142,6 @@ class Character extends MoveableObject {
 
         // Animation
         setStoppableInterval(() => {
-
             if (this.isDead()) {
                 this.playDead();
 
@@ -211,7 +209,6 @@ class Character extends MoveableObject {
     }
 
     playLongIDLE() {
-
         if (!this.isLongIDLE) {
             this.isLongIDLE = true;
             this.currentImage = 0;
@@ -237,6 +234,7 @@ class Character extends MoveableObject {
 
         if (this.currentImage === 3) {
             this.world.level.enemies.forEach((enemy) => {
+
                 if (enemy instanceof PufferFish && enemy.isNearby(this)) {
                     enemy.energy = 0;
                     CHARACTER_SOUND_FINSLAP.play();
@@ -281,18 +279,15 @@ class Character extends MoveableObject {
         if (this.hitBy === 'JellyFish') {
             this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
             this.offset = this.offsets.shock;
-
         } else {
             this.playAnimation(CHARACTER_IMAGES_HURT['POISON']);
             this.offset = this.offsets.poison;
-
         }
 
         this.lastMovement = 0;
     }
 
     playDead() {
-
         if (!this.hasDied && (this.hitBy === 'PufferFish' || this.hitBy === 'Endboss')) {
             CHARACTER_SOUND_DEAD.play();
         }
@@ -304,17 +299,16 @@ class Character extends MoveableObject {
 
         if (this.hitBy === 'JellyFish') {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['SHOCK']);
+
             if ((this.currentImage >= CHARACTER_IMAGES_DEAD['SHOCK'].length) && this.y <= 250) {
                 this.y += 3;
             }
-
         } else {
             this.playAnimationOnce(CHARACTER_IMAGES_DEAD['POISON']);
 
             if (this.currentImage >= CHARACTER_IMAGES_DEAD['POISON'].length - 4) {
                 this.y -= 3;
             }
-
         }
 
         this.lastMovement = 0;

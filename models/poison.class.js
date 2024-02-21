@@ -1,5 +1,4 @@
-class Poison extends CollectableObject {
-
+class Poison extends MoveableObject {
     width = 50;
     height = 67.5;
     offset = {

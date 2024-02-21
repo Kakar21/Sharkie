@@ -1,5 +1,4 @@
 class JellyFish extends MoveableObject {
-
     width = 66.66;
     height = 100;
     offset = {
@@ -36,7 +35,6 @@ class JellyFish extends MoveableObject {
         this.y = y;
         this.speed = speed;
         // this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
-
 
         this.loadImages(JELLYFISH_IMAGES_SWIM[this.color]);
         this.loadImages(JELLYFISH_IMAGES_DEAD[this.color]);
@@ -80,10 +78,8 @@ class JellyFish extends MoveableObject {
             this.moveLeftAndRight();
         }
 
-
         // Animation
         setStoppableInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(JELLYFISH_IMAGES_DEAD[this.color]);
                 this.offset = this.offsets.dead;

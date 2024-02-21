@@ -1,5 +1,4 @@
 class ShootableObject extends MoveableObject {
-
     height = 50;
     width = 50;
     poison = false;
@@ -8,15 +7,15 @@ class ShootableObject extends MoveableObject {
 
         if (poison) {
             super().loadImage('../img/1. Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
+            this.height = 58;
+            this.width = 58;
+            this.poison = true;
             this.offset = {
                 top: 4,
                 right: 4,
                 bottom: 4,
                 left: 4
             };
-            this.height = 58;
-            this.width = 58;
-            this.poison = true;
         } else {
             super().loadImage('../img/1. Sharkie/4.Attack/Bubble trap/Bubble.png');
         }

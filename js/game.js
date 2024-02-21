@@ -65,7 +65,6 @@ function gameWon() {
 
 
 function playAgain() {
-
     if (!muted) {
         toggleSounds(false, 'ingame');
     }
@@ -83,7 +82,6 @@ function playAgain() {
 
 
 function tryAgain() {
-
     if (!muted) {
         toggleSounds(false, 'ingame');
     }

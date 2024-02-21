@@ -3,7 +3,7 @@ class Level {
     collectables;
     lights;
     backgroundObjects;
-    
+
 
     constructor(enemies, collectables, lights, backgroundObjects) {
         this.enemies = enemies;

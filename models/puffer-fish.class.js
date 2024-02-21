@@ -1,5 +1,4 @@
 class PufferFish extends MoveableObject {
-
     width = 50;
     height = 40;
     offset = {
@@ -41,7 +40,7 @@ class PufferFish extends MoveableObject {
         super();
         this.color = this.getColor();
         this.loadImage(PUFFERFISH_IMAGES_SWIM[this.color][0]);
-        this.x = 720 + Math.random() * (3140 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
+        this.x = 720 + Math.random() * (3140 - this.width);// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
         this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
         this.speed = 0.1 + Math.random() * 0.5;
 
@@ -49,6 +48,7 @@ class PufferFish extends MoveableObject {
         this.loadImages(PUFFERFISH_IMAGES_SWIM[this.color]);
         this.loadImages(PUFFERFISH_IMAGES_PUFFING_UP[this.color]);
         this.loadImages(PUFFERFISH_IMAGES_PUFFED_SWIM[this.color]);
+
         this.animate();
     }
 
@@ -77,11 +77,12 @@ class PufferFish extends MoveableObject {
         this.moveLeft();
 
         setStoppableInterval(() => {
-
             if (this.isDead()) {
                 this.playDead();
+
             } else if (this.isPuffingUp) {
                 this.playPuffingUp();
+
             } else if (this.hasPuffedUp) {
                 this.playAnimation(PUFFERFISH_IMAGES_PUFFED_SWIM[this.color]);
             } else {
@@ -105,7 +106,6 @@ class PufferFish extends MoveableObject {
             PUFFERFISH_SOUND_PUFFING_UP.play();
             this.offset = this.offsets.puffed;
             this.hasPuffedUp = true;
-
         }
     }
 
@@ -114,12 +114,13 @@ class PufferFish extends MoveableObject {
 
         if (!this.dead) {
             this.dead = true;
+
             setStoppableInterval(() => {
                 this.x += this.knockSpeedX;
                 this.y -= this.knockSpeedY;
                 this.knockSpeedX /= this.acceleration * 1.015;
                 this.knockSpeedY /= this.acceleration;
-            }, 1000 / 60)
+            }, 1000 / 60);
         }
     }
 
