@@ -93,83 +93,92 @@ class Character extends MoveableObject {
 
         // Movement
         setStoppableInterval(() => {
-            const moveRight = (this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right');
-            const moveLeft = (this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left');
-            const moveUp = (this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up');
-            const moveDown = (this.world.keyboard.DOWN || this.world.keyboard.S) && !this.isAtLevelEnd(this, 'down');
-
-            if (!this.isDead()) {
-                if (moveRight) {
-                    this.x += this.speed;
-                    this.otherDirection = false;
-                }
-
-                if (moveLeft) {
-                    this.x -= this.speed;
-                    this.otherDirection = true;
-                }
-
-                if (moveUp) {
-                    this.y -= this.speed;
-                }
-
-                if (moveDown) {
-                    this.y += this.speed;
-                }
-
-                if (moveRight || moveLeft || moveUp || moveDown) {
-                    CHARACTER_SOUND_SWIM.play();
-                } else {
-                    CHARACTER_SOUND_SWIM.pause();
-                    CHARACTER_SOUND_SWIM.currentTime = 0;
-                }
-
-                if (this.world.keyboard.SPACE) {
-                    this.startFinSlap();
-                }
-
-                if (this.world.keyboard.H) {
-                    this.startBubbleTrap();
-                }
-
-                if (this.world.keyboard.J) {
-                    if (this.world.poisonBar.percentage >= 10)
-                        this.startBubbleTrapPoison();
-                }
-            }
-            this.world.camera_x = -this.x - this.offsets.normal.left + this.level_end_space;
+            this.moveCharacter();
         }, 1000 / 60);
 
         // Animation
         setStoppableInterval(() => {
-            if (this.isDead()) {
-                this.playDead();
-
-            } else if (this.isHurt()) {
-                this.playHurt();
-
-            } else if (this.isSlapping) {
-                this.playFinSlap();
-
-            } else if (this.isShooting.NORMAL) {
-                this.playBubbleTrap();
-
-            } else if (this.isShooting.POISON) {
-                this.playBubbleTrapPoison();
-
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.W || this.world.keyboard.A || this.world.keyboard.S || this.world.keyboard.D) {
-                this.playSwim();
-
-            } else if (this.lastMovement >= 60) {
-                this.playSleep();
-
-            } else if (this.lastMovement >= 50) {
-                this.playLongIDLE();
-            } else {
-                this.playIDLE();
-            };
+            this.playCharacter();
         }, 100);
     }
+
+    moveCharacter() {
+        const moveRight = (this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right');
+        const moveLeft = (this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left');
+        const moveUp = (this.world.keyboard.UP || this.world.keyboard.W) && !this.isAtLevelEnd(this, 'up');
+        const moveDown = (this.world.keyboard.DOWN || this.world.keyboard.S) && !this.isAtLevelEnd(this, 'down');
+
+        if (!this.isDead()) {
+            if (moveRight) {
+                this.x += this.speed;
+                this.otherDirection = false;
+            }
+
+            if (moveLeft) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+
+            if (moveUp) {
+                this.y -= this.speed;
+            }
+
+            if (moveDown) {
+                this.y += this.speed;
+            }
+
+            if (moveRight || moveLeft || moveUp || moveDown) {
+                CHARACTER_SOUND_SWIM.play();
+            } else {
+                CHARACTER_SOUND_SWIM.pause();
+                CHARACTER_SOUND_SWIM.currentTime = 0;
+            }
+
+            if (this.world.keyboard.SPACE) {
+                this.startFinSlap();
+            }
+
+            if (this.world.keyboard.H) {
+                this.startBubbleTrap();
+            }
+
+            if (this.world.keyboard.J) {
+                if (this.world.poisonBar.percentage >= 10)
+                    this.startBubbleTrapPoison();
+            }
+        }
+        this.world.camera_x = -this.x - this.offsets.normal.left + this.level_end_space;
+    }
+
+    playCharacter() {
+        if (this.isDead()) {
+            this.playDead();
+
+        } else if (this.isHurt()) {
+            this.playHurt();
+
+        } else if (this.isSlapping) {
+            this.playFinSlap();
+
+        } else if (this.isShooting.NORMAL) {
+            this.playBubbleTrap();
+
+        } else if (this.isShooting.POISON) {
+            this.playBubbleTrapPoison();
+
+        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.W || this.world.keyboard.A || this.world.keyboard.S || this.world.keyboard.D) {
+            this.playSwim();
+
+        } else if (this.lastMovement >= 60) {
+            this.playSleep();
+
+        } else if (this.lastMovement >= 50) {
+            this.playLongIDLE();
+        } else {
+            this.playIDLE();
+        };
+    }
+
 
     startFinSlap() {
         if (!this.isSlapping && !this.otherDirection) {

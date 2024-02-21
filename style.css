@@ -391,7 +391,7 @@ progress::-moz-progress-bar {
 /* Display "Rotate your device" message */
 @media (orientation: portrait) {
     .rotateDeviceScreen {
-        /* display: flex; */
+        display: flex;
     }
 }
 
