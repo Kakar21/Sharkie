@@ -40,7 +40,7 @@ class PufferFish extends MoveableObject {
         super();
         this.color = this.getColor();
         this.loadImage(PUFFERFISH_IMAGES_SWIM[this.color][0]);
-        this.x = 720 + Math.random() * (3140 - this.width);// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
+        this.x = 720 + Math.random() * (3140 - this.width);// (Endboss Position - 720 canvas width + endboss width - 720 (added at the beginning)) ;
         this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
         this.speed = 0.1 + Math.random() * 0.5;
 

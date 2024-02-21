@@ -225,7 +225,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        // Draw() will executed again and again
+        // Draw() will be executed again and again
         let self = this;
         this.game = requestAnimationFrame(function () {
             self.draw();
@@ -254,9 +254,6 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
-        // mo.drawFrameRedFrame(this.ctx);
-        // mo.drawFrameYellowFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

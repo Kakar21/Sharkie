@@ -30,9 +30,9 @@ function stopGame() {
 }
 
 function gameLost() {
+    exitFullscreen();
     stopGame();
     toggleSounds(true, 'ingame');
-    exitFullscreen();
     hideGameScreen();
 
     if (world.character.hitBy === 'JellyFish') {
@@ -50,9 +50,9 @@ function gameLost() {
 }
 
 function gameWon() {
+    exitFullscreen();
     stopGame();
     toggleSounds(true, 'ingame');
-    exitFullscreen();
     hideGameScreen();
 
     document.getElementById('gameWon').classList.remove('d-none');
@@ -230,10 +230,12 @@ function enterFullscreen() {
 
 
 function exitFullscreen() {
-    if (document.exitFullscreen) {
+    if (document.fullscreenElement) {
         document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
+    } else if (document.webkitFullscreenElement) { // iOS Safari
         document.webkitExitFullscreen();
+    } else if (document.msFullscreenElement) { // for IE11 (remove June 15, 2022)
+        document.msExitFullscreen();
     }
 }
 
@@ -409,5 +411,3 @@ function bindButtonEvents() {
         keyboard.J = false;
     });
 }
-
-// TODO: Fix all console errors

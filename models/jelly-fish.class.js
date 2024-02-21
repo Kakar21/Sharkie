@@ -31,10 +31,8 @@ class JellyFish extends MoveableObject {
         this.loadImage(JELLYFISH_IMAGES_SWIM[this.color][0]);
         this.axis = axis;
         this.x = x;
-        // this.x = 400 + Math.random() * (3460 - this.width)// (Endboss Position - 720 canvas width + endboss width - 400 (added at the beginning)) ;
         this.y = y;
         this.speed = speed;
-        // this.y = (this.level_end_space - this.offsets.normal.top) + Math.random() * (480 - this.height - (this.level_end_space - this.offsets.normal.top) - this.level_end_space + this.offsets.normal.bottom);
 
         this.loadImages(JELLYFISH_IMAGES_SWIM[this.color]);
         this.loadImages(JELLYFISH_IMAGES_DEAD[this.color]);
@@ -72,6 +70,8 @@ class JellyFish extends MoveableObject {
      * Checks jelly fish state to play animations in a loop
      */
     animate() {
+        
+        // Movement
         if (this.axis === 'vertical') {
             this.moveUpAndDown();
         } else if (this.axis === 'horizontal') {

@@ -2,7 +2,7 @@ class Endboss extends MoveableObject {
     width = 350;
     height = 350;
     y = -1000;
-    x = 4380 - 150; // (Endboss Width - Character Width); 
+    x = 4380 - 150; // (World End - (Endboss Width - Character Width)); 
     speed = 1;
     offset = {
         top: 164,
@@ -104,7 +104,7 @@ class Endboss extends MoveableObject {
 
             } else if (this.isHurt()) {
                 this.playHurt();
-                
+
             } else if (this.isIntroducing) {
                 this.playIntroduce();
             } else {
