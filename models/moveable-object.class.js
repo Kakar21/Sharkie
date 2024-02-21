@@ -34,15 +34,32 @@ class MoveableObject extends DrawableObject {
     }
 
 
+    /**
+     * Returns the middle of the objects horizontal axis
+     * @param {object} obj 
+     * @returns - X-coordinate
+     */
     getMiddleX(obj) {
         return obj.x + obj.offset.left + ((obj.width - obj.offset.left - obj.offset.right) / 2);
     }
 
+
+    /**
+     * Returns the middle of the objects vertical axis
+     * @param {object} obj 
+     * @returns - Y-coordinate
+     */
     getMiddleY(obj) {
         return obj.y + obj.offset.top + ((obj.height - obj.offset.top - obj.offset.bottom) / 2);
     }
 
 
+    /**
+     * Checks if the object is at the end of the level
+     * @param {object} obj 
+     * @param {string} direction - 'left', 'right', 'up' or 'down'
+     * @returns - boolean
+     */
     isAtLevelEnd(obj, direction) {
         if (direction === 'left') {
             return (obj.x + obj.offsets.normal.left - 5) < this.level_end_space;
@@ -133,7 +150,7 @@ class MoveableObject extends DrawableObject {
 
 
     /**
-     *  Moves the object up and down till the canvas borders in a loop in itselfs speed
+     *  Moves the object up and down in itselfs speed till the canvas borders in a loop 
      */
     moveUpAndDown() {
         setStoppableInterval(() => {
@@ -156,6 +173,10 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
+
+    /**
+     * Moves the object left and right in itselfs speed till 300px of it position in a loop
+     */
     moveLeftAndRight() {
         let startX = this.x;
         let endX = this.x + 300;

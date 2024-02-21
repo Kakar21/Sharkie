@@ -58,6 +58,10 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+
+    /**
+     * Lets the endboss follow the character
+     */
     move() {
         setStoppableInterval(() => {
             if (!this.isDead() && !this.world.character.isDead() && !this.isHurt()) {
@@ -113,6 +117,10 @@ class Endboss extends MoveableObject {
         }, 100);
     }
 
+
+    /**
+     * Prepares the introduction of the endboss
+     */
     startIntroduce() {
         if (!this.isIntroducing && !this.hasIntroduced) {
             this.isIntroducing = true;
@@ -121,6 +129,10 @@ class Endboss extends MoveableObject {
         }
     }
 
+
+    /**
+     * Prepares a bite of the endboss
+     */
     startBite() {
         if (!this.isBiting) {
             this.isBiting = true;
@@ -129,6 +141,10 @@ class Endboss extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the introduction animation of the endboss
+     */
     playIntroduce() {
         this.playAnimation(ENDBOSS_IMAGES_INTRODUCE);
 
@@ -142,11 +158,19 @@ class Endboss extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the swim animation of the endboss
+     */
     playSwim() {
         this.playAnimation(ENDBOSS_IMAGES_SWIM);
         this.offset = this.offsets.normal;
     }
 
+    
+    /**
+     * PLays the biting animation of the endboss
+     */
     playBite() {
         this.playAnimation(ENDBOSS_IMAGES_BITE);
         ENDBOSS_SOUND_BITE.play();
@@ -162,11 +186,19 @@ class Endboss extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the hurt animation of the endboss
+     */
     playHurt() {
         this.playAnimation(ENDBOSS_IMAGES_HURT);
         this.offset = this.offsets.hurt;
     }
 
+
+    /**
+     * Plays the dead of the endboss and lets the endboss death float
+     */
     playDead() {
         if (!this.hasDied) {
             this.hasDied = true;

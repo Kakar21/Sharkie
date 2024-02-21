@@ -91,6 +91,10 @@ class PufferFish extends MoveableObject {
         }, 100);
     }
 
+
+    /**
+     * Prepares the puffing up of the puffer fish
+     */
     startPuffingUp() {
         if (!this.isPuffingUp && !this.hasPuffedUp) {
             this.isPuffingUp = true;
@@ -98,6 +102,10 @@ class PufferFish extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the puffing up animation of the puffer fish
+     */
     playPuffingUp() {
         this.playAnimation(PUFFERFISH_IMAGES_PUFFING_UP[this.color]);
 
@@ -109,6 +117,10 @@ class PufferFish extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the dead animation of the puffer fish
+     */
     playDead() {
         this.playAnimation(PUFFERFISH_IMAGES_DEAD[this.color]);
 

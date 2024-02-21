@@ -86,8 +86,7 @@ class Character extends MoveableObject {
 
 
     /**
-     * Checks pressed keys for character movement and sound in a loop
-     * Checks characters state to play animations in a loop
+     * Runs everything in intervals to animate and move the character
      */
     animate() {
 
@@ -102,6 +101,10 @@ class Character extends MoveableObject {
         }, 100);
     }
 
+
+    /**
+     * Checks pressed keys for character movement and sound
+     */
     moveCharacter() {
         const moveRight = (this.world.keyboard.RIGHT || this.world.keyboard.D) && !this.isAtLevelEnd(this, 'right');
         const moveLeft = (this.world.keyboard.LEFT || this.world.keyboard.A) && !this.isAtLevelEnd(this, 'left');
@@ -150,6 +153,10 @@ class Character extends MoveableObject {
         this.world.camera_x = -this.x - this.offsets.normal.left + this.level_end_space;
     }
 
+
+    /**
+     * Checks characters state to play animations
+     */
     playCharacter() {
         if (this.isDead()) {
             this.playDead();
@@ -180,6 +187,9 @@ class Character extends MoveableObject {
     }
 
 
+    /**
+     * Prepares the finslap attack of the character
+     */
     startFinSlap() {
         if (!this.isSlapping && !this.otherDirection) {
             this.isSlapping = true;
@@ -188,6 +198,10 @@ class Character extends MoveableObject {
         }
     }
 
+    
+    /**
+     * Prepares the bubble-trap attack of the character
+     */
     startBubbleTrap() {
         if (!this.isShooting.NORMAL && !this.otherDirection) {
             this.isShooting.NORMAL = true;
@@ -196,6 +210,10 @@ class Character extends MoveableObject {
         }
     }
 
+
+    /**
+     * Prepares the bubble-trap-poison attack of the character
+     */
     startBubbleTrapPoison() {
         if (!this.isShooting.POISON && !this.otherDirection) {
             this.isShooting.POISON = true;
@@ -205,18 +223,30 @@ class Character extends MoveableObject {
         }
     }
 
+
+    /**
+     * Plays the swim animation of the character
+     */
     playSwim() {
         this.playAnimation(CHARACTER_IMAGES_SWIM);
         this.offset = this.offsets.normal;
         this.lastMovement = 0;
     }
 
+
+    /**
+     * Plays the IDLE animation of the character
+     */
     playIDLE() {
         this.playAnimation(CHARACTER_IMAGES_IDLE);
         this.offset = this.offsets.normal;
         this.lastMovement += 1;
     }
 
+
+    /**
+     * Plays the long IDLE animation of the character
+     */
     playLongIDLE() {
         if (!this.isLongIDLE) {
             this.isLongIDLE = true;
@@ -233,11 +263,19 @@ class Character extends MoveableObject {
         this.lastMovement += 1;
     }
 
+
+    /**
+     * Plays the sleep animation of the character
+     */
     playSleep() {
         this.playAnimation(CHARACTER_IMAGES_SLEEP);
         this.offset = this.offsets.sleep;
     }
 
+
+    /**
+     * Plays the finslap animation of the character
+     */
     playFinSlap() {
         this.playAnimation(CHARACTER_IMAGES_FINSLAP);
 
@@ -258,6 +296,10 @@ class Character extends MoveableObject {
         this.lastMovement = 0;
     }
 
+
+    /**
+     * Plays the bubble-trap animation of the character and creates new bubble 
+     */
     playBubbleTrap() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['NORMAL']);
         CHARACTER_SOUND_BUBBLETRAP.play();
@@ -271,6 +313,10 @@ class Character extends MoveableObject {
         this.lastMovement = 0;
     }
 
+    
+    /**
+     * Plays the bubble-trap-poison animation of the character and creates new poison-bubble
+     */
     playBubbleTrapPoison() {
         this.playAnimation(CHARACTER_IMAGES_BUBBLETRAP['POISON']);
         CHARACTER_SOUND_BUBBLETRAP.play();
@@ -284,6 +330,10 @@ class Character extends MoveableObject {
         this.lastMovement = 0;
     }
 
+
+    /**
+     * Plays the different hurt animations of the character
+     */
     playHurt() {
         if (this.hitBy === 'JellyFish') {
             this.playAnimation(CHARACTER_IMAGES_HURT['SHOCK']);
@@ -296,6 +346,10 @@ class Character extends MoveableObject {
         this.lastMovement = 0;
     }
 
+
+    /**
+     * Plays the different dead animations of the character and lets the character death float
+     */
     playDead() {
         if (!this.hasDied && (this.hitBy === 'PufferFish' || this.hitBy === 'Endboss')) {
             CHARACTER_SOUND_DEAD.play();

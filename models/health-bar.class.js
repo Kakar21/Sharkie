@@ -1,5 +1,4 @@
 class HealthBar extends DrawableObject {
-
     percentage = 100;
     width = 180;
     height = 50;

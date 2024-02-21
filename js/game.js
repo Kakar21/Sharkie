@@ -11,7 +11,7 @@ let imagesLoaded = 0;
 let imagesToLoad = 0;
 let percent = 0;
 
-// TODO: Clean code
+// TODO: JSDocs + 2 line space between every function
 
 /**
  * Initializes the game
@@ -22,6 +22,10 @@ function init() {
     bindButtonEvents();
 }
 
+
+/**
+ * Stops the game and music
+ */
 function stopGame() {
     allIntervals.forEach(clearInterval);
     cancelAnimationFrame(world.game);
@@ -29,6 +33,10 @@ function stopGame() {
     BACKGROUND_SOUND_MUSIC.currentTime = 0;
 }
 
+
+/**
+ * Shows losing screen
+ */
 function gameLost() {
     exitFullscreen();
     stopGame();
@@ -49,6 +57,10 @@ function gameLost() {
     }, 3000);
 }
 
+
+/**
+ * Shows winning screen
+ */
 function gameWon() {
     exitFullscreen();
     stopGame();
@@ -64,6 +76,9 @@ function gameWon() {
 }
 
 
+/**
+ * Restarts game from winning screen
+ */
 function playAgain() {
     if (!muted) {
         toggleSounds(false, 'ingame');
@@ -81,6 +96,9 @@ function playAgain() {
 }
 
 
+/**
+ * Restarts game from losing screen
+ */
 function tryAgain() {
     if (!muted) {
         toggleSounds(false, 'ingame');
@@ -98,6 +116,9 @@ function tryAgain() {
 }
 
 
+/**
+ * Shows game screen
+ */
 function showGameScreen() {
     canvas.classList.remove('d-none');
     document.getElementById('gameTitle').classList.remove('d-none');
@@ -107,6 +128,9 @@ function showGameScreen() {
 }
 
 
+/**
+ * Hides game screen
+ */
 function hideGameScreen() {
     canvas.classList.add('d-none');
     document.getElementById('gameTitle').classList.add('d-none');
@@ -116,6 +140,9 @@ function hideGameScreen() {
 }
 
 
+/**
+ * Closes start screen
+ */
 function closeStartScreen() {
     playClickSound();
 
@@ -126,6 +153,9 @@ function closeStartScreen() {
 }
 
 
+/**
+ * Opens instruction menu
+ */
 function openInstructions() {
     playClickSound();
 
@@ -145,6 +175,10 @@ function openInstructions() {
     container.classList.remove('d-none');
 }
 
+
+/**
+ * Closes instruction menu
+ */
 function closeInstructions() {
     playClickSound();
 
@@ -156,6 +190,10 @@ function closeInstructions() {
 }
 
 
+/**
+ * Shows the next instruction
+ * @param {number} i - Index of the next instruction
+ */
 function nextInstruction(i) {
     playClickSound();
 
@@ -172,6 +210,10 @@ function nextInstruction(i) {
 }
 
 
+/**
+ * Shows the previous instruction
+ * @param {number} i - Index of the previous instruction
+ */
 function previousInstruction(i) {
     playClickSound();
 
@@ -188,6 +230,9 @@ function previousInstruction(i) {
 }
 
 
+/**
+ * Mutes game sounds and updates the mute button
+ */
 function muteGame() {
     playClickSound();
     toggleSounds(true);
@@ -201,6 +246,10 @@ function muteGame() {
     muteButtonMobile.setAttribute('onclick', 'unmuteGame()');
 }
 
+
+/**
+ * Unmutes game sounds and updates the mute button
+ */
 function unmuteGame() {
     playClickSound();
     toggleSounds(false);
@@ -215,6 +264,9 @@ function unmuteGame() {
 }
 
 
+/**
+ * Shows canvas in fullscreen
+ */
 function enterFullscreen() {
     playClickSound();
     let element = document.querySelector('canvas');
@@ -229,6 +281,9 @@ function enterFullscreen() {
 }
 
 
+/**
+ * Exits fullscreen of canvas
+ */
 function exitFullscreen() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
@@ -240,10 +295,16 @@ function exitFullscreen() {
 }
 
 
+/**
+ * Set a stoppable interval
+ * @param {function} fn - function to set interval
+ * @param {number} time - time between each run
+ */
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     allIntervals.push(id);
 }
+
 
 // Keyboard Events
 window.addEventListener('keydown', (event) => {
@@ -291,6 +352,7 @@ window.addEventListener('keydown', (event) => {
         keyboard.D = true;
     }
 });
+
 
 window.addEventListener('keyup', (event) => {
     if (event.keyCode === 37) {

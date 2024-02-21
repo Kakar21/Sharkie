@@ -1,6 +1,9 @@
 let level1;
 
 
+/**
+ * Initializes the level with all setted objects
+ */
 function initLevel() {
     level1 = new Level(
         [

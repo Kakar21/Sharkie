@@ -23,6 +23,7 @@ class World {
         this.run();
     }
 
+
     /**
      * Sets the world of the character to this object
      */
@@ -33,7 +34,7 @@ class World {
 
 
     /**
-     * Runs different function in a loop
+     * Runs collision checking and background music in a loop
      */
     run() {
         setStoppableInterval(() => {
@@ -50,6 +51,9 @@ class World {
     }
 
 
+    /**
+     * Checks if game is lost or won in a loop
+     */
     checkGameStatus() {
         if (this.character.hasDied) {
             setTimeout(() => {
@@ -65,7 +69,7 @@ class World {
 
 
     /**
-     * Check collisions for all kind of different objects
+     * Checks collision of character with enemies
      */
     checkCollisionCharWithEnemy() {
         // Character with all Enemies
@@ -92,6 +96,10 @@ class World {
         });
     }
 
+
+    /**
+     * Checks collision of bubbles with enemies
+     */
     checkCollisionBubbleWithEnemy() {
         // All bubbles with Enemies
         if (this.shootableObjects.length >= 1) {
@@ -118,6 +126,10 @@ class World {
         }
     }
 
+
+    /**
+     * Checks collision of character with collectables
+     */
     checkCollisionCharWithCollectable() {
         // Character with collectables
         this.level.collectables.forEach((collectable) => {
@@ -142,6 +154,10 @@ class World {
         });
     }
 
+
+    /**
+     * Checks if character is near puffer fishes
+     */
     checkCollisionCharNearPuffer() {
         // Character with Puffer Fishes nearby
         this.level.enemies.forEach((enemy) => {
@@ -152,6 +168,10 @@ class World {
         });
     }
 
+    
+    /**
+     * Checks if character is near the endboss
+     */
     checkCollisionCharNearBoss() {
         // Character near Endboss
         if (this.character.x > 3860) {
@@ -159,6 +179,10 @@ class World {
         }
     }
 
+
+    /**
+     * Checks collision of poison-bubbles with the endboss
+     */
     checkCollisionPoisonWithBoss() {
         // Poison Bubble with Endboss
         if (this.shootableObjects.length >= 1) {
@@ -184,6 +208,10 @@ class World {
         }
     }
 
+
+    /**
+     * Checks collision of character with the endboss
+     */
     checkCollisionCharWithBoss() {
         // Character with Endboss
         if (this.character.isColliding(this.endboss) && !this.character.isDead()) {

@@ -50,6 +50,11 @@ let PUFFERFISH_SOUND_PUFFING_UP = new Audio('../audio/PUFFERFISH_PUFFING_UP.mp3'
 PUFFERFISH_SOUND_PUFFING_UP.volume = 0.25;
 
 
+/**
+ * Mutes or unmutes all sounds
+ * @param {boolean} boolean - true to mute, false to unmute
+ * @param {string} type - 'ingame' or nothing
+ */
 function toggleSounds(boolean, type) {
     if (type !== 'ingame') {
         GAME_SOUND_WON.muted = boolean;
@@ -75,6 +80,9 @@ function toggleSounds(boolean, type) {
 }
 
 
+/**
+ * Plays the menu click sound
+ */
 function playClickSound() {
     MENU_SOUND_CLICK.currentTime = 0;
     MENU_SOUND_CLICK.play();

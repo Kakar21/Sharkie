@@ -3,8 +3,8 @@ class ShootableObject extends MoveableObject {
     width = 50;
     poison = false;
 
+    
     constructor(x, y, poison) {
-
         if (poison) {
             super().loadImage('../img/1. Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
             this.height = 58;
