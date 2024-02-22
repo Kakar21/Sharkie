@@ -6,7 +6,7 @@ class ShootableObject extends MoveableObject {
     
     constructor(x, y, poison) {
         if (poison) {
-            super().loadImage('../img/1. Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
+            super().loadImage('img/1. Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
             this.height = 58;
             this.width = 58;
             this.poison = true;
@@ -17,7 +17,7 @@ class ShootableObject extends MoveableObject {
                 left: 4
             };
         } else {
-            super().loadImage('../img/1. Sharkie/4.Attack/Bubble trap/Bubble.png');
+            super().loadImage('img/1. Sharkie/4.Attack/Bubble trap/Bubble.png');
         }
 
         this.x = x + 150;

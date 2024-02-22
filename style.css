@@ -277,7 +277,6 @@ progress::-moz-progress-bar {
 }
 
 .mobileGameButtons img:hover {
-    /* TODO: test on mobile if it works */
     opacity: 1;
 }
 
@@ -449,7 +448,7 @@ progress::-moz-progress-bar {
     #startScreen {
         gap: 6rem;
     }
-    
+
     #startScreen h1 {
         margin: 0 0 0 14rem;
         font-size: 6rem;
